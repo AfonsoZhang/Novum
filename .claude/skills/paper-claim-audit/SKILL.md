@@ -1,6 +1,6 @@
 ---
 name: paper-claim-audit
-description: "Zero-context verification that every number, comparison, and scope claim in the paper matches raw result files. Uses a fresh cross-model reviewer with NO prior context to prevent confirmation bias. Use when user says \"audit paper data\", \"check paper claims\", \"verify numbers\", \"reconcile paper statistics\", or before submission to ensure paper-to-evidence fidelity."
+description: Verify manuscript numbers, comparisons and scope against raw results, and pivotal empirical method claims against the code that produced them. Use for paper claim audits, method–code checks or submission review with a fresh cross-model reviewer.
 argument-hint: "[paper-directory]"
 allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, mcp__codex__codex
 ---
@@ -33,8 +33,10 @@ A **fresh reviewer with zero prior context** catches these because it has no exp
 ## Core Principle
 
 **Zero-context, fresh reviewer.** The auditor receives ONLY:
-- Paper .tex files (the claims)
+- Manuscript source (LaTeX or Markdown)
 - Raw result files (the evidence)
+- For claims about an implemented empirical method, the run record, resolved
+  config and relevant source files from the executed revision
 
 It does NOT receive:
 - ❌ EXPERIMENT_LOG.md
@@ -62,6 +64,8 @@ paper/main.tex                # → hash key: main.tex
 paper/sections/*.tex          # → hash key: sections/*.tex
 paper/tables/*.tex (if separate)   # → hash key: tables/*.tex
 ```
+For a Markdown manuscript, supply its actual source, such as
+`research/manuscript.md`, and apply the same audit.
 
 **Result files** (evidence):
 ```
@@ -72,6 +76,19 @@ wandb-summary.json (if exists)
 **/config.yaml, **/args.json (experiment configs)
 ```
 
+#### Method check
+
+In a full claim audit, or when reviewing the relevant method, trace each
+implementation choice on which an empirical conclusion depends. Examples
+include enabling a component or selecting data for an evaluation.
+Locate the run or attempt behind the result
+and collect its recorded command, resolved settings and the relevant source
+at the recorded revision. A clean checkout of that revision or a preserved
+source snapshot can supply the code. Trace the executed branch, including
+overrides. For example, for a validation-only threshold, identify the split
+actually passed to the threshold selector. A matching output value or an
+unused implementation cannot establish that claim.
+
 **Exclude** (no summaries, no interpretations):
 ```
 EXPERIMENT_LOG.md, EXPERIMENT_TRACKER.md, AUTO_REVIEW*.md
@@ -81,7 +98,7 @@ Any .md file that is an executor-written summary
 
 ### Step 1b: Deterministic integrity pre-check (Executor — Claude)
 
-Before the reviewer call, run the arithmetic and surface checks on the paper source:
+For LaTeX inputs, run the arithmetic and surface checks before the reviewer call:
 
 ```bash
 python3 <this skill>/scripts/integrity/precheck.py --latex <paper .tex files> \
@@ -108,15 +125,24 @@ mcp__codex__codex:
   config: {"model_reasoning_effort": "$REVIEWER_EFFORT_DEEP"}
   prompt: |
     You are a paper-to-evidence auditor. You have ZERO prior context about
-    this research. You will receive only paper source files and raw result
-    files. Your job is to verify that every number in the paper exactly
-    matches the raw evidence.
+    this research. Verify quantitative claims against raw evidence. Check
+    pivotal empirical method claims against the implementation used for the
+    reported result, even when a claim contains no number.
 
     Paper files to read:
-    [list .tex file paths]
+    [list manuscript source paths]
 
     Result files to read:
     [list .json/.csv/.yaml file paths]
+
+    Method evidence to read: [list run records, commands, resolved configs
+    and versioned source paths]. Follow the reported run through its entry
+    point and overrides to the branch that produced the result. A function
+    elsewhere in the repository cannot establish that it ran.
+    Return method_checks with the manuscript claim and locator,
+    run/attempt, code revision, config and file/symbol
+    locators, observed behavior, and status (match, mismatch, or unverified).
+    Identify missing evidence when the executed path cannot be established.
 
     ## Audit Protocol
 
@@ -191,8 +217,8 @@ mcp__codex__codex:
         manuscript ("As an AI language model", "[INSERT", "TODO", "lorem ipsum")
         Rule: list each occurrence with its location
 
-    ## Output Format (per claim)
-    For each claim, report:
+    ## Output Format (quantitative claims)
+    For each quantitative claim, report:
     - claim_id: sequential number
     - location: section/table/figure
     - paper_text: exact quote from paper
@@ -204,7 +230,10 @@ mcp__codex__codex:
               number_mismatch | scope_overclaim | unsupported_claim
     - details: explanation if not exact_match
 
-    Overall verdict: PASS | WARN | FAIL
+    Return the overall verdict and its reason. A demonstrated material
+    contradiction is FAIL. If any pivotal method
+    claim lacks execution evidence and no material contradiction was found,
+    return BLOCKED. Retain both verified findings and unresolved claims.
 ```
 
 ### Step 3: Write Report (Executor — Claude)
@@ -216,9 +245,9 @@ Parse the reviewer's response and write `PAPER_CLAIM_AUDIT.md`:
 
 **Date**: [today]
 **Auditor**: [actual reviewer model and effort] (fresh zero-context thread)
-**Paper**: [paper title from tex]
+**Paper**: [manuscript title]
 
-## Overall Verdict: [PASS | WARN | FAIL]
+## Overall Verdict: [verdict from the decision table]
 
 ## Claims Verified: [N total]
 - exact_match: [count]
@@ -245,7 +274,8 @@ Parse the reviewer's response and write `PAPER_CLAIM_AUDIT.md`:
 | ... |
 ```
 
-Also write `PAPER_CLAIM_AUDIT.json` for machine consumption.
+Include applicable method checks and their evidence locators in the report
+and in `details.method_checks` of `PAPER_CLAIM_AUDIT.json`.
 
 ### Step 4: Print Summary
 
@@ -286,7 +316,8 @@ fixes or extra narrowing on the side.
 
 - **Fresh thread EVERY run.** Never use `codex-reply`. Never carry context.
 - **Zero executor interpretation.** Only file paths. No summaries.
-- **Only raw results.** No EXPERIMENT_LOG, no AUTO_REVIEW, no human summaries.
+- **Use primary evidence.** Supply raw results and run-linked implementation
+  evidence. Exclude author summaries and prior reviews.
 - **Rounding rule.** Only standard rounding to displayed precision. 84.7% → 84.7% or 85% is OK. 84.7% → 85.3% is NOT OK.
 - **Cross-model.** Reviewer must be a different model family from executor.
 - **Fix the evidence, not the wording.** Resolve a finding by correcting the number,
@@ -300,9 +331,8 @@ After each `mcp__codex__codex` or `mcp__codex__codex-reply` reviewer call, save 
 ## Submission Artifact Emission
 
 This skill **always** writes `paper/PAPER_CLAIM_AUDIT.json`, regardless of
-caller or detector outcome. A detector-negative run (paper has no numeric
-claims) emits verdict `NOT_APPLICABLE`; a paper-with-numeric-claims-but-no-
-raw-results run emits `BLOCKED`. Silent skip is forbidden: later revision and
+caller or detector outcome. Check both quantitative and applicable method
+claims before choosing a verdict. Later revision and
 pre-submission checks read this artifact at a predictable path.
 
 Schema:
@@ -311,7 +341,7 @@ Schema:
 {
   "audit_skill":      "paper-claim-audit",
   "verdict":          "PASS | WARN | FAIL | NOT_APPLICABLE | BLOCKED | ERROR",
-  "reason_code":      "all_numbers_match | rounding_drift | missing_raw_results | ...",
+  "reason_code":      "claims_verified | rounding_drift | missing_run_provenance | ...",
   "summary":          "One-line human-readable verdict summary.",
   "audited_input_hashes": {
     "main.tex":                              "sha256:...",
@@ -326,19 +356,18 @@ Schema:
   "details": {
     "total_claims":   <int>,
     "mismatches":     [ ... per-claim issue records ... ],
-    "result_files":   [ ... raw files consulted ... ]
+    "result_files":   [ ... raw files consulted ... ],
+    "method_checks":  [ ... applicable method claims and their evidence locators ... ]
   }
 }
 ```
 
 ### `audited_input_hashes` scope
 
-Hash the **declared input set** passed into this audit invocation — i.e. the
-exact `.tex` files and raw result / config files this run read — not a
-repo-wide union and not the reviewer's self-reported subset. If a caller
-passed only `main.tex` + a single result file, hash those two files and no
-others. Rehashing these entries later shows whether the paper or results changed
-since the audit; a mismatch means the audit is stale and must be rerun.
+Hash the **declared input set** passed into this invocation. Include the
+manuscript, raw results and, for method checks, the run records, resolved
+configs and versioned source files supplied to the reviewer. A change to
+any of these files makes the audit stale.
 
 **Path convention:** keys are paths relative to the paper directory for in-paper
 files (`main.tex`, not `paper/main.tex`) and absolute paths for files outside it,
@@ -348,11 +377,12 @@ such as an external `results/` directory.
 
 | Input state                                           | Verdict          | `reason_code` example |
 |-------------------------------------------------------|------------------|-----------------------|
-| No numeric claims detected in paper                   | `NOT_APPLICABLE` | `no_numeric_claims`   |
+| No quantitative or applicable method claims           | `NOT_APPLICABLE` | `no_auditable_claims` |
 | Numeric claims detected, no raw result files found    | `BLOCKED`        | `no_raw_evidence`     |
-| All claims reconcile to raw data                      | `PASS`           | `all_numbers_match`   |
+| Pivotal method claim lacks evidence tying it to the executed code | `BLOCKED` | `missing_run_provenance` |
+| Quantitative and applicable method claims verified    | `PASS`           | `claims_verified`     |
 | Minor rounding drift only, no material mismatch       | `WARN`           | `rounding_drift`      |
-| Any material mismatch (wrong number, config mismatch) | `FAIL`           | `claim_mismatch`      |
+| Any demonstrated material mismatch, including the executed method | `FAIL` | `claim_mismatch` |
 | Reviewer invocation failed (network / malformed)      | `ERROR`          | `reviewer_error`      |
 
 ### Thread independence

@@ -46,6 +46,12 @@ method-paper scaffold because the topic involves AI or software.
 
 Use the applicable profile and references/logic-and-structure.md.
 
+When the requested review includes research materials, use the
+[method check](../paper-claim-audit/SKILL.md#method-check) for pivotal claims
+about an implemented empirical method. In a split review this belongs to the
+materials auditor. A manuscript-only reviewer can flag an unclear method but
+cannot certify which code ran.
+
 - Can the reader identify the question, contribution, relevant prior work and
   what the evidence establishes? Arguments can be organized by findings, proofs,
   design decisions, resources or synthesis, not only methodology modules.

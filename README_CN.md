@@ -1,183 +1,103 @@
-<p align="center">
-  <img src="assets/banner.png" alt="Auto-Research System：一群人把一座石门逐块拆掉，门后学生们拿着带图表的论文走向城市和产业园区。" width="100%">
-</p>
+# Auto-Research System 自动科研系统
 
-# Auto-Research System 🔨（自动科研系统）
+[English](README.md) · [技能目录](.claude/skills/) · [许可证](LICENSE)
 
-[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg?style=flat)](LICENSE) · [![README English](https://img.shields.io/badge/README-English-blue?style=flat)](README.md) · [![Skills](https://img.shields.io/badge/🧰_技能-37_个-7C3AED?style=flat)](#-里面有什么) · [![诚信对照表](https://img.shields.io/badge/🛡️_诚信对照-A–H_八族-2E7D32?style=flat)](.claude/skills/shared-references/integrity-patterns.md) · [![Runtime](https://img.shields.io/badge/运行于-Claude_Code-blue?style=flat)](#-快速开始)
+<p align="center"><img src="assets/banner.png" alt="研究者一起拆开石门，带着论文走向产业园区。" width="100%"></p>
 
-<div align="center">
+**科研的门槛，吾辈来拆。** 这套工具包含 38 个面向 Claude Code 和 Codex 的研究技能，主要服务于计算机科学研究。你可以带来一个问题、一组实验结果或一篇草稿，只做一次文献检索、改一张图，也可以从选题一直做到独立审查和复现材料交付。
 
-### 🔨 科研的门槛，吾辈来拆 —— 让每个想去工业界的人都拿得出一篇站得住的论文。
+**v1.5 新增了什么？** `research-gate` 可以从项目文件恢复研究进度，指出哪些输入发生了变化，并把批准记录绑定到研究者实际看过的题目或方案版本。论文核查也从数字延伸到方法：影响实证结论的方法描述，可以追溯到产生该结果的运行和代码。[阶段控制器](.claude/skills/research-gate/SKILL.md) · [论文结论核查](.claude/skills/paper-claim-audit/SKILL.md)
 
-***Research should not be a gate. We take it down, so everyone heading into industry can bring a paper that holds up.***
+## 快速开始
 
-</div>
-
-> 一套跑在 Claude Code 上的端到端科研系统：从一个研究目标出发，到选定的题目、核实过的
-> 文献、设计好并跑过 pilot 的实验、诚实的分析，再到一篇带配图、引用和复现材料、可以投稿的
-> 论文。37 个技能、一个科研主控，在要紧的决定处设人工关口。
-
-它能给你什么：
-
-- **整条路，而不是某一步。**选题、文献与新颖性核查、选会议和 benchmark、实验设计、实现与
-  pilot、分析、写作、配图、局限与 AI 使用声明草稿、审稿与 rebuttal。每个阶段都是可以单独
-  调用的技能，也可以交给主控按顺序跑。
-- **先有证据，再有结论。**每个数字都能追到原始结果文件，每条引用都经过核实，结论只说到
-  证据撑得住的强度。
-- **决定权在你。**选题批准、花钱、租算力、投稿和一切对外动作都等你点头。
-- **不绑定厂商。**生图服务和外部评审在本地配置里自选；已授权的常规决策由主 agent 直接处理。
-
-**主要面向计算机科学研究**（ML/NLP、系统、软件工程等实证类 CS 工作）：选会校准、benchmark、
-实验和论文模板都按 CS 的惯例设计。其他领域也能用，但需要自行调整。
-
-**推荐配置：Claude Code 主导执行，Codex 负责审查。**Claude Code 负责做研究、写论文；Codex
-作为跨模型的外部评审，因为在我们的使用中它的审查能力更强。[Codex 版本](#codex-版本)（Codex
-执行、Claude 审查）同样支持，但作为备选。
-
----
-
-## 🧭 里面有什么
-
-| | |
-|---|---|
-| **技能** | 37 个 Claude Code 技能，在 `.claude/skills/`。 |
-| **共享科研规则** | 结论保真、按贡献类型分流、目标会议校准、选题、发表/版本规则、科研自主边界、摘要与结论写法、拆分审查，以及[诚信对照表](.claude/skills/shared-references/integrity-patterns.md)。在 `.claude/skills/shared-references/` 下。 |
-| **科研主控** | `.claude/skills/research-agent-team/`：一个主 agent 在当前请求范围内协调各阶段；只有你明确开启时，自动模式才跑完整流程。 |
-| **决策卡** | 自动模式下主 agent 直接选择并执行已授权方案，在现有任务记录中留下依据、理由和后续影响。 |
-| **专职 agent** | `.claude/agents/`（分析、架构、实现、质检、编辑、需求；头脑风暴、选题批评、策略）。 |
-| **文献工具** | arXiv、OpenAlex、Semantic Scholar、Exa（`.agents/aris/tools/`）。 |
-| **Codex 评审桥** | `.agents/mcp-servers/codex-exec/` 下的 MCP 服务，用于跨模型评审（可选，需要 Codex CLI）。 |
-| **路由规则** | `CLAUDE.md`。 |
-
----
-
-## 📰 动态
-
-- **2026-11-01** — 🚀 **v1.0。** 37 个 Claude Code 技能和科研主控；人工关口写进路由规则；
-  生图服务、外部评审不绑定厂商；[诚信对照表](.claude/skills/shared-references/integrity-patterns.md)
-  把每类论文缺陷对应到负责预防它的阶段；`paper-claim-audit` 开头新增确定性预检（增量算术、
-  摘要数字在表里找不到、GRIM、不可能的标准差、p 值与统计量矛盾、重复表格、残留模板串）。
-
----
-
-## 🗺️ 工作流
-
-```mermaid
-flowchart TD
-    U(["你的研究目标"]) --> T["1 · 选题<br/>brainstorming-research-ideas · research-companion<br/>idea-evaluator · novelty-check"]
-    T --> H{"👤 选题批准<br/>只能由你决定，模型、<br/>默认值、超时都不行"}
-    H -- 修改 --> T
-    H -- 批准 --> L["2 · 文献与证据<br/>research-lit · deep-research<br/>nature-reader · nature-ref-verifier"]
-    L --> D["3 · 会议、benchmark 与实验设计<br/>select-venue · benchmark-research-skill<br/>experiment-plan"]
-    D --> P["4 · 实现与最小 pilot<br/>experiment-bridge · run-experiment"]
-    P --> G{"pilot 关卡<br/>analyze-results"}
-    G -- 重新设计 --> D
-    G -- 停止 --> S(["科学停止<br/>报告结果与停止依据"])
-    G -- 继续 --> M["5 · 主实验与分析<br/>run-experiment · analyze-results<br/>失败和缺失的实验照样保留"]
-    M --> W["6 · 论证与写作<br/>good-story · ts-paper-plan · paper-writer<br/>nature-figure · ts-paper-cite"]
-    W -. "发现证据缺口" .-> M
-    W --> X["7 · 局限与声明草稿<br/>limitation-and-risk-writer · ai-use-drafter"]
-    X --> V["8 · 修订与核查<br/>paper-polish · pre-submission-reviewer<br/>nature-ref-verifier · 需要时 paper-claim-audit"]
-    V -. "改证据，<br/>不改措辞" .-> M
-    V --> F(["9 · 交付<br/>论文、复现材料、<br/>核查结果、遗留问题"])
-    F --> O{"👤 投稿、发布、推送<br/>须经你授权"}
-
-    classDef human fill:#FFF4CC,stroke:#B45309,color:#000
-    classDef gate fill:#E8F5E9,stroke:#2E7D32,color:#000
-    class H,O human
-    class G gate
-```
-
-默认情况下，每个请求只跑它需要的阶段，做完就停；技能建议的下一步不等于允许继续。
-自动模式会沿着这张图跑到约定的终点，但仍会在两个 👤 关口停下等你。综述、理论、立场和
-复现类论文会跳过不适用的阶段。
-
----
-
-## 🚀 快速开始
+准备 Python 3.10+ 和已配置的宿主 CLI。我们常用 Claude Code 做研究和写作，交给 Codex 独立审查。也支持反过来使用，由 Codex 执行、Claude 审查。安装器把配置写在项目目录内。[安装脚本](install.sh) · [评审桥说明](.agents/mcp-servers/codex-exec/README.md)
 
 ```bash
-git clone <本仓库> research && cd research
-./install.sh                 # WITH_DIAGRAMS=1 ./install.sh 会顺带装好示意图渲染
+git clone https://github.com/AfonsoZhang/auto-research-system.git
+cd auto-research-system
+bash install.sh --host claude
 claude
 ```
 
-`install.sh` 从 `config/*.example.json` 在 `.tools/` 下生成本地配置（不进版本库），
-生成对应宿主的 MCP 配置；Codex 安装会准备 Claude 外审桥依赖。无需独立决策模型。
-需要 Python 3.10+、生图需要 Node 18+，以及 Claude Code。Codex CLI 可选：外部评审和内置生图工具
-要靠它。
+使用 Codex 时，在克隆目录运行 `bash install.sh --host codex`，再启动 `codex` 并信任该项目。安装器会从同一套源文件生成 Codex 技能，并配置 Claude 评审桥。[Codex 宿主说明](config/codex/host.md)
 
-### 配置（全部可选）
+可以从一个具体任务开始。在 Claude Code 输入 `/research-lit 找出与我这份草稿最接近的已发表工作，说明我们的研究假设有什么差别。` 在 Codex 中用 `$research-lit` 提出同样的请求。
 
-| 组件 | 文件 | 可选项 | 不配置时 |
-|---|---|---|---|
-| 生图 | `.tools/image-provider.json` | Codex 内置 `image_gen`（默认）或 Antigravity 内置 `generate_image`（Nano Banana，`"provider": "antigravity"`）；任何返回图片的 OpenAI 兼容对话端点；另有 Poe、OpenRouter 适配器 | 经 Codex 桥调用内置 `image_gen` 工具；Codex 或该工具不可用时如实报告无法生成 |
-| 外部评审 | `.tools/reviewer.json` | Codex MCP（服务商随你的 Codex CLI），或人工评审 | 如实报告外部评审不可用，绝不拿自评顶替 |
-| 语言润色（可选） | 无；只在你要求时使用 | 默认 Gemini 4 Argon，经会话中可用的 Gemini 工具调用（Antigravity `agy` MCP 或 Gemini CLI）；只改语言，每处改动审核后才采用 | 由 Claude 润色 |
-| 文献 API | 环境变量 | `EXA_API_KEY`、`SEMANTIC_SCHOLAR_API_KEY`、`OPENALEX_EMAIL` | 用免密钥来源，并报告覆盖缺口 |
+## 选哪个入口
 
-密钥一律从配置里指定的环境变量读取。手动运行辅助脚本时，把 `RESEARCH_ROOT` 设为仓库
-路径。自动模式的常规决策由主 agent 直接处理，无需单独配置决策模型。
+| 你想做什么 | Claude Code / Codex | 它会做什么 |
+|---|---|---|
+| 修改手上的文件 | 例如 `/paper-polish` / `$paper-polish` | 处理指定材料，完成相应核查后交付。这是默认工作方式。 |
+| 把一项研究推进到约定终点 | `/research-auto` / `$research-auto` | 主代理选择技能，核验各阶段产物。选题需要你批准，试验停止条件和资源上限继续生效。 |
+| 选题后委托研究决策 | `/research-autopilot` / `$research-autopilot` | 你批准题目后，主代理决定并记录设计取舍。需要额外权限、算力或预算时向你申请。 |
+| 跨会话继续，并逐阶段核验 | `/research-gate` / `$research-gate` | Python 控制器保存产物、审批和证据。宿主代理执行研究，并判断证据能支持什么结论。 |
 
----
+## 研究工作流
 
-## 🎯 为什么做这个
+下图从新选题画起。已有研究可以接着现有材料做。实证研究要根据预实验决定继续、改方案还是停止；综述、理论和观点论文则按各自方案组织证据。[完整阶段与技能对照](.claude/skills/research-agent-team/references/full-flow.md)
 
-很多想去工业界的人卡在第一篇论文上：方法都懂，但把想法变成经过检查的实验、诚实的
-分析、审稿人愿意接收的论文，这套本事很少有人系统地教。agent 能干掉其中很大一部分活，
-但放任不管，它也会产出看着写完了、其实站不住的论文：摘要里的数字哪张表都没有、"提升 16%"实际只有
-6.7%、baseline 根本没调参、引用查无此文。
+```mermaid
+flowchart TD
+    T["比较候选题目<br/>idea-evaluator · novelty-check"] --> H{"研究者批准选题？"}
+    H -->|调整| T
+    H -->|批准| L["检索文献与反证<br/>research-lit"]
+    L --> P["设计研究并冻结方案<br/>实证研究可用 experiment-plan"]
+    P -->|实证| G{"预实验结果"}
+    G -->|修改方案| P
+    G -->|停止| S["记录结果与停止依据"]
+    G -->|继续| E["执行计划内实验<br/>run-experiment"]
+    P -->|综述、理论或观点| Q["筛选文献、构建证明或组织论据"]
+    E --> A["分析证据"]
+    Q --> A
+    A --> W["写作与制图<br/>paper-writer · nature-figure"]
+    W --> R["独立评审与结论核查<br/>research-review · paper-claim-audit"]
+    R -.->|确认稿件问题| W
+    R --> D["交付论文、证据、复现说明与未决事项"]
+```
 
-这套系统的设计目标是：速度永远不从这些捷径里来。
+在 `research-gate` 中，选题必须由你批准，研究方案默认也需批准。初始化时可用 `--no-plan-approval` 关闭方案审批。核实的问题可以退回受影响的阶段，包括设计或分析；评审提出的额外实验可以保留为建议。投稿和公开发布需要另行授权。[阶段检查规则](.claude/skills/research-gate/references/gates.md)
 
-## 🔒 怎么保证诚实
+## 使用阶段控制器
 
-1. **先有证据，再有结论。** 论文里每个数字都能追到原始结果文件。`paper-claim-audit` 用
-   一个全新的、零上下文的跨模型评审，只给它论文源码和原始结果。
-2. **改证据，不改措辞。** 一条问题的解决方式只能是：改正数字、补上缺的实验或 baseline、
-   或把结论收窄到证据范围内（[结论保真](.claude/skills/shared-references/claim-preservation.md)）。
-   改写措辞让检查对不上、缺陷却还在，不算修复。
-3. **每类缺陷都有人管。**[诚信对照表](.claude/skills/shared-references/integrity-patterns.md)
-   写明每类缺陷（数字、范围、baseline、实验、引用、表面呈现、证明、评测设计）由哪个阶段
-   预防、投稿前由哪项检查查出。
-4. **预先定好的标准不改。** 看到结果后不经披露不改标准；pilot 失败就停止后续花费；失败和
-   缺失的实验留在分析里。
-5. **要紧的决定留给人。** 新选题的批准永远等你，任何超时、默认值或模型都放行不了。超出
-   授权预算的花费、租算力、推代码、投稿和其他对外动作，也都要你点头。
+在宿主里调用 `research-gate` 即可。也可以直接检查控制器。从仓库根目录运行以下命令，把 `PROJECT` 改为你的研究目录。
 
-## 🧭 行为方式
+```bash
+PROJECT=../my-study
+GATE="$PWD/.claude/skills/research-gate/scripts/research_gate.py"
+python3 "$GATE" init --root "$PROJECT" --goal "在现有评测集上比较两种检索方法"
+python3 "$GATE" preflight --root "$PROJECT"
+python3 "$GATE" continue --root "$PROJECT"
+```
 
-- **一个请求，一个范围。** 技能做完被要求的工作和必要检查就停；技能里写的"下一步"不等于
-  允许继续。
-- **自动模式**只有你为某个任务明确开启（输入 `/research-auto [任务与终点]`）时才跑完整流程。主 agent 直接推荐并执行已有授权内的常规选择，记录依据和理由。
-  选题批准和新增授权仍由你决定，独立外审保留。
-- **选题后全自动**（输入 `/research-autopilot [任务与终点]`）：选题经你批准后，研究上的决定（含题内转向、改论点）全部由 agent 自定；
-  只有缺预算、算力、数据、权限等资源时才立刻向你汇报索要，其余工作不停。
+- **换会话后继续。** 再次运行 `continue`，即可找到第一个需要处理或批准的阶段。各阶段文档保存在 `research/`，控制器状态保存在 `.research-gate/`。
+- **追溯结论。** 证据记录指向已登记的来源快照或本地结果文件。程序检查引文能否在文件中找到，宿主代理再判断这段材料能否支持论文的说法。
+- **处理脚本提示。** 运行记录、LaTeX 和图表检查默认开启，可按项目调整。疑似重复表格和图表样式问题交给代理复核。证据引用失效、已审计的输入发生变化，则需要修正或重新核验。[检查项与设置](.claude/skills/research-gate/SKILL.md)
+- **选择报告语言。** 默认使用中文。可以在请求中指定其他语言，也可以在初始化时设置 `--report-language`。
 
----
+## 按任务找技能
 
-## ⚠️ 局限（信任任何一次运行之前必读）
+| 任务 | 技能入口 |
+|---|---|
+| 比较方向，找最接近的工作 | [选题评估](.claude/skills/idea-evaluator/SKILL.md) · [新颖性核查](.claude/skills/novelty-check/SKILL.md) · [文献检索](.claude/skills/research-lit/SKILL.md) |
+| 设计研究、跑预实验、解读结果 | [基准选择](.claude/skills/benchmark-research-skill/SKILL.md) · [实验设计](.claude/skills/experiment-plan/SKILL.md) · [运行实验](.claude/skills/run-experiment/SKILL.md) · [结果分析](.claude/skills/analyze-results/SKILL.md) |
+| 写论文、改图、核对引用 | [论文写作](.claude/skills/paper-writer/SKILL.md) · [论文图表](.claude/skills/nature-figure/SKILL.md) · [参考文献核验](.claude/skills/nature-ref-verifier/SKILL.md) |
+| 核实论文结论或回复审稿意见 | [结论核查](.claude/skills/paper-claim-audit/SKILL.md) · [独立评审](.claude/skills/research-review/SKILL.md) · [审稿回复](.claude/skills/nature-response/SKILL.md) |
 
-- **已测试：**宿主适配（Codex 视图、Claude 外审桥、决策模型退役；codex-exec 外审桥和 `/research-auto`）、生图适配器（13 项）、诚信预检（干净样例加 8 种
-  注入缺陷，以及不带前导零的小数）、nature-response（7 项）和
-  nature-shared（5 项）包检查。大多数技能是说明文件，没有自动化行为测试。
-- **诚信预检基于正则抽取。**只能查到抽取器认出的内容，零发现不等于没问题。没装 scipy 时
-  只复核 z 检验的 p 值。
-- **诚信对照表是预防，不是证明。**所有检查都过了不等于论文正确，审稿人仍可能查出问题。
-- **会议规则、截稿日期和排名**必须对照官方页面重新核实。
+## 致谢与许可
 
----
+感谢提供工具、范例和研究方法的所有作者与维护者。本项目采用 CC BY-NC-SA 4.0，各第三方组件保留各自的许可证。[项目许可证](LICENSE) · [第三方来源与许可](THIRD_PARTY_NOTICES.md)
 
-## 🧬 致谢
-
-本项目建立在开源社区的工作之上，改编、并在部分地方直接复用了以下项目。衷心感谢各位作者和贡献者：
+<details>
+<summary>查看参考来源与具体贡献</summary>
 
 | 来源 | 用于 |
 |---|---|
 | [wanshuiyin/Auto-claude-code-research-in-sleep](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) (ARIS) | research-review、paper-claim-audit、research-lit、novelty-check、experiment-plan、experiment-bridge、run-experiment、analyze-results、文献工具、codex-exec 评审桥 |
 | [HKUSTDial/Supervisor-Skills](https://github.com/HKUSTDial/Supervisor-Skills) | paper-writer、paper-polish、intro-drafter、deep-research、idea-evaluator、pre-submission-reviewer、figure-designer、rebuttal-guidance 等写作类技能 |
 | [Yuan1z0825/nature-skills](https://github.com/Yuan1z0825/nature-skills) | nature-figure、nature-reader、nature-ref-verifier、nature-response |
+| [刘晨（Chen Liu），figures4papers](https://github.com/ChenLiu-1996/figures4papers) | `nature-figure` 收录了绘图脚本和预览图，供制作论文图表时参考。见[本地案例索引](.claude/skills/nature-figure/references/demos.md)和[素材来源声明](.claude/skills/nature-figure/assets/figures4papers/THIRD_PARTY_NOTICES.md)。 |
+| [Google Cloud AI Research 的 ScientistTwo](https://scientist-two.github.io/#integrity) | 借鉴其方法与代码一致性核验，在审稿时把影响实证结论的方法描述追溯到产生该结果的运行和代码。 |
+| [圣心大学图书馆《Organizing Academic Research Papers》](https://library.sacredheart.edu/organizing-research-papers/intro) | 借鉴其选题和提纲指导，在选题报告中解释文献如何改变问题，在写作时核对各节论点的依据。该指南注明原始材料来自南加州大学图书馆的 Robert V. Labaree。 |
 | [andrehuang/research-companion](https://github.com/andrehuang/research-companion) | research-companion 及 brainstormer、idea-critic、research-strategist 三个代理 |
 | [Orchestra-Research/AI-Research-SKILLs](https://github.com/Orchestra-Research/AI-Research-SKILLs) | brainstorming-research-ideas、creative-thinking-for-research |
 | [Spark-To-Paper-Skills/spark-to-paper-skills](https://github.com/Spark-To-Paper-Skills/spark-to-paper-skills) | ts-paper-plan、ts-paper-cite 及论文模板 |
@@ -198,45 +118,6 @@ claude
 
 选题方法部分还参考了 Fischbach, *Cell* 2024（[doi:10.1016/j.cell.2024.03.012](https://doi.org/10.1016/j.cell.2024.03.012)）。各组件保留原有声明，版本与许可证见 [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md)。如有遗漏或标注不准，请告诉我，我会马上改正。
 
-## 🙋 欢迎批评指正
+</details>
 
-我在科研和工程上都还是小白，这是第一次做这样的系统，错误和不完善之处一定不少，恳请各位大佬批评指正。非常欢迎提 [Issue](../../issues) 和 [PR](../../pulls)，大小都行：报 bug、指出规则错误、文档不清楚、更好的思路都可以。
-
-## ⚖️ 许可证
-
-CC BY-NC-SA 4.0（[`LICENSE`](LICENSE)）：可在非商业目的下分享和改编，需署名并以相同许可证
-发布。改编自其他项目的组件保留原有声明，见 [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md)。
-
-## Codex 版本
-
-这是上面推荐配置的反向用法，作为备选支持。
-
-保留 Claude 原版，同时提供 Codex 宿主适配。Codex 负责执行、写作和默认润色；
-外部审查交给 Claude。全面审查仍拆为材料审计与论文审查，分别由 Codex 子代理和
-Claude 执行。选题人工确认、证据要求、产物格式和流程阶段保持原样。
-
-```bash
-bash install.sh --host codex
-codex
-```
-
-在可信项目中重启 Codex，使项目 MCP 和技能生效。使用 `$paper-polish`、
-`$research-review`；明确输入 `$research-auto` 才开启当前任务的自动模式。
-`AGENTS.md` 是 Codex 入口，`.agents/skills/` 是生成目录；更新原技能后运行
-`python3 scripts/build_codex.py`，不要直接编辑生成文件。原有 37 个可加载技能
-全部保留，另补齐 `research-auto` 和 `research-autopilot` 入口。
-
-Claude 审查需要已登录的 Claude CLI，并支持 `--print --output-format json`、
-`--effort`、`--tools` 和 `--strict-mcp-config` 等参数。配置写在
-`.tools/reviewer-codex.json`，默认 `opus`，深审/常规 effort 为 `high`/`medium`；
-可用 `CLAUDE_REVIEW_MODEL`、`CLAUDE_REVIEW_EFFORT_DEEP`、
-`CLAUDE_REVIEW_EFFORT_REGULAR` 覆盖。Claude 原版仍使用 `.tools/reviewer.json`，
-两者互不覆盖。审查桥只开放读取工具，不开放命令执行、写入或嵌套 MCP。
-调用方声明的执行模型会如实标注，不能冒充宿主认证的独立性证据。
-
-安装保留已有本地配置，新增项目级 `.codex/config.toml` 的缺失 MCP 表，
-不修改用户级 Codex 配置。宿主接口差异集中在
-[Codex 适配约定](config/codex/host.md)；科研规则和辅助脚本仍取自原版。
-生图优先使用当前 Codex 会话的原生图像工具，不绕到审查器。
-
-适配验证：`python3 -m unittest discover -s tests -v`。
+这是我第一次做这样的科研系统，欢迎批评指正。遇到技能误判、要求多做无必要的实验，或说明写得不清楚，都欢迎带着具体例子反馈。[提 Issue](https://github.com/AfonsoZhang/auto-research-system/issues) · [提交 PR](https://github.com/AfonsoZhang/auto-research-system/pulls)

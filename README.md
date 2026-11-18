@@ -1,217 +1,103 @@
-<p align="center">
-  <img src="assets/banner.png" alt="Auto-Research System: people dismantle a stone gate block by block; through the opening, students carrying papers with charts walk toward a city and industrial campus." width="100%">
-</p>
+# Auto-Research System
 
-# Auto-Research System 🔨
+[简体中文](README_CN.md) · [Skill catalog](.claude/skills/) · [License](LICENSE)
 
-[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg?style=flat)](LICENSE) · [![README 中文](https://img.shields.io/badge/README-中文-red?style=flat)](README_CN.md) · [![Skills](https://img.shields.io/badge/🧰_skills-37-7C3AED?style=flat)](#-whats-inside) · [![Integrity map](https://img.shields.io/badge/🛡️_integrity-families_A–H-2E7D32?style=flat)](.claude/skills/shared-references/integrity-patterns.md) · [![Runtime](https://img.shields.io/badge/runs_on-Claude_Code-blue?style=flat)](#-quickstart)
+<p align="center"><img src="assets/banner.png" alt="Researchers dismantle a stone gate and carry their work toward an industrial campus." width="100%"></p>
 
-<div align="center">
+A set of 38 research skills for Claude Code and Codex, built primarily for computer science. Bring a question, an experiment directory or a draft. You can ask for one literature search or figure revision, or take a project from topic selection through independent review and a reproducible handoff.
 
-### 🔨 科研的门槛，吾辈来拆 —— 让每个想去工业界的人都拿得出一篇站得住的论文。
+**New in v1.5.** The `research-gate` skill can resume a project from saved files, show which inputs changed and tie approval to the exact proposal or protocol a researcher saw. The claim audit now also traces pivotal empirical method descriptions to the implementation used for the reported run. [Gate controller](.claude/skills/research-gate/SKILL.md) · [Claim audit](.claude/skills/paper-claim-audit/SKILL.md)
 
-***Research should not be a gate. We take it down, so everyone heading into industry can bring a paper that holds up.***
+## Get started
 
-</div>
-
-> An end-to-end research system for Claude Code: from a research objective to
-> a selected topic, verified literature, a planned and piloted experiment, an
-> honest analysis and a submission-ready paper with figures, citations and a
-> reproduction package. 37 skills, one research controller, and human checkpoints
-> where the decisions matter.
-
-What it gives you:
-
-- **The whole path, not one step.** Topic selection, literature and novelty
-  checks, venue and benchmark choice, experiment design, implementation and
-  pilots, analysis, writing, figures, limitations and AI-use drafts, review and
-  rebuttal. Each stage is a skill you can call on its own, or the controller runs
-  them in order.
-- **Evidence before claims.** Every number traces to a raw result file; every
-  citation is verified; claims stay at the strength the evidence supports.
-- **You stay in charge.** Topic approval, spending, compute, submission and any
-  outward-facing action wait for you.
-- **No vendor lock-in.** The image provider and external reviewer are chosen in
-  local configuration. The main agent handles authorized decisions directly.
-
-**Built mainly for computer science research** (ML/NLP, systems, software
-engineering and similar empirical CS work): venue calibration, benchmarks,
-experiments and paper templates follow CS conventions. Other fields can use the
-skills, but expect to adjust them.
-
-**Recommended setup: Claude Code executes, Codex reviews.** Claude Code runs the
-research and writes the paper; Codex serves as the external cross-model reviewer,
-because in our use it is the stronger reviewer. The [Codex host](#codex-host)
-(Codex executes, Claude reviews) is supported but secondary.
-
----
-
-## 🧭 What's inside
-
-| | |
-|---|---|
-| **Skills** | 37 Claude Code skills in `.claude/skills/`. |
-| **Shared research policies** | Claim preservation, contribution-type routing, target-venue calibration, topic selection, publication/version policy, research autonomy, abstract and conclusion rules, split review, and the [integrity pattern map](.claude/skills/shared-references/integrity-patterns.md). In `.claude/skills/shared-references/`. |
-| **Research controller** | `.claude/skills/research-agent-team/`: one main agent coordinates stages within the current request; automatic mode runs the full flow only when you turn it on. |
-| **Decision cards** | The main agent selects authorized options in automatic mode and records evidence, rationale and downstream effects in the existing task record. |
-| **Specialist agents** | `.claude/agents/` (analyst, architect, implementer, QA, editor, requirements; brainstormer, idea critic, strategist). |
-| **Literature helpers** | arXiv, OpenAlex, Semantic Scholar, Exa (`.agents/aris/tools/`). |
-| **Codex reviewer bridge** | MCP server in `.agents/mcp-servers/codex-exec/` for cross-model review (optional; needs Codex CLI). |
-| **Routing rules** | `CLAUDE.md`. |
-
----
-
-## 📰 News
-
-- **2026-11-01** — 🚀 **v1.0.** 37 Claude Code skills and the research
-  controller; human checkpoints written into the routing rules; vendor-neutral
-  image provider and external reviewer; an
-  [integrity map](.claude/skills/shared-references/integrity-patterns.md) that
-  ties each kind of paper defect to the stage that prevents it; a deterministic
-  pre-check in `paper-claim-audit` (delta arithmetic, headline numbers missing
-  from tables, GRIM, impossible SDs, p values contradicting their statistic,
-  identical tables, leftover template strings).
-
----
-
-## 🗺️ Workflow
-
-```mermaid
-flowchart TD
-    U(["Your objective"]) --> T["1 · Topic selection<br/>brainstorming-research-ideas · research-companion<br/>idea-evaluator · novelty-check"]
-    T --> H{"👤 Topic approval<br/>you decide; no model,<br/>default or timeout can"}
-    H -- revise --> T
-    H -- approved --> L["2 · Literature and evidence<br/>research-lit · deep-research<br/>nature-reader · nature-ref-verifier"]
-    L --> D["3 · Venue, benchmark, design<br/>select-venue · benchmark-research-skill<br/>experiment-plan"]
-    D --> P["4 · Implementation and minimum pilot<br/>experiment-bridge · run-experiment"]
-    P --> G{"Pilot gate<br/>analyze-results"}
-    G -- redesign --> D
-    G -- stop --> S(["Scientific stop<br/>report results and stopping grounds"])
-    G -- continue --> M["5 · Main experiments and analysis<br/>run-experiment · analyze-results<br/>failed and missing runs kept"]
-    M --> W["6 · Argument and writing<br/>good-story · ts-paper-plan · paper-writer<br/>nature-figure · ts-paper-cite"]
-    W -. "evidence gap" .-> M
-    W --> X["7 · Limitations and disclosure drafts<br/>limitation-and-risk-writer · ai-use-drafter"]
-    X --> V["8 · Revision and verification<br/>paper-polish · pre-submission-reviewer<br/>nature-ref-verifier · paper-claim-audit when needed"]
-    V -. "fix the evidence,<br/>not the wording" .-> M
-    V --> F(["9 · Delivery<br/>manuscript, reproduction package,<br/>verification findings, open issues"])
-    F --> O{"👤 Submit, publish, push<br/>only with your authorization"}
-
-    classDef human fill:#FFF4CC,stroke:#B45309,color:#000
-    classDef gate fill:#E8F5E9,stroke:#2E7D32,color:#000
-    class H,O human
-    class G gate
-```
-
-By default each request runs only the stages it needs and then stops; a
-suggested next stage is not permission to continue. Automatic mode follows the
-chart to the agreed endpoint and still stops at both 👤 checkpoints. Surveys,
-theory, position and replication papers skip stages that do not apply.
-
----
-
-## 🚀 Quickstart
+Use Python 3.10+ and a configured host CLI. Our usual setup is Claude Code for research and writing, with Codex as the independent reviewer. For the reverse setup, run the Codex installer and open this directory as a trusted project. Each installer writes its configuration locally. [Installer](install.sh) · [Reviewer setup](.agents/mcp-servers/codex-exec/README.md)
 
 ```bash
-git clone <this repository> research && cd research
-./install.sh                 # WITH_DIAGRAMS=1 ./install.sh also sets up diagram rendering
+git clone https://github.com/AfonsoZhang/auto-research-system.git
+cd auto-research-system
+bash install.sh --host claude
 claude
 ```
 
-`install.sh` creates local, untracked configuration under `.tools/` from
-`config/*.example.json` and renders host MCP configuration. Codex setup installs
-the Claude reviewer MCP dependencies; no separate decision model is required. Requirements:
-Python 3.10+, Node 18+ for image generation, and Claude Code. Codex CLI is
-optional: it provides the external reviewer and the built-in image tool.
+For Codex, run `bash install.sh --host codex` in the clone and start `codex`. The installer builds the Codex skills from the same sources and configures the Claude reviewer bridge. [Codex host contract](config/codex/host.md)
 
-### Configure (all optional)
+A first task you can try in Claude Code is `/research-lit Find the closest published work to the question in my draft and show where our assumptions differ.` In Codex, use `$research-lit` with the same request.
 
-| Component | File | Choices | When unconfigured |
-|---|---|---|---|
-| Image generation | `.tools/image-provider.json` | Codex built-in `image_gen` (default) or Antigravity built-in `generate_image` (Nano Banana, `"provider": "antigravity"`); any OpenAI-compatible chat endpoint that returns images; adapters for Poe and OpenRouter | The built-in `image_gen` tool through the Codex bridge; if Codex or the tool is unavailable, generation is reported as unavailable |
-| External reviewer | `.tools/reviewer.json` | Codex MCP with whatever provider your Codex CLI uses, or a manual reviewer | External review is reported as unavailable, never replaced by self-review |
-| Language polish (optional) | none; used only when you ask | Gemini 4 Argon by default, through a Gemini tool exposed in the session (Antigravity `agy` MCP or Gemini CLI); language-only edits, each change reviewed before adoption | Polish stays with Claude |
-| Literature APIs | environment variables | `EXA_API_KEY`, `SEMANTIC_SCHOLAR_API_KEY`, `OPENALEX_EMAIL` | Keyless sources are used and coverage gaps are reported |
+## Choose how to work
 
-Keys are always read from environment variables named in the configuration.
-Set `RESEARCH_ROOT` to the repository path if you run helper scripts by hand.
+| If you want to… | Claude Code / Codex | What happens |
+|---|---|---|
+| Work on the file in front of you | e.g. `/paper-polish` / `$paper-polish` | The skill edits the requested material and runs the relevant checks. This is the default scope. |
+| Coordinate a study through an agreed endpoint | `/research-auto` / `$research-auto` | The host selects skills, verifies each handoff and pauses for topic approval. Pilot stopping rules and resource limits still apply. |
+| Delegate research decisions after choosing a topic | `/research-autopilot` / `$research-autopilot` | After you approve the topic, the host records design decisions and asks for any additional access, compute or budget it needs. |
+| Resume from files and verify each stage | `/research-gate` / `$research-gate` | A Python controller records artifacts, approvals and evidence on disk. The host does the research and assesses its scientific merits. |
 
----
+## Research workflow
 
-## 🎯 Why
+The diagram follows a project from a new topic. For an existing study, start with the work you already have. The empirical branch shows the pilot decision. A survey, theory or position paper follows the evidence requirements in its own protocol. [Stage and skill map](.claude/skills/research-agent-team/references/full-flow.md)
 
-Getting a first paper out is where many people heading into industry get stuck:
-the method is known, but turning an idea into a checked experiment, an honest
-analysis and a paper a reviewer will accept takes skills that are rarely taught.
-Agents can do much of that work. Left alone, they also produce papers that look
-finished and do not hold up: an abstract number that no table contains, a "16%
-gain" that is 6.7%, a baseline that was never tuned, a citation that does not
-exist.
+```mermaid
+flowchart TD
+    T["Compare topics<br/>idea-evaluator · novelty-check"] --> H{"Researcher approves topic?"}
+    H -->|Revise| T
+    H -->|Approve| L["Literature and counterevidence<br/>research-lit"]
+    L --> P["Design the study and freeze the protocol<br/>experiment-plan for empirical studies"]
+    P -->|Empirical| G{"Pilot outcome"}
+    G -->|Redesign| P
+    G -->|Stop| S["Record the result and stopping reason"]
+    G -->|Proceed| E["Run planned experiments<br/>run-experiment"]
+    P -->|Survey, theory or position| Q["Screen sources, develop a proof<br/>or assemble an argument"]
+    E --> A["Analyze the evidence"]
+    Q --> A
+    A --> W["Write the paper and figures<br/>paper-writer · nature-figure"]
+    W --> R["Independent review and claim checks<br/>research-review · paper-claim-audit"]
+    R -.->|Verified drafting issue| W
+    R --> D["Deliver the manuscript, evidence,<br/>reproduction notes and open issues"]
+```
 
-The system is built so that speed never comes from those shortcuts.
+In gated mode, topic approval is mandatory and protocol approval is on by default. A researcher can disable the latter at initialization with `--no-plan-approval`. A confirmed issue can reopen the affected stage, including design or analysis. A reviewer's request for another experiment can remain an open suggestion. Submission and public release require your authorization. [Gate contracts](.claude/skills/research-gate/references/gates.md)
 
-## 🔒 How it keeps the work honest
+## Working with a gated project
 
-1. **Evidence before claims.** Every number in the paper traces to a raw result
-   file. `paper-claim-audit` runs a fresh, zero-context, cross-model reviewer
-   that sees only the paper source and the raw results.
-2. **Fix the evidence, not the wording.** A finding is resolved by correcting the
-   number, adding the missing run or baseline, or narrowing the claim
-   ([claim preservation](.claude/skills/shared-references/claim-preservation.md)).
-   Rewording so a check stops matching is never a fix.
-3. **Every defect family has an owner.** The
-   [integrity map](.claude/skills/shared-references/integrity-patterns.md) names
-   the stage that prevents each kind of defect (numbers, scope, baselines,
-   experiments, citations, presentation, proofs, evaluation design) and the check
-   that catches it before submission.
-4. **Pre-registered criteria stay fixed.** They are not changed after results
-   are seen without disclosure; failed pilots stop downstream spending; failed
-   and missing runs stay in the analysis.
-5. **Humans keep the decisions that matter.** Approval of a newly selected topic
-   always waits for you; no timeout, default or model can release it. Spending
-   beyond an authorized budget, renting compute, pushing code, submitting and
-   other outward-facing actions also need you.
+Invoke the gate skill in your host, or inspect the controller directly. From the clone, set `PROJECT` to the directory for your study.
 
-## 🧭 How it behaves
+```bash
+PROJECT=../my-study
+GATE="$PWD/.claude/skills/research-gate/scripts/research_gate.py"
+python3 "$GATE" init --root "$PROJECT" --goal "Compare two retrieval methods on my existing evaluation set"
+python3 "$GATE" preflight --root "$PROJECT"
+python3 "$GATE" continue --root "$PROJECT"
+```
 
-- **One request, one scope.** A skill finishes the requested work and its
-  necessary checks; a "next step" in a skill is not permission to continue.
-- **Automatic mode** runs the full flow only when you explicitly turn it on for
-  a task by typing `/research-auto [task and endpoint]`. The main agent directly selects and executes ordinary authorized
-  choices, recording evidence and rationale. Topic approval and new authority
-  remain with the user; independent external review is unchanged.
-- **Post-topic autopilot** (`/research-autopilot [task and endpoint]`): automatic mode
-  where, once you approve the topic, the agent makes every research decision itself
-  (including pivots and claim changes within the topic) and only asks you, as soon
-  as the need arises, for missing resources such as budget, compute, data or access.
+- **Resume.** Run `continue` again to find the first stage that needs work or approval. Stage documents live under `research/`, and saved state lives under `.research-gate/`.
+- **Trace a claim.** Evidence records point to a registered snapshot or local result file. The gate matches quoted anchors against the file. The host checks whether the passage supports the claim.
+- **Inspect a finding.** The run-record, LaTeX and figure checks are enabled by default and can be changed per project. A suspected duplicate table or figure style issue is reported for inspection. Missing evidence references and changed audited inputs require a correction or a fresh check. [Checks and settings](.claude/skills/research-gate/SKILL.md)
+- **Choose a language.** Reports default to Chinese. Specify a language in your request, or set `--report-language` when initializing a gated project.
 
----
+## Find a skill
 
-## ⚠️ Limits (read before trusting a run)
+| Task | Start here |
+|---|---|
+| Compare research directions and find the closest work | [Topic evaluation](.claude/skills/idea-evaluator/SKILL.md) · [Novelty check](.claude/skills/novelty-check/SKILL.md) · [Literature search](.claude/skills/research-lit/SKILL.md) |
+| Design a study, run a pilot and interpret results | [Benchmarks](.claude/skills/benchmark-research-skill/SKILL.md) · [Experiment plan](.claude/skills/experiment-plan/SKILL.md) · [Execution](.claude/skills/run-experiment/SKILL.md) · [Analysis](.claude/skills/analyze-results/SKILL.md) |
+| Draft a paper, revise figures or check citations | [Writing](.claude/skills/paper-writer/SKILL.md) · [Figures](.claude/skills/nature-figure/SKILL.md) · [Reference verification](.claude/skills/nature-ref-verifier/SKILL.md) |
+| Check claims against results or prepare a response | [Claim audit](.claude/skills/paper-claim-audit/SKILL.md) · [Independent review](.claude/skills/research-review/SKILL.md) · [Reviewer response](.claude/skills/nature-response/SKILL.md) |
 
-- **Tested:** host adapters (Codex view, Claude reviewer bridge, decider
-  retirement; codex-exec reviewer bridge and `/research-auto`), image adapters (13),
-  integrity pre-check (clean fixture plus 8 injected defects, and decimals
-  without a leading zero),
-  nature-response (7) and nature-shared (5) package checks. Most skills are
-  instruction files without automated behavioural tests.
-- **The integrity pre-check is regex-based.** It checks only what its extractor
-  finds; zero findings is not a clean bill. Without scipy, only z-test p values
-  are rechecked.
-- **The integrity map is prevention, not proof.** Passing every check does not
-  make a paper correct, and a reviewer may still find something.
-- **Venue rules, deadlines and rankings** must be re-verified against official pages.
+## Acknowledgements and license
 
----
+Thank you to the researchers and maintainers whose tools, examples and methods this project builds on. The project is distributed under CC BY-NC-SA 4.0. Bundled components retain their own licenses. [License](LICENSE) · [Third-party notices](THIRD_PARTY_NOTICES.md)
 
-## 🧬 Acknowledgements
-
-This project stands on the work of the open-source community. It adapts, and in places directly reuses, the following projects. Sincere thanks to all their authors and contributors:
+<details>
+<summary>Sources and contributions</summary>
 
 | Source | Used for |
 |---|---|
 | [wanshuiyin/Auto-claude-code-research-in-sleep](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) (ARIS) | research-review, paper-claim-audit, research-lit, novelty-check, experiment-plan, experiment-bridge, run-experiment, analyze-results, literature tools, codex-exec bridge |
 | [HKUSTDial/Supervisor-Skills](https://github.com/HKUSTDial/Supervisor-Skills) | paper-writer, paper-polish, intro-drafter, deep-research, idea-evaluator, pre-submission-reviewer, figure-designer, rebuttal-guidance and other writing skills |
 | [Yuan1z0825/nature-skills](https://github.com/Yuan1z0825/nature-skills) | nature-figure, nature-reader, nature-ref-verifier, nature-response |
+| [Chen Liu, figures4papers](https://github.com/ChenLiu-1996/figures4papers) | Plotting scripts and figure previews retained as references in `nature-figure`. See the [local index](.claude/skills/nature-figure/references/demos.md) and [asset notice](.claude/skills/nature-figure/assets/figures4papers/THIRD_PARTY_NOTICES.md). |
+| [ScientistTwo, Google Cloud AI Research](https://scientist-two.github.io/#integrity) | Its method–code alignment audit inspired the check that traces pivotal empirical method claims to the implementation used for the reported run. |
+| [Sacred Heart University Library, *Organizing Academic Research Papers*](https://library.sacredheart.edu/organizing-research-papers/intro) | Its topic and outline guidance informed how we explain changes to a research question and check the support for each planned section. The guide credits Robert V. Labaree of USC Libraries for the original materials. |
 | [andrehuang/research-companion](https://github.com/andrehuang/research-companion) | research-companion and the brainstormer, idea-critic, research-strategist agents |
 | [Orchestra-Research/AI-Research-SKILLs](https://github.com/Orchestra-Research/AI-Research-SKILLs) | brainstorming-research-ideas, creative-thinking-for-research |
 | [Spark-To-Paper-Skills/spark-to-paper-skills](https://github.com/Spark-To-Paper-Skills/spark-to-paper-skills) | ts-paper-plan, ts-paper-cite and paper templates |
@@ -232,40 +118,6 @@ This project stands on the work of the open-source community. It adapts, and in 
 
 The problem-selection notes also draw on Fischbach, *Cell* 2024 ([doi:10.1016/j.cell.2024.03.012](https://doi.org/10.1016/j.cell.2024.03.012)). Every component keeps its original notice; revisions and licenses are listed in [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md). If I have missed or misattributed anything, please tell me and I will fix it right away.
 
-## 🙋 Feedback welcome
+</details>
 
-I am a beginner in both research and engineering, and this is my first attempt at a system like this, so there are surely mistakes and rough edges. Criticism and corrections from more experienced people are very welcome. [Issues](../../issues) and [pull requests](../../pulls) of any size are appreciated: bug reports, wrong rules, unclear docs, better ideas.
-
-## ⚖️ License
-
-CC BY-NC-SA 4.0 ([`LICENSE`](LICENSE)): you may share and adapt this work for
-non-commercial purposes with attribution, under the same license. Components
-adapted from other projects keep their original notices; see
-[`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
-
-## Codex host
-
-This reverses the recommended setup above and is supported as an alternative.
-Run `bash install.sh --host codex`, then restart `codex` in this trusted project.
-Codex executes, writes and polishes by default; Claude provides external review.
-Split reviews use a Codex materials auditor and a Claude manuscript reviewer.
-Scientific policy, stages, topic approval and artifact formats are unchanged.
-
-Invoke `$paper-polish` or `$research-review`; `$research-auto` explicitly enables
-automatic mode for the current task. `AGENTS.md` routes Codex, and
-`python3 scripts/build_codex.py` regenerates `.agents/skills/` from the Claude
-sources plus the [host contract](config/codex/host.md). Do not edit generated files.
-The source currently contains 37 loadable skills; the
-Codex view preserves all of them and adds the missing `research-auto` and `research-autopilot` entrypoints.
-
-The read-only Claude bridge requires an authenticated Claude CLI with print JSON,
-effort selection, tool restriction and strict MCP configuration support. Configure
-`.tools/reviewer-codex.json` (default `opus`, deep `high`, regular `medium`), or
-`CLAUDE_REVIEW_MODEL`, `CLAUDE_REVIEW_EFFORT_DEEP`, and
-`CLAUDE_REVIEW_EFFORT_REGULAR`. Claude-host `.tools/reviewer.json` is independent.
-Unknown identities, failures and timeouts never produce accepted verdicts; executor
-identity remains explicitly caller-declared rather than runtime-attested.
-
-Installation preserves local settings and only adds missing project MCP tables;
-it does not edit global Codex configuration. Native images use the current Codex
-image tool. Run adapter tests with `python3 -m unittest discover -s tests -v`.
+This is my first research system. Corrections are welcome, especially examples where a skill draws the wrong conclusion or asks for unnecessary work. [Issues](https://github.com/AfonsoZhang/auto-research-system/issues) · [Pull requests](https://github.com/AfonsoZhang/auto-research-system/pulls)

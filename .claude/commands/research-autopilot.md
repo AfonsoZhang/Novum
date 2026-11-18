@@ -24,7 +24,7 @@ source of truth.
    [decision-card policy](../skills/research-agent-team/references/decision-cards.md)
    with `decision_source: "main_agent (autopilot)"`; do not ask the user.
 2. **Missing resources are requested at once.** The moment work needs a resource the
-   task is not authorized to use, post a Chinese `资源请求` block in the progress
+   task is not authorized to use, post a resource request in the selected report language in the progress
    message (what, why, amount/cost, what it unblocks, the fallback if refused), record it
    as `AWAITING_RESOURCE` in the tracker, and keep working on everything that does not
    depend on it. Check for the user's reply before starting dependent work. When only
@@ -32,7 +32,7 @@ source of truth.
 
 # Topic
 
-- No approved topic for this task: run topic selection, deliver the Chinese topic report,
+- No approved topic for this task: run topic selection, deliver the topic report in the selected language,
   record `AWAITING_TOPIC_APPROVAL` and end the turn. Autopilot starts at the user's
   explicit approval; no timeout, default or recommendation can approve.
 - An approved topic exists: start downstream work immediately.

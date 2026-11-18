@@ -198,7 +198,7 @@ Load only what is needed:
 
 ## Style
 
-Be blunt about story strength, but do not humiliate the science. Keep internal analysis and artifacts in English; use Chinese for the final conversational report unless explicitly directed otherwise. Prefer concrete story beats over generic writing advice. Use vivid labels for the narrative roles when useful, but keep all scientific claims traceable to evidence supplied by the user or cited sources.
+Be blunt about story strength, but do not humiliate the science. Keep internal analysis and artifacts in English; use the selected language for the final conversational report. Prefer concrete story beats over generic writing advice. Use vivid labels for the narrative roles when useful, but keep all scientific claims traceable to evidence supplied by the user or cited sources.
 
 For the final Chinese user report or an explicitly requested Chinese deliverable:
 

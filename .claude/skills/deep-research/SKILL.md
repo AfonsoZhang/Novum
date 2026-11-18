@@ -205,7 +205,7 @@ purpose; do not import this convention into paper drafting.
 
 Apply the shared [working-language policy](../shared-references/research-autonomy.md#working-language):
 write internal literature reviews, evidence tables and research artifacts in
-English, and give the final conversational report in Chinese. An explicit request
+English, and give the final conversational report in the selected language. An explicit request
 for a Chinese or bilingual survey controls that deliverable; the language of the
 user's message alone does not. Preserve original source quotations and metadata.
 

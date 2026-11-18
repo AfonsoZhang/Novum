@@ -16,6 +16,10 @@ independent reviews in parallel with separate inputs, then merge.
   regenerability of every table, stale results); plan vs execution and
   disclosed/undisclosed deviations; paper-to-result consistency beyond issues
   already listed in existing audits.
+- For pivotal claims about the empirical method, trace the reported run to its
+  command, resolved configuration and executed code revision. Use the method
+  check in [paper-claim-audit](../paper-claim-audit/SKILL.md#method-check).
+  Reuse current results of that check when they cover the same claim and inputs.
 - Every issue needs a file locator, the affected paper claim and the smallest fix.
   New experiments only when no other fix resolves the issue, with the reason.
 
@@ -44,6 +48,6 @@ independent reviews in parallel with separate inputs, then merge.
   it as a presentation fix, not a missing experiment.
 - Verify each MAJOR/CRITICAL item against the files before reporting it; drop
   or downgrade unverified items and say so.
-- Report in Chinese: one table (finding, source A/B/both, locator, affected
+- Use the selected report language. Give one table (finding, source A/B/both, locator, affected
   claim, severity, smallest fix), then optional suggestions. Do not edit the
   paper until the user picks which items to fix.

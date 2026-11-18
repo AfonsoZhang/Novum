@@ -23,7 +23,7 @@ Task and endpoint from the user: $ARGUMENTS
      or endpoint. Advance through every applicable stage; when one deliverable is accepted,
      continue to the next useful stage of the same project instead of stopping. Stop only
      at a hard stop condition (below), the topic-approval checkpoint, or the user saying stop.
-3. **Announce, in Chinese, one short block:** `自动模式已开启` + task + endpoint (`不设终点，持续推进` when empty) + the
+3. **Announce activation** in the selected report language. Give the task, endpoint (continuous when empty), and the
    stop conditions that still apply (budget/resource caps, pilot stop rules, real external
    dependencies, the post-selection topic approval). Then start working without asking
    for confirmation.
@@ -35,8 +35,8 @@ Task and endpoint from the user: $ARGUMENTS
 
 # Limits that activation does not lift
 
-- **Topic approval:** after fresh selection or reselection, deliver the Chinese topic
-  report, record `AWAITING_TOPIC_APPROVAL` and end the turn. No timeout, default
+- **Topic approval:** after fresh selection or reselection, deliver the topic
+  report in the selected language, record `AWAITING_TOPIC_APPROVAL` and end the turn. No timeout, default
   or main-agent recommendation can approve it.
 - New authority (spending beyond the agreed budget, paid services not yet authorized,
   external submission or publication, destructive operations) still needs the user.

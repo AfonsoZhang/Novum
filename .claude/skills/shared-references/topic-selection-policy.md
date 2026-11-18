@@ -104,6 +104,12 @@ comparison. Topic/title similarity, a crowded field, famous competitors or a
 simple method do not establish duplication. Conversely, a superficial difference
 does not establish a substantive contribution.
 
+For an infrastructure question, the closest comparator may be an open-source
+system. Cite a versioned implementation, design document or issue at the relevant
+passage. Identify what it implements or reports. Claims of effectiveness need
+measurements under comparable conditions. Use higher-tier exemplars for design
+calibration once a venue is selected. They carry no topic-admission quota.
+
 A negative novelty judgment must name a verified work, locate the overlapping
 claim, and explain what remaining contribution was considered. Retrieval failure,
 unverified metadata and an unread method remain **unverified**. They cannot prove
@@ -165,11 +171,14 @@ General full-flow authorization and earlier delegation of decisions in automatic
 not waive this checkpoint.
 
 Complete the preliminary literature, novelty and feasibility checks needed for a
-reviewable proposal. Deliver a concise Chinese checkpoint report covering the
-question and intended contribution, why it is worth pursuing relative to the
-alternatives, the closest verified work and remaining uncertainty, and the proposed
-next step with its time/cost bounds. Identify material assumptions chosen by the
-agent. Keep internal records and task artifacts in English.
+reviewable proposal. In the [report language](research-autonomy.md#working-language),
+explain why this question is worth pursuing relative to the alternatives. If the
+literature changed the scope, name the initial question, cite the specific result
+that changed it, and state the question that remains. If the scope held, give the
+closest work and its boundary directly. Identify a concrete finding that would
+make you withdraw the proposed distinction.
+If the comparison is unresolved, say what still needs verification. Give the next
+step and its time/cost bounds, including material assumptions chosen by the agent.
 
 Offer concrete choices: **Continue with this topic and stated scope**, **Revise the
 topic and report again**, or **Pause**. Recommend an option with reasons, but set

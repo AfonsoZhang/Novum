@@ -8,7 +8,7 @@
   [shared research policy](.claude/skills/shared-references/research-autonomy.md#local-changes).
   Load relevant clauses, verify affected dependencies, and reuse valid checks.
 - **Working language.** Apply the shared [language policy](.claude/skills/shared-references/research-autonomy.md#working-language):
-  English internal instructions and work; Chinese final and topic-approval reports.
+  Use English internally. User-facing reports default to Chinese. Honor a requested report language or choose one for the specified audience.
 - **Research controller.** For root-level research coordination, stage assessment or
   cross-stage management, read [research-agent-team](.claude/skills/research-agent-team/SKILL.md).
   One main agent coordinates stages, specialist skills, execution and acceptance within
@@ -17,7 +17,9 @@
   execution only when the user explicitly activates automatic mode for this task
   (typing `/research-auto` counts as explicit activation). `/research-autopilot` activates the post-topic
   autopilot variant: after topic approval the agent makes all research decisions and asks
-  the user only for missing resources.
+  the user only for missing resources. `/research-gate` activates the middle-tier modular
+  gate controller (`.claude/skills/research-gate/`), where the host agent executes research
+  while disk-backed gates, verbatim anchors and SHA-256-bound approvals govern progression.
   The controller defines completion and stopping conditions. Discussing or editing it,
   entering the directory, high reasoning effort, silence or past activation is not activation.
 - **Human checkpoint after topic selection.** After fresh selection or reselection,

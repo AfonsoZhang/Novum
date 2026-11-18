@@ -3,11 +3,9 @@
 Use this file when a user asks for a `figures4papers` look, cites the older
 `scientific-figure-making` skill, or needs a concrete Python/matplotlib reference.
 
-The retained third-party files live under `../assets/figures4papers/`. Before
-opening or adapting them, read
-`../assets/figures4papers/THIRD_PARTY_NOTICES.md`. These materials are not
-automatically covered by the root MIT License, and their inclusion does not grant
-additional reuse rights.
+For Chen Liu's retained scripts and previews, see the
+[asset notice](../assets/figures4papers/THIRD_PARTY_NOTICES.md) for source
+revisions and applicable reuse terms.
 
 ## Use boundary
 

@@ -9,13 +9,18 @@ mode, extend a standalone skill call, or change child-project entrypoints.
 Use English for maintained skill instructions, shared rules, agent briefs, internal
 templates, progress updates, agent exchanges, clarification cards, plans, analysis
 notes and newly authored research records. This applies to standalone work and
-automatic mode; include the rule in delegated tasks. Keep the final conversational
-report and the mandatory topic-approval report to the user in Chinese.
+automatic mode. For user-facing reports, including topic approvals and final
+summaries, use the language the user requests, then any project report-language
+preference. Otherwise default to Chinese. When a report has a specified audience
+with a different working language, the agent may choose that language. Pass the
+selected language to anyone drafting the report.
+Localize the prose and headings. Preserve any machine-readable keys, ledger
+column names and status values that the workflow consumes.
 
 Preserve original quotations, bibliographic metadata, proper names, identifiers,
 raw data and historical source records. Chinese examples used as translation data
 or user-facing report samples may remain in their original language; their surrounding
-instructions are English. An explicit request for a Chinese or bilingual deliverable
+instructions are English. An explicit request for a particular language or a bilingual deliverable
 controls that deliverable's language. Do not infer such a request merely from the
 language of the user's message or turn internal research notes into bilingual readers.
 

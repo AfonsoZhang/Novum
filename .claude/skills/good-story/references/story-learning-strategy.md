@@ -92,7 +92,7 @@ When using this lens, add a short section:
 - What a current paper can learn:
 ```
 
-Use these English headings in internal learning notes; translate them for the final Chinese user report:
+Use these English headings in internal learning notes; translate them into the selected language for the final user report:
 
 - Time-layer diagnosis
 - Classic problem strength

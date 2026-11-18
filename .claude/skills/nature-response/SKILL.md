@@ -26,7 +26,7 @@ Unlike nature-writing or nature-figure, nature-response has no fragment axis. It
 
 - **task mode** — `draft` / `audit` / `revise` / `triage-only` / `cover-letter` / `revision-package` / `latex-template` / `appeal-like`.
 - **decision type** — minor revision, major revision, revise-and-resubmit, transfer after review, or unclear.
-- **report language** — keep internal trackers and response drafts in English; put helpful Chinese author-confirmation notes in the final user report under the shared [working-language policy](../shared-references/research-autonomy.md#working-language). Honor an explicitly requested deliverable language.
+- **report language** — keep internal trackers and response drafts in English; write author-confirmation notes in the selected report language under the shared [working-language policy](../shared-references/research-autonomy.md#working-language). Honor an explicitly requested deliverable language.
 
 Decision type is required for a new package-level revision strategy or complete response package.
 First extract it from the editor letter or task context. If it remains unclear, ask whether this

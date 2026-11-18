@@ -19,7 +19,7 @@ replacing a preprint with a published version, check associated claims rather th
 only changing the DOI. A single-reference formatting check retains its requested scope.
 
 Apply the shared [working-language policy](../shared-references/research-autonomy.md#working-language):
-English verification records and internal reports; a Chinese final user report.
+Keep verification records in English and give the final user report in the selected language.
 Preserve original reference titles, author names and other source metadata.
 
 Read `references/common-patterns.md` for batch discrepancies, recurring field errors,

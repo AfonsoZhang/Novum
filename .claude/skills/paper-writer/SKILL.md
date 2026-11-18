@@ -42,6 +42,11 @@ not the order of experiments, code changes, or agent conversations. Retain actua
 temporal dependencies and distinguish exploratory from pre-specified analyses;
 reordering prose must not rewrite the research history.
 
+When drafting from an outline, pair each section's intended point with the
+result, source passage, proof step or argument that supports it. If a section
+promises more than its support establishes, resolve the gap or revise that
+point before drafting. Keep these working notes in the outline when requested.
+
 For experimental claims, consume the [analyze-results](../analyze-results/SKILL.md)
 report through the shared [results-to-writing handoff](../experiment-bridge/references/experiment-records.md#results-to-writing-handoff),
 and use `good-story` for presentation order. Trace numbers to analyzed artifacts;

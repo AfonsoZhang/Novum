@@ -68,7 +68,7 @@ explicit output paths in the current research project. Keep generated artifacts
 out of the skill installation and unrelated projects. Obsidian is optional.
 
 Default to English for working notes, extraction and saved reports; give the user
-the final conversational report in Chinese. Preserve exact source titles and
+the final conversational report in the selected language. Preserve exact source titles and
 technical identifiers. Use existing source-reading tools for official HTML/PDFs;
 the optional arXiv fetcher does not determine publication status or selected version.
 

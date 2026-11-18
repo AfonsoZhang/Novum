@@ -11,7 +11,8 @@ the modifications made here are distributed under CC BY-NC-SA 4.0.
 |---|---|---|---|
 | HKUSTDial/Supervisor-Skills (207bc6f), © 2026 Yuyu Luo and contributors | CC BY-NC-SA 4.0 | paper-writer, paper-polish, intro-drafter, deep-research, idea-evaluator, vibe-research-workflow, tech-paper-template, benchmark-paper-template, pre-submission-reviewer, figure-designer, drawio-reconstruction, rebuttal-guidance | `licenses/LICENSE-supervisor-skills`; drawio-reconstruction also ships its own MIT `LICENSE` (© 2026 VCG-Bench Authors) |
 | wanshuiyin/Auto-claude-code-research-in-sleep (ARIS; 341f914, c4535ea), © 2026 wanshuiyin | MIT | research-review, paper-claim-audit, research-lit, novelty-check, experiment-plan, experiment-bridge, run-experiment, analyze-results, part of shared-references, `.agents/aris/tools`, `.agents/mcp-servers/codex-exec` | `licenses/LICENSE-aris`; per-skill `LICENSE` |
-| Yuan1z0825/nature-skills (2375e0a) | Apache-2.0 | nature-figure, nature-reader, nature-ref-verifier, nature-response, nature-shared (including example figures under `nature-figure/assets`) | `licenses/LICENSE-nature-skills` |
+| Yuan1z0825/nature-skills (2375e0a) | Apache-2.0 | nature-figure, nature-reader, nature-ref-verifier, nature-response, nature-shared. The figures4papers assets have their own notice below. | `licenses/LICENSE-nature-skills` |
+| [Chen Liu, figures4papers](https://github.com/ChenLiu-1996/figures4papers) | Upstream CC BY-NC 4.0. See the asset notice for earlier versions. | Reference scripts and previews retained in `nature-figure/assets/figures4papers` via nature-skills | [Upstream license](https://github.com/ChenLiu-1996/figures4papers/blob/3c181f85e82c6f24948fcaaf3be6696102b41d8d/LICENSE) and [asset notice](.claude/skills/nature-figure/assets/figures4papers/THIRD_PARTY_NOTICES.md) |
 | andrehuang/research-companion (733e9e8), © 2026 Andre Huang | MIT | research-companion, brainstormer, idea-critic, research-strategist agents | `licenses/LICENSE-research-companion` |
 | Orchestra-Research/AI-Research-SKILLs (773a529), © 2025 Claude AI Research Skills Contributors | MIT | brainstorming-research-ideas, creative-thinking-for-research | `licenses/LICENSE-ai-research-skills` |
 | Spark-To-Paper-Skills/spark-to-paper-skills (c17149d), © 2025 Albus White | MIT | ts-paper-plan, ts-paper-cite, ts-paper/templates | `licenses/LICENSE-spark-to-paper` |
@@ -31,6 +32,11 @@ synthesizes methods discussed in anthropics/knowledge-work-plugins
 (doi:10.1016/j.cell.2024.03.012). `shared-references/target-exemplars.md` adapts
 the idea of an exemplar knowledge base from joshzyj/open-scholar-skill; no text
 from that project is included.
+
+Two methodological references informed locally written instructions:
+
+- Google Cloud AI Research's [ScientistTwo](https://scientist-two.github.io/#integrity) inspired the method–code check in `paper-claim-audit`.
+- Sacred Heart University Library's guidance on [choosing a topic](https://library.sacredheart.edu/organizing-research-papers/topic) and [making an outline](https://library.sacredheart.edu/c.php?g=29803&p=185912) informed the topic-approval report and section planning in `paper-writer`. The [guide](https://library.sacredheart.edu/organizing-research-papers/intro) credits Robert V. Labaree of USC Libraries for the original materials.
 
 Not bundled: Python/Node dependencies (installed from their registries under
 their own licenses, e.g. the MCP SDK), model weights, and

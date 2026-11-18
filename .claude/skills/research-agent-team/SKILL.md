@@ -93,8 +93,8 @@ not activate the controller or team. Enable roles only where they help the task.
 ## Working language and artifact formats
 
 Apply the shared [working-language policy](../shared-references/research-autonomy.md#working-language)
-in both execution modes: English instructions and internal work; Chinese final and
-topic-approval reports. Include it in delegated tasks. Preserve source-language
+in both execution modes. Keep internal work in English. Use the selected report
+language for topic approval and final reports (default Chinese). Include it in delegated tasks. Preserve source-language
 material and honor explicitly requested deliverable languages.
 
 When drafting or editing research prose, apply the shared
@@ -220,7 +220,7 @@ All automatic-mode rules apply except the two changes below.
   [claim preservation](../shared-references/claim-preservation.md).
 - **Missing resources are requested at once.** When work needs a resource or authority
   the task does not have (budget beyond the agreed cap, paid services, rented compute,
-  data or system access, credentials), immediately post a Chinese `资源请求` block
+  data or system access, credentials), immediately post a resource request in the selected report language
   stating what is needed, why, the amount or cost, what it unblocks and the fallback if
   refused. Record `AWAITING_RESOURCE` with the request in the tracker and continue all
   independent work, including fallback paths that need no new authority. Check for a
@@ -296,7 +296,7 @@ automatic mode, cards authorized for immediate or timed selection do not block:
 state the card and the adopted option in the progress message, record its source
 and continue. Check any user message that has arrived before dependent work; a
 later reply steers work not yet executed. Topic approval always waits for an
-explicit reply: deliver the Chinese topic report and end the turn, or ask with
+explicit reply: deliver the topic report in the selected language and end the turn, or ask with
 AskUserQuestion after the report. Silence or a dismissed question is not approval.
 
 In automatic mode, the main agent directly selects and executes the recommended

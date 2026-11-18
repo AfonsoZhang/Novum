@@ -25,7 +25,7 @@ produce an additional Chinese or bilingual version unless explicitly requested.
 State the label language when preparing generation/edit prompts, and preserve
 canonical names and mathematical notation. Do not add a translation round or
 budget for a Chinese duplicate. Keep progress and preflight notes in English;
-use Chinese for the final user report under the shared
+choose the final report language under the shared
 [working-language policy](../../shared-references/research-autonomy.md#working-language).
 
 ## Model selection

@@ -97,5 +97,20 @@ class ResearchAutopilotEntrypoint(unittest.TestCase):
         self.assertIn('## Post-topic autopilot', skill)
 
 
+class ResearchGateEntrypoint(unittest.TestCase):
+    def test_command_and_modular_skill_exist_and_links_resolve(self):
+        cmd_dir = ROOT / '.claude/commands'
+        text = (cmd_dir / 'research-gate.md').read_text()
+        self.assertIn('disable-model-invocation: true', text)
+        for marker in ('research-gate/SKILL.md', 'research_gate.py', 'approve --stage topic', 'approve --stage plan'):
+            self.assertIn(marker, text)
+        skill_dir = ROOT / '.claude/skills/research-gate'
+        skill = (skill_dir / 'SKILL.md').read_text()
+        for rel in ('references/principles.md', 'references/gates.md', 'references/workflow.md',
+                    'references/artifacts-and-ids.md', 'scripts/research_gate.py', 'templates/topic.md'):
+            self.assertTrue((skill_dir / rel).exists(), rel)
+        self.assertIn('references/gates.md', skill)
+
+
 if __name__ == '__main__':
     unittest.main()

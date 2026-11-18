@@ -1,20 +1,21 @@
 # Third-Party Reference Materials
 
-This directory contains reference scripts and preview images obtained from:
+This directory retains plotting scripts and figure previews from Chen Liu's
+[figures4papers](https://github.com/ChenLiu-1996/figures4papers), distributed here
+via `nature-skills`. Copyright remains with the upstream authors and other
+applicable rights holders.
 
-- Project: `figures4papers`
-- Upstream: <https://github.com/ChenLiu-1996/figures4papers>
-- Copyright: retained by the upstream authors and other applicable rights holders
+Upstream published its [CC BY-NC 4.0 license](https://github.com/ChenLiu-1996/figures4papers/blob/3c181f85e82c6f24948fcaaf3be6696102b41d8d/LICENSE)
+on September 6, 2026. On November 19, 2026, 64 of the 69 retained files
+matched upstream Git blobs at that revision byte for byte.
 
-As checked on 2026-08-03, the upstream repository did not expose an explicit
-LICENSE file through its repository root or GitHub license endpoint. These files
-must therefore not be assumed to fall under the root MIT License of
-`nature-skills`.
+Five files match an [earlier upstream revision](https://github.com/ChenLiu-1996/figures4papers/tree/0e8bc687749ba40ba02d6296ac8a97a3ad2b2fb4)
+and differ from or are absent in the licensed revision:
 
-Their retention in this repository is for source attribution and research
-reference. It does not grant permission to copy, modify, redistribute, or publish
-the files or derived materials. Before such use, check the current upstream terms
-and obtain permission from the relevant rights holder when required.
+- `assets/RNAGenScape_schematic.png`
+- `figure_CellSpliceNet/plot_comparison.py` and `figure_CellSpliceNet/figures/comparison.png`
+- `figure_FPGM/plot_freq_prior.py` and `figure_FPGM/figures/freq_prior.png`
 
-If the upstream project later publishes a license or the maintainers obtain
-written permission, update this notice with the exact terms and date.
+Coverage of these earlier versions by the later license is unverified.
+For reuse, choose a version with documented terms or verify permission for the
+specific file. Preserve applicable credits and identify adaptations.
