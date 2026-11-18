@@ -32,6 +32,8 @@ claude
 | 选题后委托研究决策 | `/research-autopilot` / `$research-autopilot` | 你批准题目后，主代理决定并记录设计取舍。需要额外权限、算力或预算时向你申请。 |
 | 跨会话继续，并逐阶段核验 | `/research-gate` / `$research-gate` | Python 控制器保存产物、审批和证据。宿主代理执行研究，并判断证据能支持什么结论。 |
 
+遇到有争议的结论，或需要比较几个候选题目时，可选插件 `debate-hub` 能让多个评审分别查阅同一组原始材料，并生成供研究者裁决的卡片。插件需在 Claude Code 或 Codex 中单独注册。[插件配置与用法](.agents/mcp-servers/debate-hub/README.md)
+
 ## 研究工作流
 
 下图从新选题画起。已有研究可以接着现有材料做。实证研究要根据预实验决定继续、改方案还是停止；综述、理论和观点论文则按各自方案组织证据。[完整阶段与技能对照](.claude/skills/research-agent-team/references/full-flow.md)

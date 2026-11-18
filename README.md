@@ -32,6 +32,8 @@ A first task you can try in Claude Code is `/research-lit Find the closest publi
 | Delegate research decisions after choosing a topic | `/research-autopilot` / `$research-autopilot` | After you approve the topic, the host records design decisions and asks for any additional access, compute or budget it needs. |
 | Resume from files and verify each stage | `/research-gate` / `$research-gate` | A Python controller records artifacts, approvals and evidence on disk. The host does the research and assesses its scientific merits. |
 
+For a contested claim or a choice between topics, the optional `debate-hub` plugin collects independent assessments against the same source files and can prepare a decision card for human review. Register it separately for Claude Code or Codex. [Plugin setup and examples](.agents/mcp-servers/debate-hub/README.md)
+
 ## Research workflow
 
 The diagram follows a project from a new topic. For an existing study, start with the work you already have. The empirical branch shows the pilot decision. A survey, theory or position paper follows the evidence requirements in its own protocol. [Stage and skill map](.claude/skills/research-agent-team/references/full-flow.md)

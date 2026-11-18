@@ -1,0 +1,90 @@
+{
+  "storeDir": ".tools/debate-hub",
+  "allowedRoots": ["."],
+  "defaults": {
+    "timeoutSeconds": 600,
+    "maxCalls": 40,
+    "maxRounds": 2,
+    "maxParallel": 4,
+    "maxMatches": 15,
+    "escalateBelowConfidence": 0.6,
+    "maxInlineBytes": 200000
+  },
+  "agents": {
+    "claude-cli": {
+      "preset": "claude",
+      "enabled": false,
+      "model": "opus",
+      "family": "anthropic"
+    },
+    "codex-cli": {
+      "preset": "codex",
+      "enabled": false,
+      "model": "gpt-5.4",
+      "family": "openai"
+    },
+    "gemini-acp": {
+      "preset": "gemini-acp",
+      "enabled": false,
+      "model": "",
+      "family": "google"
+    },
+    "kimi-acp": {
+      "preset": "kimi-acp",
+      "enabled": false,
+      "model": "",
+      "family": "moonshot"
+    },
+    "agy-acp": {
+      "preset": "agy-acp",
+      "enabled": false,
+      "model": "",
+      "family": "google"
+    },
+    "opencode-cli": {
+      "preset": "opencode",
+      "enabled": false,
+      "model": "",
+      "family": "unknown"
+    },
+    "codex-mcp": {
+      "preset": "codex-exec-mcp",
+      "enabled": false,
+      "model": "",
+      "family": "openai"
+    },
+    "claude-reviewer-mcp": {
+      "preset": "claude-reviewer-mcp",
+      "enabled": false,
+      "executorModel": "gpt-5.4",
+      "family": "anthropic"
+    },
+    "remote-agent-mcp": {
+      "kind": "mcp",
+      "transport": "http",
+      "enabled": false,
+      "url": "http://127.0.0.1:8787/mcp",
+      "bearerTokenEnv": "REMOTE_AGENT_MCP_TOKEN",
+      "tool": "review",
+      "arguments": {
+        "prompt": "{prompt}",
+        "cwd": "{cwd}"
+      },
+      "readOnly": "remote-mcp: verify target server is read-only",
+      "family": "unknown"
+    },
+    "openai-compat-http": {
+      "kind": "http",
+      "enabled": false,
+      "baseUrl": "https://api.example.com/v1",
+      "apiKeyEnv": "DEBATE_HTTP_API_KEY",
+      "model": "deepseek-reasoner",
+      "family": "deepseek"
+    },
+    "external-board": {
+      "kind": "external",
+      "enabled": true,
+      "family": "unknown"
+    }
+  }
+}
