@@ -10,9 +10,9 @@ A set of 38 research skills for Claude Code, Codex and Antigravity, built primar
 
 ## Get started
 
-Use Python 3.10+ and an authenticated host CLI. Install the host you use, then start it in the repository.
+You’ll need Python 3.10+ and a host CLI you’ve signed in to. From the repository root, run the setup command once for your host. After setup, use the start command for each session.
 
-| Host | Install | Start |
+| Host | First-time setup | Start |
 |---|---|---|
 | Claude Code | `bash install.sh --host claude` | `claude` |
 | Codex | `bash install.sh --host codex` | `codex` |
@@ -20,7 +20,7 @@ Use Python 3.10+ and an authenticated host CLI. Install the host you use, then s
 
 The session identifies its host. Codex and Antigravity share the same generated skill files, so both can use one checkout. A requested review uses a fresh host subagent by default. Select Codex for optional external review. If it is unavailable, the host records the fallback and uses a fresh local subagent. The manuscript reviewer reads the paper and figures; the materials auditor checks the underlying code, data and run records. [Reviewer selection](.claude/skills/shared-references/reviewer-routing.md)
 
-Each host drafts and polishes directly. Antigravity is the optional external writer for either task. Use an existing Antigravity MCP connection or set `ANTIGRAVITY_MCP_SERVER` to an installed Python adapter’s absolute path when running the Claude Code or Codex installer. Existing server entries are preserved. Antigravity handles writing natively when it is the host. [Writing rules](.claude/skills/shared-references/writing-host.md)
+Each host drafts and polishes directly. Antigravity is the optional external writer for either task. Use an existing Antigravity MCP connection or set `ANTIGRAVITY_MCP_SERVER` to an installed Python adapter’s absolute path when configuring this repository for Claude Code or Codex. Existing server entries are preserved. Antigravity handles writing natively when it is the host. [Writing rules](.claude/skills/shared-references/writing-host.md)
 
 A first task you can try in Claude Code is `/research-lit Find the closest published work to the question in my draft and show where our assumptions differ.` In Codex, use `$research-lit`; in Antigravity, invoke `research-lit` (or `/research-lit` / `$research-lit`) with the same request.
 

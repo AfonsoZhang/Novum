@@ -10,9 +10,9 @@
 
 ## 快速开始
 
-准备 Python 3.10+ 和已登录的宿主 CLI。在仓库中安装并启动所用宿主。
+准备好 Python 3.10+，并登录所用宿主的 CLI。首次使用时，在仓库根目录运行该宿主对应的配置命令。配置完成后，每次使用时直接运行启动命令即可。
 
-| 宿主 | 安装 | 启动 |
+| 宿主 | 首次配置 | 启动 |
 |---|---|---|
 | Claude Code | `bash install.sh --host claude` | `claude` |
 | Codex | `bash install.sh --host codex` | `codex` |
@@ -20,7 +20,7 @@
 
 当前会话决定宿主。Codex 和 Antigravity 共用一份生成的技能文件，可以在同一份仓库里交替使用。请求审查时，默认由当前宿主新建子代理。可指定 Codex 做外部审查；Codex 不可用时记录原因，改用本地子代理。论文审稿人读正文和图表，材料审查者核对代码、数据和运行记录。[审查规则](.claude/skills/shared-references/reviewer-routing.md)
 
-三个宿主都可以直接起草、润色。两项任务的可选外援均为 Antigravity。可使用已有的 Antigravity MCP 连接，或在安装 Claude Code、Codex 时用 `ANTIGRAVITY_MCP_SERVER` 指定已安装的 Python 适配器绝对路径。安装器保留已有的同名配置。在 Antigravity 中启动时由它直接执行。[写作规则](.claude/skills/shared-references/writing-host.md)
+三个宿主都可以直接起草、润色。两项任务的可选外援均为 Antigravity。可使用已有的 Antigravity MCP 连接，或在为 Claude Code 或 Codex 配置本仓库时，用 `ANTIGRAVITY_MCP_SERVER` 指定已安装的 Python 适配器绝对路径。配置脚本保留已有的同名配置。在 Antigravity 中启动时由它直接执行。[写作规则](.claude/skills/shared-references/writing-host.md)
 
 可以从一个具体任务开始。在 Claude Code 输入 `/research-lit 找出与我这份草稿最接近的已发表工作，说明我们的研究假设有什么差别。` 在 Codex 中用 `$research-lit`，在 Antigravity 中直接提 `research-lit`（或 `/research-lit` / `$research-lit`）即可。
 
