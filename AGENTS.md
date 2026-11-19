@@ -42,5 +42,6 @@
   that check without asking again. This covers only that verification step, not other
   sub-agent use.
 
-- **Host adaptation.** Before executing any research skill, read the [Codex host contract](config/codex/host.md). Codex executes and polishes; Claude performs external review.
+- **Host adaptation.** In Codex, use the [Codex host contract](config/codex/host.md). In Antigravity use [GEMINI.md](GEMINI.md). Select review and writing routes from the current session under the [shared host rules](.claude/skills/shared-references/host-routing.md).
+
 - **Skill setup.** If `.agents/skills/` is absent, run `python3 scripts/build_codex.py` from this root. Run `bash install.sh --host codex` to configure project-local MCP servers.

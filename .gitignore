@@ -6,8 +6,12 @@
 __pycache__/
 *.pyc
 
-# Regenerable Codex view and machine-local MCP paths
+# Regenerable Codex / Antigravity view and machine-local MCP paths
 .agents/skills/
+.agents/generated-files.json
+.agents/.skills-build.lock
+.agents/plugins/codex-reviewer/
+.agents/plugins/debate-hub/
 .codex/config.toml
 .codex/generated-files.json
 TODO.md

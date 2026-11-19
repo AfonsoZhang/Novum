@@ -4,35 +4,38 @@
 
 <p align="center"><img src="assets/banner.png" alt="研究者一起拆开石门，带着论文走向产业园区。" width="100%"></p>
 
-**科研的门槛，吾辈来拆。** 这套工具包含 38 个面向 Claude Code 和 Codex 的研究技能，主要服务于计算机科学研究。你可以带来一个问题、一组实验结果或一篇草稿，只做一次文献检索、改一张图，也可以从选题一直做到独立审查和复现材料交付。
+**科研的门槛，吾辈来拆。** 这套工具包含 38 个面向 Claude Code、Codex 和 Antigravity 的研究技能，主要服务于计算机科学研究。你可以带来一个问题、一组实验结果或一篇草稿，只做一次文献检索、改一张图，也可以从选题一直做到独立审查和复现材料交付。
 
 **v1.5 新增了什么？** `research-gate` 可以从项目文件恢复研究进度，指出哪些输入发生了变化，并把批准记录绑定到研究者实际看过的题目或方案版本。论文核查也从数字延伸到方法：影响实证结论的方法描述，可以追溯到产生该结果的运行和代码。[阶段控制器](.claude/skills/research-gate/SKILL.md) · [论文结论核查](.claude/skills/paper-claim-audit/SKILL.md)
 
 ## 快速开始
 
-准备 Python 3.10+ 和已配置的宿主 CLI。我们常用 Claude Code 做研究和写作，交给 Codex 独立审查。也支持反过来使用，由 Codex 执行、Claude 审查。安装器把配置写在项目目录内。[安装脚本](install.sh) · [评审桥说明](.agents/mcp-servers/codex-exec/README.md)
+准备 Python 3.10+ 和已登录的宿主 CLI。在仓库中安装并启动所用宿主。
 
-```bash
-git clone https://github.com/AfonsoZhang/auto-research-system.git
-cd auto-research-system
-bash install.sh --host claude
-claude
-```
+| 宿主 | 安装 | 启动 |
+|---|---|---|
+| Claude Code | `bash install.sh --host claude` | `claude` |
+| Codex | `bash install.sh --host codex` | `codex` |
+| Antigravity | `bash install.sh --host antigravity` | `agy` |
 
-使用 Codex 时，在克隆目录运行 `bash install.sh --host codex`，再启动 `codex` 并信任该项目。安装器会从同一套源文件生成 Codex 技能，并配置 Claude 评审桥。[Codex 宿主说明](config/codex/host.md)
+当前会话决定宿主。Codex 和 Antigravity 共用一份生成的技能文件，可以在同一份仓库里交替使用。请求审查时，默认由当前宿主新建子代理。可指定 Codex 做外部审查；Codex 不可用时记录原因，改用本地子代理。论文审稿人读正文和图表，材料审查者核对代码、数据和运行记录。[审查规则](.claude/skills/shared-references/reviewer-routing.md)
 
-可以从一个具体任务开始。在 Claude Code 输入 `/research-lit 找出与我这份草稿最接近的已发表工作，说明我们的研究假设有什么差别。` 在 Codex 中用 `$research-lit` 提出同样的请求。
+三个宿主都可以直接起草、润色。两项任务的可选外援均为 Antigravity。可使用已有的 Antigravity MCP 连接，或在安装 Claude Code、Codex 时用 `ANTIGRAVITY_MCP_SERVER` 指定已安装的 Python 适配器绝对路径。安装器保留已有的同名配置。在 Antigravity 中启动时由它直接执行。[写作规则](.claude/skills/shared-references/writing-host.md)
+
+可以从一个具体任务开始。在 Claude Code 输入 `/research-lit 找出与我这份草稿最接近的已发表工作，说明我们的研究假设有什么差别。` 在 Codex 中用 `$research-lit`，在 Antigravity 中直接提 `research-lit`（或 `/research-lit` / `$research-lit`）即可。
 
 ## 选哪个入口
 
-| 你想做什么 | Claude Code / Codex | 它会做什么 |
-|---|---|---|
-| 修改手上的文件 | 例如 `/paper-polish` / `$paper-polish` | 处理指定材料，完成相应核查后交付。这是默认工作方式。 |
-| 把一项研究推进到约定终点 | `/research-auto` / `$research-auto` | 主代理选择技能，核验各阶段产物。选题需要你批准，试验停止条件和资源上限继续生效。 |
-| 选题后委托研究决策 | `/research-autopilot` / `$research-autopilot` | 你批准题目后，主代理决定并记录设计取舍。需要额外权限、算力或预算时向你申请。 |
-| 跨会话继续，并逐阶段核验 | `/research-gate` / `$research-gate` | Python 控制器保存产物、审批和证据。宿主代理执行研究，并判断证据能支持什么结论。 |
+下列入口、任务委派与审批规则只适用于本项目。各宿主读取各自的项目说明。[Claude Code](CLAUDE.md) · [Codex](AGENTS.md) · [Antigravity](GEMINI.md)
 
-遇到有争议的结论，或需要比较几个候选题目时，可选插件 `debate-hub` 能让多个评审分别查阅同一组原始材料，并生成供研究者裁决的卡片。插件需在 Claude Code 或 Codex 中单独注册。[插件配置与用法](.agents/mcp-servers/debate-hub/README.md)
+| 你想做什么 | Claude Code / Codex / Antigravity | 它会做什么 |
+|---|---|---|
+| 修改手上的文件 | 例如 `/paper-polish` / `$paper-polish` / `paper-polish` | 处理指定材料，完成相应核查后交付。这是默认工作方式。 |
+| 把一项研究推进到约定终点 | `/research-auto` / `$research-auto` / `research-auto` | 主代理选择技能，核验各阶段产物。选题需要你批准，试验停止条件和资源上限继续生效。 |
+| 选题后委托研究决策 | `/research-autopilot` / `$research-autopilot` / `research-autopilot` | 你批准题目后，主代理决定并记录设计取舍。需要额外权限、算力或预算时向你申请。 |
+| 跨会话继续，并逐阶段核验 | `/research-gate` / `$research-gate` / `research-gate` | Python 控制器保存产物、审批和证据。宿主代理执行研究，并判断证据能支持什么结论。 |
+
+遇到有争议的结论，或需要比较几个候选题目时，可选插件 `debate-hub` 能让多个评审分别查阅同一组原始材料，并生成供研究者裁决的卡片。插件需在 Claude Code、Codex 或 Antigravity 中单独注册。[插件配置与用法](.agents/mcp-servers/debate-hub/README.md)
 
 ## 研究工作流
 

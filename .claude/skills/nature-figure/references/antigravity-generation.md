@@ -1,5 +1,7 @@
 # Built-in image generation through Antigravity (Nano Banana)
 
+When running on Antigravity, follow the [native image procedure](../../../../config/antigravity/antigravity-generation.md) and complete its figure checks. The handoff below applies on other hosts.
+
 Use when `provider` is `antigravity`, or the user asks for Antigravity or Nano
 Banana. Like `imagegen`, this is a handoff: Claude Code has no image tool, and
 Antigravity's agent generates the image with its built-in `generate_image` tool.

@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Save the full prompt and response of every cross-model reviewer call, so that:
+Save the full prompt and response of every reviewer call, so that:
 - **Reviewer independence can be checked:** the trace shows whether the executor
   passed primary files or its own summaries.
 - **Reviews can be resumed and reproduced:** the `threadId` and the model and effort
@@ -13,7 +13,7 @@ Save the full prompt and response of every cross-model reviewer call, so that:
 ## When to trace
 
 After every reviewer call that serves a review, audit or critique function:
-`mcp__codex__codex`, `mcp__codex__codex-reply`, and each manual-review round
+native subagent dispatches and replies, and optional external Codex calls
 (see [reviewer-routing.md](reviewer-routing.md)). Failed attempts are traced too,
 with `--status error`. Purely informational calls are not traced.
 
@@ -48,10 +48,10 @@ TRACE_HELPER=".aris/tools/save_trace.sh"
 if [ -n "$TRACE_HELPER" ]; then
   bash "$TRACE_HELPER" \
     --skill "<skill-name>" --purpose "<purpose>" \
-    --backend "<codex | manual>" --tool "<mcp__codex__codex | mcp__codex__codex-reply | manual>" \
+    --backend "<native | codex>" --tool "<actual native or Codex tool>" \
     --model "<model that actually ran>" --effort "<effort that actually ran>" \
     --status "<ok | error>" --fallback-reason "<empty unless an attempt failed>" \
-    --thread-id "<threadId, empty for manual>" \
+    --thread-id "<returned subagent or Codex thread ID>" \
     --executor-model "<model this session runs as, if known>" \
     --reported-reviewer-model "<model the reviewer reports, e.g. the Reviewer-Model line>" \
     --prompt-file "<file with the full prompt>" --response-file "<file with the full response>"

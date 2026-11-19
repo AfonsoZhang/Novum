@@ -13,6 +13,8 @@ license: CC-BY-NC-SA-4.0
 
 # Paper Writer
 
+Follow the [writing rules for the active host](../shared-references/writing-host.md).
+
 Apply the shared [working-language policy](../shared-references/research-autonomy.md#working-language) to internal work and user reports.
 
 For structure or evidence requirements, use [paper-type-routing.md](../shared-references/paper-type-routing.md). Reuse the contribution type, stage and venue from existing materials; select only claim-relevant checks. This selects guidance within the current task and does not start another phase.

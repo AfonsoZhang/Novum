@@ -1,5 +1,6 @@
 # Research project routing (Claude Code)
 
+- **Host adaptation.** Apply the [shared host rules](.claude/skills/shared-references/host-routing.md) for reviewer selection and optional Antigravity writing.
 - **Default: standalone skills and scoped revisions.** Existing skills remain directly
   callable at the root and in child projects. Complete the current request and necessary
   verification without automatically starting a team or the next stage. For revisions,

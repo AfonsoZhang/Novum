@@ -64,12 +64,12 @@ mcp__codex__codex:
 
 ## When to apply
 
-This protocol applies to every cross-model review call, including:
+This protocol applies to every native or external review, including:
 - `research-review` — research and paper review
 - `paper-claim-audit` — zero-context number audit
-- the Codex half of a [split review](split-review.md)
+- the manuscript half of a [split review](split-review.md)
 - any skill that sends artifacts to `mcp__codex__codex`, `mcp__codex__codex-reply`
-  or a manual reviewer
+  or a native reviewer subagent
 
 ## Exception
 

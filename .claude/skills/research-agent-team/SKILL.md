@@ -28,7 +28,7 @@ verification are the agent's work.
 
 ## Scope and execution modes
 
-Follow the [research root routing](../../../CLAUDE.md). The controller serves work
+Follow the [active host routing](../shared-references/host-routing.md). The controller serves work
 coordinated from `$RESEARCH_ROOT`, including an explicit delegation to that
 root from the home-directory session. Ordinary specialist-skill requests can go
 straight to the relevant skill without loading this controller.
@@ -91,6 +91,8 @@ not activate the controller or team. Enable roles only where they help the task.
    stopping condition and the remaining work as specified in the stage map.
 
 ## Working language and artifact formats
+
+Use the [current host’s tools](../shared-references/host-routing.md) for delegation, questions and long-running work. Claude Code tool names below apply only in Claude Code.
 
 Apply the shared [working-language policy](../shared-references/research-autonomy.md#working-language)
 in both execution modes. Keep internal work in English. Use the selected report
@@ -173,8 +175,7 @@ does not count as an independent check or an isolated topic pass. Agents run in
 the background: never predict a result before its notification arrives, and relay
 what matters because the user does not see agent reports. Continue an agent with
 SendMessage; a new Agent call starts fresh. Give parallel writers disjoint files,
-or `isolation: "worktree"` inside a git repository. Every role here is Claude, so
-role QA is same-family; cross-family review uses the reviewer skills' Codex route.
+or `isolation: "worktree"` inside a git repository. On Codex and Antigravity, use the current host’s delegation, input and wait tools from its contract. Select reviewers using [reviewer routing](../shared-references/reviewer-routing.md).
 
 ## Responsibility for full-workflow completion
 

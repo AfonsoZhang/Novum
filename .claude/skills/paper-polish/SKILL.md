@@ -13,6 +13,8 @@ license: CC-BY-NC-SA-4.0
 
 # Paper Polish
 
+Follow the [writing rules for the active host](../shared-references/writing-host.md).
+
 Apply the shared [working-language policy](../shared-references/research-autonomy.md#working-language) to internal work and user reports.
 
 For substantive claim creation or revision, follow the [cross-revision claim-preservation policy](../shared-references/claim-preservation.md).
@@ -252,24 +254,14 @@ export, a corrupted table, an unreadable figure), do not guess its content and
 write something plausible into the text. Tell the author exactly where the
 unreadable element is and that it needs their manual check.
 
-## Optional: Gemini language pass
+## Optional Antigravity language pass
 
-Use only when the user asks for it and a Gemini tool is exposed in the session (for
-example an Antigravity `agy` MCP server or the Gemini CLI); otherwise report that the
-route is unavailable. Default model: Gemini 4 Argon (the `agy` default); use another
-Gemini model only when the user names it, and report which model was used. Gemini
-does language only; Claude keeps content and evidence.
-
-1. Send a section only after its content is settled and checked.
-2. Before sending unpublished text, get the user's confirmation for that material
-   (it leaves for Google's servers).
-3. Send the full constraint list with the text: no new claims, numbers or
-   citations; no change to meaning or claim strength; the paper's term and number
-   conventions; the venue's style rules. Ask for language-only edits plus a list of
-   every change with its reason.
-4. Review each listed change against the whole paper before adopting it. Reject
-   any that alters meaning, strength, terminology or a convention Gemini could not
-   see. Report which changes were adopted and which were rejected, with reasons.
+Use the [writing rules for the active host](../shared-references/writing-host.md).
+For an authorized external pass, send the settled text and the applicable terminology,
+number and venue conventions. Keep the evidence, meaning, scope and strength of
+each claim intact. Ask for clean text and a reason for each change. Compare it
+with the manuscript, report consequential edits accepted or rejected, and flag
+any proposed change to scientific meaning for author confirmation.
 
 ## How to deliver
 

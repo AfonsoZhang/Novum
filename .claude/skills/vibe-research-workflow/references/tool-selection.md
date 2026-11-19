@@ -21,7 +21,7 @@ Pick the tool that matches the phase, not the other way around.
 | Figure (conceptual sketch) | `nature-figure`: Codex `image_gen` or Antigravity `generate_image` (Nano Banana) | Hand-drawn plus photo | Early exploration |
 | Figure (final Figure 1) | PowerPoint then Figma | OmniGraffle (macOS) | Paper-ready |
 | Figure (experimental charts) | Matplotlib + Seaborn | TikZ + PGFPlots | Reproducible scientific plots |
-| Writing (polish) | Claude | Gemini, optional language pass in `paper-polish` | Long-form polish with context preservation |
+| Writing (polish) | The active host runs `paper-polish` | Claude Code or Codex can request an Antigravity language pass | Long-form polish with context preservation |
 | Writing (grammar) | Grammarly | LanguageTool | Final pass on mechanical grammar |
 
 ## 2. Vibe Coding tools
@@ -89,9 +89,9 @@ configure repository access via GitHub.
 
 ### Polish
 
-- Claude: long context, preserves technical detail reliably.
-- Gemini (optional): language-only pass, every change reviewed before
-  adoption; see `paper-polish`.
+Claude Code, Codex and Antigravity can each polish directly. For an external
+Antigravity pass, the calling host reviews every change before adoption. See the
+[writing rules for the active host](../../shared-references/writing-host.md).
 
 ### Grammar
 
