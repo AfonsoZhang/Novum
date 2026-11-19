@@ -1,0 +1,36 @@
+{
+  "executor": {
+    "baseUrl": "https://your-executor-api.example/v1",
+    "model": "your-executor-model",
+    "family": "executor-family",
+    "apiKeyEnv": "RESEARCH_EXECUTOR_API_KEY",
+    "maxOutputTokens": 8192,
+    "requestTimeoutMs": 120000
+  },
+  "reviewer": {
+    "baseUrl": "https://your-reviewer-api.example/v1",
+    "model": "your-independent-reviewer-model",
+    "family": "different-reviewer-family",
+    "apiKeyEnv": "RESEARCH_REVIEWER_API_KEY",
+    "maxOutputTokens": 8192,
+    "requestTimeoutMs": 120000
+  },
+  "researchKind": "empirical",
+  "maxParallel": 4,
+  "maxWallSeconds": 3600,
+  "maxReviewSeconds": 900,
+  "maxReviewInputBytes": 65536,
+  "maxTaskSeconds": 900,
+  "maxRequests": 100,
+  "maxNoProgress": 3,
+  "maxWorkflowRevisions": 3,
+  "maxMemoryMb": 4096,
+  "heartbeatTimeoutMs": 30000,
+  "commandTimeoutMs": 60000,
+  "allowCommands": false,
+  "sandboxExecutable": "bwrap",
+  "maxResponseBytes": 4194304,
+  "searchUrl": "https://api.openalex.org/works",
+  "searchApiKeyEnv": "OPENALEX_API_KEY",
+  "evidenceCacheSeconds": 3600
+}

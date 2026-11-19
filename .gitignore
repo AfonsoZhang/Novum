@@ -11,3 +11,10 @@ __pycache__/
 .codex/config.toml
 .codex/generated-files.json
 TODO.md
+
+# Standalone TypeScript runtime build and local state
+node_modules/
+dist/
+.research-loop/
+*.json.lock/
+config/runtime.local.json

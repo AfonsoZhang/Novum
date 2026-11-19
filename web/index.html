@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Research Loop · 研究看板</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/styles.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#workspace">跳到任务看板</a>
+  <header class="app-header">
+    <a class="brand" href="/" aria-label="Research Loop 首页"><span class="brand-mark" aria-hidden="true"></span><span>Research Loop</span><span class="brand-divider"></span><span class="brand-label">研究看板</span></a>
+    <div class="header-actions"><span id="connection" role="status" class="connection">正在连接</span><button id="refresh" class="quiet-button" type="button">刷新</button></div>
+  </header>
+  <main id="workspace">
+    <section id="workspace-settings" class="panel workspace-settings" aria-label="研究项目" hidden></section>
+    <div id="error-banner" class="error-banner" role="alert" hidden></div>
+    <section id="project-header" class="project-header" aria-label="项目概览"><div class="loading">正在读取项目记录…</div></section>
+    <section id="research-inputs" class="research-inputs" aria-label="论文类型、种子与目标会议或期刊"></section>
+    <section id="run-controls" class="run-controls" aria-label="运行控制" hidden>
+      <div><h2>运行控制</h2><p id="run-reason" aria-live="polite"></p><p id="run-result" role="status" hidden></p></div>
+      <div class="run-buttons" role="group" aria-label="研究运行操作">
+        <button id="start-run" type="button" class="primary-button" aria-describedby="run-reason" disabled>一键启动</button>
+        <button id="pause-run" type="button" class="secondary-button" title="停止派发新任务，当前任务继续至结束" disabled>暂停</button>
+        <button id="resume-run" type="button" class="primary-button" aria-describedby="run-reason" hidden disabled>继续</button>
+        <button id="terminate-run" type="button" class="secondary-button danger-button" title="取消运行中和排队任务，保留产物和 Trace" disabled>终止</button>
+      </div>
+    </section>
+    <section id="workflow-live" class="workflow-live" aria-label="实时工作流进度"></section>
+    <nav id="stages" class="stages" aria-label="研究阶段"></nav>
+    <div class="view-toolbar">
+      <nav class="view-tabs" aria-label="看板视图"><button class="view-tab selected" data-view="board" aria-current="page">任务看板</button><button class="view-tab" data-view="agents">Subagent 调用</button><button class="view-tab" data-view="trace">执行 Trace</button><button class="view-tab" data-view="evidence">证据与质疑</button><button class="view-tab" data-view="events">事件日志</button></nav>
+      <div class="filters"><label class="search-box"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="搜索任务、证据、事件" aria-label="搜索任务、证据、事件"></label><button id="clear-stage" class="quiet-button" hidden>清除阶段筛选</button></div>
+    </div>
+    <div id="view" aria-live="off"><div class="empty-state">读取完成后，任务状态会自动出现在这里。</div></div>
+    <footer><span>执行完成与科学验收分别记录</span><span id="last-updated">正在同步项目记录</span></footer>
+  </main>
+  <dialog id="details" class="detail-dialog" aria-labelledby="detail-title"><header><h2 id="detail-title">任务详情</h2><button class="icon-button" id="close-details" aria-label="关闭详情">×</button></header><div id="detail-content"></div></dialog>
+  <dialog id="artifact" class="artifact-dialog" aria-labelledby="artifact-title"><header><h2 id="artifact-title">产物预览</h2><button class="icon-button" id="close-artifact" aria-label="关闭产物预览">×</button></header><p id="artifact-note" role="status"></p><pre id="artifact-content"></pre></dialog>
+  <dialog id="input-editor" class="detail-dialog input-dialog" aria-labelledby="input-title">
+    <header><h2 id="input-title">论文类型与研究输入</h2><button class="icon-button" id="close-inputs" aria-label="关闭研究输入">×</button></header>
+    <form id="inputs-form">
+      <p id="input-context" class="editor-note"></p>
+      <section class="paper-type-editor" aria-label="选择论文类型">
+        <label class="form-field" for="paper-type">论文类型 <span>可选</span><select id="paper-type"></select></label>
+        <p id="paper-type-description" class="paper-type-description" role="status"></p>
+        <p id="paper-type-workflow" class="editor-note"></p>
+      </section>
+      <div class="editor-heading"><h3>论文种子</h3><button type="button" class="quiet-button" id="add-seed">添加种子</button></div>
+      <p class="editor-note">研究方向、工程中遇到的问题、已有参考论文，都可以作为起点。选择类型并描述你的想法或问题。</p>
+      <p id="seed-order-help" class="editor-note">越靠前越先研究。Tab 聚焦卡片的排序区域后，按 ↑ / ↓ 上下移动，Home / End 置顶或置底；也可点击对应按钮。保存后生效。</p>
+      <p id="seed-order-status" class="sr-only" role="status" aria-live="polite"></p>
+      <div id="seed-list"></div><p id="no-seeds" class="editor-note">尚未添加论文种子，可直接设置目标会议/期刊。</p>
+      <section class="journal-editor"><h3>目标会议 / 期刊</h3>
+        <label class="form-field" for="venue-select">常用会议 / 期刊 <span>可选</span><select id="venue-select" aria-describedby="venue-catalog-status"><option value="">尚未确定</option><option value="custom">自定义会议 / 期刊</option></select></label>
+        <p class="editor-note"><span id="venue-catalog-status" role="status">选择后自动填写名称和官网，也可自行填写。</span> <button type="button" class="text-button" id="retry-venues" hidden>重试加载列表</button></p>
+        <label class="form-field">会议 / 期刊名称<input id="journal-name" name="journalName" maxlength="300" placeholder="选择常用项，或输入其他会议/期刊名称"></label>
+        <label class="form-field">官网或投稿指南 <span>可选</span><input id="journal-url" name="journalUrl" type="url" maxlength="2048" placeholder="https://…"></label>
+        <p class="editor-note"><a id="venue-link" target="_blank" rel="noopener noreferrer" hidden>打开官网</a></p>
+        <details id="journal-supplement" class="journal-supplement">
+          <summary>补充说明（可选）</summary>
+          <p class="editor-note" id="journal-notes-help">仅填写你的特殊偏好或限制；没有额外要求可留空。会议／期刊的正式要求由系统查阅官网核验，无需在此整理。</p>
+          <label class="form-field">个人偏好或限制<textarea id="journal-notes" name="journalNotes" rows="3" maxlength="4000" aria-describedby="journal-notes-help" placeholder="例如：只考虑长文，或不接受某种发表方式"></textarea></label>
+        </details>
+      </section>
+      <p class="editor-note">更改后，基于旧输入的验收会标为过期；运行中任务会在检查点停止，需要重试。更换论文类型或种子优先级会重新选题并等待确认。保存不会启动研究。</p>
+      <p id="input-error" class="error-banner" role="alert" hidden></p>
+      <div class="editor-actions"><button type="button" class="quiet-button" id="cancel-inputs">取消</button><button type="submit" class="primary-button" id="save-inputs">保存研究输入</button></div>
+    </form>
+  </dialog>
+</body>
+</html>
