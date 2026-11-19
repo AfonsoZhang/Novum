@@ -53,3 +53,17 @@ delegation and approval rules apply within `$RESEARCH_ROOT`.
 
 - **Host adaptation.** Before executing any research skill, read the [Codex host contract](config/codex/host.md). Codex executes and polishes; Claude performs external review.
 - **Skill setup.** If `.agents/skills/` is absent, run `python3 scripts/build_codex.py` from this root. Run `bash install.sh --host codex` to configure project-local MCP servers.
+
+- **Real project use (user preference, updated 2026-11-05).** Remove demo mode and
+  fictional demonstration content from the runtime, dashboard and input templates.
+  New projects start empty and use actual persisted project records. Synthetic
+  test fixtures stay isolated under tests and must not be served as project data.
+
+- **Dashboard viewport (user preference, updated 2026-11-05).** Keep the user's live research
+  dashboard on the natural browser viewport. Do not use `browser_resize`,
+  `setViewportSize()` or fixed device metrics on that tab for visual verification;
+  use an isolated test browser for responsive checks. Preserve the user's zoom and
+  window placement. If automation leaves a fixed viewport, clear the device-metrics
+  override and verify the page matches the browser content area before reporting
+  completion; maximizing or zooming the window is not a substitute. Follow the
+  `windows-playwright` skill's viewport inspection and recovery procedure.
