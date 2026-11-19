@@ -25,6 +25,8 @@ A first task you can try in Claude Code is `/research-lit Find the closest publi
 
 ## Choose how to work
 
+The routing, delegation and approval rules below apply to this project. Each host reads its own project guide. [Claude Code](CLAUDE.md) · [Codex](AGENTS.md)
+
 | If you want to… | Claude Code / Codex | What happens |
 |---|---|---|
 | Work on the file in front of you | e.g. `/paper-polish` / `$paper-polish` | The skill edits the requested material and runs the relevant checks. This is the default scope. |

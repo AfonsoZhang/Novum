@@ -25,6 +25,8 @@ claude
 
 ## 选哪个入口
 
+下列入口、任务委派与审批规则只适用于本项目。两个宿主各自读取仓库根目录的项目说明。[Claude Code 项目说明](CLAUDE.md) · [Codex 项目说明](AGENTS.md)
+
 | 你想做什么 | Claude Code / Codex | 它会做什么 |
 |---|---|---|
 | 修改手上的文件 | 例如 `/paper-polish` / `$paper-polish` | 处理指定材料，完成相应核查后交付。这是默认工作方式。 |
