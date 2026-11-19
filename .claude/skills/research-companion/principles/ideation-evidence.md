@@ -12,6 +12,7 @@ them. They refine, not replace, the shared topic-selection policy.
 | Decomposing papers into purpose / mechanism / evaluation facets and recombining them supported exploration better than plain prompting; facet-based retrieval surfaced more relevant prior work | Scideator, Radensky et al., CAIS 2026 (arXiv 2409.14634) | Diverge by facet recombination; search prior work per facet |
 | Organizing literature as a progression chain produced better-developed ideas than an unordered pile | Chain of Ideas Agent (DAMO-NLP-SG) | Give the brainstormer a chronologically ordered chain of core papers |
 | Hypotheses are validated by a sequence of falsification experiments with Type-I error control | POPPER, Huang et al., ICML 2025 (arXiv 2502.09858) | The first step tries to refute the idea, not to collect support |
+| Rejected and accepted ML conference papers occupy largely the same macro-strategy space ("Reject Paradox"); execution-level failure modes and evidence grounding separate them | ResearchStudio-Idea, Zhao et al., 2026 (arXiv 2607.04439) | Pair structural ideation patterns with pattern-specific contrastive failure modes (see `ideation-patterns.md`); check evidence readiness before diverging |
 
 ## Pre-registration before the first step
 
@@ -32,4 +33,5 @@ topic's plan artifact:
 - JinheonBaek/ResearchAgent: literature-grounded idea generation with iterative reviewing agents
 - DAMO-NLP-SG/CoI-Agent: progression-chain literature organization
 - Agent Laboratory: execution side, from a given idea to experiments and report
+- microsoft/ResearchStudio (ResearchStudio-Idea): 15 empirical ideation patterns, contrastive failure modes, four-axis scoop-checking, and structured Idea Cards
 - jerry609/AI4S: paper list for AI-for-science ideation and evaluation

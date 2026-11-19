@@ -67,6 +67,8 @@ If the user provided a clear and detailed description in $ARGUMENTS, you may ski
 
 **Why-chain (run it yourself, do not hand it to the user):** for the observed problem or anomaly, ask why it happens, search the literature for an explanation of that answer, and ask why again about the explained part. Stop at the first link where the retrieved papers give no explanation, or only conflicting or untested ones. That link is the candidate gap; record the chain with the papers checked at each step and pass it to Phase 2. If every link is explained, report that the problem is already understood and name the explaining work instead of forcing a gap.
 
+**Evidence readiness check (before Phase 2, except pure brainstorming):** verify that the seed bundle covers (1) the dominant baseline(s) and their stated bottleneck, (2) recent competing or preprint work, and (3) at least one documented failure mode, limitation, or conflicting finding. If the bundle is thin, run a targeted `research-lit` pass first and record any remaining source gaps instead of diverging on an ungrounded premise.
+
 ---
 
 ### Phase 2: DIVERGE — Generate Ideas
@@ -78,6 +80,7 @@ Use the **brainstormer** role inline (delegate only when workspace activation ru
 - Relevant scientific sources; no old rankings, unrelated histories or preferred answer
 - Explicit instruction to prioritize cross-field connections and assumption-challenging
 - Core papers as a chronological progression chain, each decomposed into purpose / mechanism / evaluation; generate by swapping one facet (same purpose with another mechanism, a mechanism in another evaluation setting, one work's evaluation applied to another system to expose gaps)
+- Optionally, the 15 technical strategy patterns in [ideation patterns](principles/ideation-patterns.md) when the seed points to a concrete method or diagnostic bottleneck; tag any pattern-guided candidate with its pattern name so Phase 3 can check its contrastive failure modes
 
 Deduplicate candidates by core mechanism before presenting; restatements of the same idea count once. The generating model does not rank its own candidates.
 
@@ -126,7 +129,7 @@ Present the evaluations side by side in a comparison table:
 
 Explain each decision and the specific delta, unknown, prerequisite or defeated claim behind it. For VALIDATE_FIRST, state the decisive check.
 
-An LLM's novelty rating is not evidence; the Novelty row cites retrieved papers or says unverified. For each idea, also name the weaknesses only execution would expose (data leakage, an untuned baseline, gains explained by more compute or prompt length).
+An LLM's novelty rating is not evidence; the Novelty row cites retrieved papers or says unverified. For each idea, also name the weaknesses only execution would expose (data leakage, an untuned baseline, gains explained by more compute or prompt length), and if the idea instantiates a strategy from [ideation patterns](principles/ideation-patterns.md), stress-test it directly against that pattern's contrastive failure modes.
 
 ---
 
@@ -178,17 +181,24 @@ If the conclusion feels hollow or generic, that's a signal. Say so directly.
 
 **Goal:** Leave the session with a clear decision and an actionable first step.
 
-Synthesize everything from Phases 2-5 into a final recommendation:
+Synthesize everything from Phases 2-5 into a final recommendation and structured **Idea Card** (directly consumable by downstream `experiment-plan` and `tech-paper-template`):
 
 ```markdown
-## Session Summary
+## Session Summary — Idea Card
 
 ### Idea: [name]
 - **Decision:** CONTINUE / VALIDATE_FIRST / PARK / STOP_CURRENT_VERSION
 - **Nugget:** [one sentence]
+- **Research Context:** [domain, paradigm state, and evidence readiness status]
+- **Bottleneck Type:** [specific unresolved limitation or why-chain gap link]
+- **Ideation Pattern (if applicable):** [pattern from principles/ideation-patterns.md, or N/A]
+- **Differentiation Strategy:** [how the proposal differs structurally from closest work across framing / insight / mechanism / domain]
+- **Supporting Precedents:** [verified prior works grounding the premise, with record IDs/citations]
+- **Contrastive Failure Modes:** [pattern-specific and execution-only risks that could invalidate the claim]
 - **Strength:** [strongest argument for]
 - **Risk:** [biggest remaining concern]
 - **First step:** [the single riskiest assumption to test — RS4]
+- **Kill Switch (Pre-Registered Refutation):** [numeric target vs. named baseline/null, and the exact observation that refutes the current claim]
 - **Timeline estimate:** [to first concrete result, not to publication]
 ```
 

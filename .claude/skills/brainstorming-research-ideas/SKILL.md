@@ -362,6 +362,9 @@ Not sure which framework to start with? Use this decision guide:
 | "I want to combine existing work into something new" | Composition/Decomposition (F9) |
 | "I found a cool technique and want to apply it" | Problem-First Check (F1) → Stakeholder Rotation (F8) |
 | "I want to challenge conventional wisdom" | Failure Analysis (F6) → Simplicity Test (F7) |
+| "I have a concrete technical bottleneck and want proven structural moves" | [Empirical Ideation Patterns](../research-companion/principles/ideation-patterns.md) (15 patterns paired with contrastive failure modes) |
+
+> **Optional Technical Pattern Catalog:** When brainstorming concrete method or diagnostic directions, you may also draw from the 15 empirically-derived patterns in [ideation-patterns.md](../research-companion/principles/ideation-patterns.md). Each pattern is paired with its historical execution failure modes ("Reject Paradox") so candidates are stress-tested against pattern-specific pitfalls early. Non-ML, evaluation, replication, and negative-finding ideas do not require fitting into this catalog.
 
 ---
 

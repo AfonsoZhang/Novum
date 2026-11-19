@@ -42,9 +42,14 @@ any inherited score or venue heuristic as an automatic rejection threshold.
 
 ### 2. Establish the delta and investigate blockers
 
-Read `references/fatal-flaws.md` as a checklist of possible problems. Record the
-important specific issues, evidence status and possible resolution. Do not turn
-their count into a decision or infer a fatal problem from missing information.
+Read `references/fatal-flaws.md` as a checklist of possible problems. When the
+idea instantiates a structural method or diagnostic strategy, also check the
+matching pattern's contrastive failure modes in
+[ideation-patterns.md](../research-companion/principles/ideation-patterns.md)
+(accepted and rejected work often share the same macro-pattern, so execution-level
+failure modes are where claims break). Record the important specific issues,
+evidence status and possible resolution. Do not turn their count into a decision
+or infer a fatal problem from missing information.
 
 Ground novelty judgments in actual retrieval. Use relevant keyword groups and
 follow closest work; reuse the publication records governed by

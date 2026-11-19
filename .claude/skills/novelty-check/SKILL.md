@@ -55,9 +55,17 @@ unavailable sources and coverage gaps, not exhaustive-search claims.
 
 Verify bibliographic identity and publication/version status. Abstracts can screen
 candidates, but a decisive overlap judgment requires reading the relevant method,
-setting and result passages. Compare question, mechanism, assumptions, evidence
-and conclusion. State the substantive delta and locate the overlapping passages.
-Similar titles or shared components cannot settle the decision in either direction.
+setting and result passages. Compare each closest work along **four collision axes**:
+1. **Problem Framing** — exact question, bottleneck, or objective
+2. **Key Insight** — core conceptual explanation or hypothesis
+3. **Core Mechanism** — algorithmic, architectural, or experimental apparatus
+4. **Application Domain / Setting** — data regime, constraints, and evaluation setup
+
+Classify each axis as `Direct Collision`, `Partial Overlap`, `Distinct`, or `Unverified`
+with evidence locators. Similar titles or shared components cannot settle the decision
+in either direction; conversely, a direct collision on one or more axes requires either
+a concrete **Differentiation Strategy** (how the remaining axes establish a substantive
+delta) or narrowing/stopping the affected claim.
 
 ## Phase C: Optional cross-model verification
 
@@ -94,9 +102,12 @@ Use the project's current artifact format where one exists. A compact report has
 ## Proposed contribution
 [Question, contribution type and one-sentence candidate delta]
 
-## Closest work
-| Work / selected version | Publication / review status | Claim and evidence locator | Overlap | Substantive difference or unknown |
-|---|---|---|---|---|
+## Closest work & four-axis collision matrix
+| Work / selected version | Publication / review status | Claim and evidence locator | Problem Framing | Key Insight | Core Mechanism | Domain / Setting | Substantive difference or unknown |
+|---|---|---|---|---|---|---|---|
+
+## Differentiation strategy
+[If any axis shows Direct Collision or Partial Overlap: specify how the claim or non-colliding axes establish a substantive delta, or state why the affected claim triggers STOP_CURRENT_VERSION.]
 
 ## Assessment
 - Novelty: [established overlap, supported delta or specifically unverified]

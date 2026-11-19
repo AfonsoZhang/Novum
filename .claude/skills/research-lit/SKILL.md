@@ -73,7 +73,7 @@ Examples:
 | 1 | **Zotero** (via MCP) | `zotero` | Try calling any `mcp__zotero__*` tool — if unavailable, skip | Collections, tags, annotations, PDF highlights, BibTeX, semantic search |
 | 2 | **Obsidian** (via MCP) | `obsidian` | Try calling any `mcp__obsidian-vault__*` tool — if unavailable, skip | Research notes, paper summaries, tagged references, wikilinks |
 | 3 | **Local PDFs** | `local` | `Glob: papers/**/*.pdf, literature/**/*.pdf` | Raw PDF content (first 3 pages) |
-| 4 | **Web search** | `web` | Always available (WebSearch) | arXiv, Semantic Scholar, Google Scholar |
+| 4 | **Web search** | `web` | Always available (WebSearch) | arXiv, Semantic Scholar, Google Scholar, **OpenReview** (peer-review critiques, rejection rationales, in-submission overlap), **DBLP & Crossref** (canonical venue/DOI records) |
 | 5 | **Semantic Scholar API** | `semantic-scholar` | `$S2_FETCHER` resolves (canonical name `semantic_scholar_fetch.py`) | Published venue papers (IEEE, ACM, Springer) with structured metadata: citation counts, venue info, TLDR. **Included in default `all`; also selectable** via `— sources: semantic-scholar` or `— sources: web, semantic-scholar` |
 | 6 | **DeepXiv CLI** | `deepxiv` | `$DEEPXIV_FETCHER` resolves (canonical name `deepxiv_fetch.py`) **and** `deepxiv` CLI present (`command -v deepxiv`) | Progressive paper retrieval: search, brief, head, section, trending, web search. **Only runs when explicitly requested** via `— sources: deepxiv` or `— sources: all, deepxiv` |
 | 7 | **Exa Search** | `exa` | `$EXA_FETCHER` resolves (canonical name `exa_search.py`); fetcher handles `exa-py` SDK + API key internally | AI-powered broad web search with content extraction (highlights, text, summaries). Covers blogs, docs, news, companies, and research papers beyond arXiv/S2. **Included in default `all`; also selectable** via `— sources: exa` or `— sources: all, exa` |
@@ -608,7 +608,11 @@ Present as a structured literature table:
 |---|---|---|---|---|---|---|
 ```
 
-Plus a narrative summary of the landscape (3-5 paragraphs).
+Plus a narrative summary of the landscape (3-5 paragraphs) and a brief **Evidence Readiness Summary** (when supporting ideation or novelty checks):
+- **Baseline & bottleneck coverage:** Are dominant baselines and their stated limitations grounded in read core papers?
+- **Recent / competing coverage:** Are recent preprints and OpenReview submissions (where relevant) scanned, or are coverage gaps noted?
+- **Failure-mode / critique coverage:** Are known failure modes, negative results, or reviewer critiques captured?
+- **Readiness status:** `Ready` / `Needs targeted follow-up` (list exact missing facets).
 
 If Zotero BibTeX was exported, include a `references.bib` snippet for direct use in paper writing.
 
