@@ -117,6 +117,7 @@ python3 "$GATE" continue --root "$PROJECT"
 | [acl-org/acl-style-files](https://github.com/acl-org/acl-style-files) | ACL LaTeX 样式文件 |
 | [anthropics/knowledge-work-plugins](https://github.com/anthropics/knowledge-work-plugins) | 选题方法的思路（未复制原文） |
 | [joshzyj/open-scholar-skill](https://github.com/joshzyj/open-scholar-skill) | 范文知识库的思路（未复制原文） |
+| [microsoft/ResearchStudio](https://github.com/microsoft/ResearchStudio)（ResearchStudio-Idea，arXiv:2607.04439） | 实证创新策略模式、对比式失败模式、四轴撞车检查、证据就绪度与 Idea Card 的思路（未复制原文） |
 
 选题方法部分还参考了 Fischbach, *Cell* 2024（[doi:10.1016/j.cell.2024.03.012](https://doi.org/10.1016/j.cell.2024.03.012)）。各组件保留原有声明，版本与许可证见 [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md)。如有遗漏或标注不准，请告诉我，我会马上改正。
 
