@@ -6,14 +6,19 @@ Check each item before reporting completion.
 
 | # | Check | Pass |
 |---|---|---|
-| 1 | Every supplied W/Q has a corresponding guidance block | ☐ |
+| 1 | Every supplied W/Q has a corresponding guidance block and priority tier (`Score-Moving / Fixable / Minor`) | ☐ |
 | 2 | Every concern has a type | ☐ |
-| 3 | Matched mindset cluster and confidence are recorded | ☐ |
+| 3 | Matched mindset cluster, confidence, and hidden acceptance gate are recorded | ☐ |
 | 4 | Recommended strategy dimensions are identified for each concern | ☐ |
 | 5 | No experimental numbers are fabricated; unverified values carry [TO VERIFY] | ☐ |
-| 6 | Clarifications and requests for new experiments are distinguished | ☐ |
-| 7 | Defensive wording is flagged in tone guidance | ☐ |
-| 8 | High-overpromise_risk entries identify the relevant risk | ☐ |
+| 6 | Clarifications, zero-cost offline re-analyses, and new experiments are distinguished | ☐ |
+| 7 | Every reviewer-cited reference number or paper is verified against `.aux`/`.bbl` or source text | ☐ |
+| 8 | Defensive wording is flagged in tone guidance | ☐ |
+| 9 | High-overpromise_risk entries identify the relevant risk | ☐ |
+| 10 | **Double-blind anonymity:** no identifying links, repository names, or author identities | ☐ |
+| 11 | **No-new-paper smuggling:** no unreviewed major methods/theorems introduced beyond clarifications and requested controls | ☐ |
+| 12 | **Venue character/word cap (when drafting):** verified under both LF (`\n`) and CRLF (`\r\n`) counts | ☐ |
+| 13 | **Multi-round discussion anticipation (interactive venues ONLY, e.g., ICLR / NeurIPS; skip for single-round venues):** 1–2 likely follow-up questions noted for open reviewers | ☐ |
 
 ## Tone issues to flag
 
