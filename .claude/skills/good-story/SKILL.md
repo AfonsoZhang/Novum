@@ -118,6 +118,14 @@ Domain examples are domain calibration packs, not skill boundaries. Ecology, rem
 
 2. Find the story candidates.
    - Identify the protagonist: phenomenon, mechanism, method, organism, dataset, theory, or field problem.
+   - For empirical or evaluation papers, check three high-leverage framing
+     angles that reviewers consistently reward: (1) elevating an overlooked
+     operational axis into a first-class design variable rather than framing
+     the paper as "yet another accuracy benchmark"; (2) foregrounding
+     sign-flipping interactions (where the same intervention helps one model
+     and harms another) or unmistakable high-magnitude practical takeaways;
+     and (3) reporting 3-way outcome-transition decompositions (restored
+     baseline outcomes vs. newly created gains) alongside net deltas.
    - Identify the antagonist: bottleneck, contradiction, dogma, missing mechanism, noisy evidence, scale barrier, or practical need.
    - Identify the turn: the experiment, comparison, model, or observation that changes what the reader can believe.
    - Draft 2-4 possible story spines before choosing one.

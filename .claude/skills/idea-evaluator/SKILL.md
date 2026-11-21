@@ -34,6 +34,12 @@ the missing detail; do not infer that an unclear pitch is an invalid idea.
 Apply [question value and hypothesis relationships](../shared-references/topic-selection-policy.md#question-value-and-hypothesis-relationships)
 to distinguish a substantive attribution question from a supporting ablation,
 and competing explanations from mechanisms that can coexist or form a causal chain.
+For empirical or evaluation ideas, explicitly recognize high-originality
+methodological contributions—such as elevating an overlooked operational axis
+to a first-class design variable, isolating confounded factors via a controlled
+orthogonal factorial grid, or pairing a main grid with a prospectively powered
+mechanistic decomposition—rather than discounting them as "incremental
+evaluation."
 
 Use the actual research method to choose an assessment framework. For non-STEM
 work, consult `references/domain-evaluation-frameworks.md`; retain its relevant

@@ -130,6 +130,18 @@ For each necessary experiment block, specify:
   total effects from comparisons that fix a mediator; preserve necessary dependencies
   and account for interactions. Component removal may change capacity, compute or
   several pathways; state what the comparison supports and what remains unresolved.
+- High-value empirical design primitives (use when the question needs them):
+  (a) when prior studies confound system quality, backbone, and benchmark,
+  prefer a controlled factorial grid that sets key factors directly (e.g., via
+  programmatic oracles) and crosses orthogonal axes across multiple backbones;
+  (b) for sequential or agentic interventions, use shared-prefix paired
+  branching (replaying the baseline trajectory to first divergence) with exact
+  paired tests (e.g., McNemar) and bootstrap CIs, and report unfavorable or
+  null outcomes transparently; (c) when a main grid leaves coupled mechanisms
+  ambiguous, plan a compact, prospectively sized fresh-task cohort to separate
+  them, and decompose 3-way `(baseline, control, treatment)` outcome
+  transitions to distinguish restored baseline successes from newly created
+  gains.
 - Variability that matters: tasks, subjects, seeds or repeated model/API calls.
   Choose replication and uncertainty estimates for that sampling structure; three
   seeds is not a universal guarantee. Do not count repeated measures as independent.
