@@ -133,14 +133,17 @@ For each necessary experiment block, specify:
 - Variability that matters: tasks, subjects, seeds or repeated model/API calls.
   Choose replication and uncertainty estimates for that sampling structure; three
   seeds is not a universal guarantee. Do not count repeated measures as independent.
-- Construction-artifact escape controls and multiplicity families: whenever a
-  synthetic testbed relies on exact-target matching, irreversible failure, or
-  persistent blocking, pair it with at least one control that relaxes that
-  obstruction (e.g., finite retention or a mutable-state public benchmark) so key
-  findings cannot be dismissed as evaluator artifacts. Pre-separate the compact
-  *primary confirmatory family* from any *exploratory sensitivity grid* before
-  applying Holm/Bonferroni adjustments so exploratory sweeps do not dilute
-  primary statistical support.
+- Construction-artifact escape controls and right-sized multiplicity families:
+  whenever a synthetic testbed relies on exact-target matching, irreversible
+  failure, or persistent blocking, pair it with at least one control that
+  relaxes that obstruction (e.g., finite retention or a mutable-state public
+  benchmark) so key findings cannot be dismissed as evaluator artifacts. Avoid
+  overly strict, bloated multiplicity protocols: keep the predeclared *primary
+  confirmatory family* compact and matched to sample-size power (e.g., 2–6
+  central contrasts under Holm/Bonferroni), and never bundle sanity/noise
+  checks (e.g., rerun controls), expected zero-crossover cells, or large
+  exploratory sweeps into that same FWER family—report exploratory grids with
+  effect sizes, CIs, and unadjusted p-values or FDR instead.
 - Zero-leakage offline validation: any post-hoc calibration, regression, or
   predictive model fitted on saved trajectories must be evaluated with
   task-disjoint cross-validation or a strict held-out task split rather than
