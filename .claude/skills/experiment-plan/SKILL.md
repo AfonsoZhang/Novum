@@ -95,6 +95,17 @@ actual evaluations and reuse the literature module's publication/version records
 Choose the primary comparison by measurement fit, independent use and reproducible
 protocol. Identify any complementary diagnosis and preserve concrete resource choices.
 
+For baseline selection, first reuse the verified `uses_baseline` /
+`is_baseline_of` neighborhood and its experiment locators from
+[research-lit](../research-lit/SKILL.md#empirical-comparison-fields) or
+[benchmark-research-skill](../benchmark-research-skill/SKILL.md#trace-the-empirical-comparison-neighborhood).
+Use it to identify comparators that the claim and protocol require. Fill
+material gaps with targeted full-text comparison checks around the closest
+papers. A single topical search serves candidate discovery. Record why each
+required comparison is included, deferred or infeasible. Where a method
+lineage is sparse or inapplicable, use the established comparators or
+controls that answer the research question.
+
 Prefer a suitable established/public benchmark. Before recommending a new dataset,
 task suite or scorer, document what existing protocols fail to measure and why
 reuse or a labeled extension is insufficient. Author-created pilot/stress cases

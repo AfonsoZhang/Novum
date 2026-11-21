@@ -47,11 +47,14 @@ If none applies, record the delta as plug-in application rather than a new metho
 
 Use the available requested scholarly sources and local records. Search multiple
 technical formulations for each central claim, starting with closest work and
-following references. Search purpose, mechanism and evaluation facets separately,
-plus synonyms and neighboring-field terms; title keyword matching alone misses
-prior work (see [ideation evidence](../research-companion/principles/ideation-evidence.md)). Use dates relative to the current search date and relevant
-venues; include foundational work and the latest six months of preprints. Report
-unavailable sources and coverage gaps, not exhaustive-search claims.
+following references. Apply [multi-facet queries](../research-lit/SKILL.md#multi-facet-queries).
+For each claim, write keyword and semantic variants for **Topical** (question or
+purpose), **Contextual** (setting or evaluation), and **Methodological** (mechanism
+or study design). Include synonyms and neighboring-field terms to catch equivalent
+work under other names. See [ideation evidence](../research-companion/principles/ideation-evidence.md).
+Use dates relative to the current search date and relevant venues. Include
+foundational work and the latest six months of preprints. Report unavailable
+sources and coverage gaps when judging the strength of the novelty assessment.
 
 Verify bibliographic identity and publication/version status. Abstracts can screen
 candidates, but a decisive overlap judgment requires reading the relevant method,

@@ -153,6 +153,26 @@ Before searching online, check if the user already has relevant papers locally:
 - Focus on papers from last 2 years unless studying foundational work
 - **De-duplicate**: Skip papers already found in Zotero, Obsidian, or local library
 
+#### Multi-facet queries
+
+For topic discovery, draft a keyword query and a semantic query for each facet:
+**Topical** (research question or objective), **Contextual** (task, domain,
+population or evaluation setting), and **Methodological** (mechanism, method
+family or study design). Use field terms and aliases in the keyword variants
+and describe the same intent in ordinary language in the semantic variants.
+
+Use independently confirmed, relevant papers from the supplied material, local
+records or an initial search as seeds. For each discovery query, check whether a
+seed relevant to that facet appears in its ranked Top-20 results. Search up to
+20 results where the source supports it, using `--max 20` for the helper
+examples below during this check. If the query misses the seed, rewrite it and
+rerun the check. Use exact titles or identifiers separately to establish seed
+identity and source coverage. If a ranked check is unavailable or a seed still
+cannot be recovered, record the coverage gap. A successful seed check validates
+the query against a known paper and leaves overall coverage open. Keep the
+requested source and date limits, and skip this procedure for a single-paper
+question.
+
 **arXiv API search** (runs when `— sources:` is unset, contains `web` or `all`; no download by default — arXiv API is part of the Priority-4 Web tier, see Source Table above):
 
 **Policy D2 tracking discipline (orchestrator-managed)**: the
@@ -575,6 +595,7 @@ For **every** paper in `.aris/verify-papers/verified_papers.json`
 - **Results**: Key numbers/claims
 - **Relevance**: How does it relate to our work?
 - **Source**: Where we found it (Zotero/Obsidian/local/web) — helps user know what they already have vs what's new
+- **Citation role and comparison evidence**: Use the fields below for relevant citations and baselines.
 - **Verification status** (one of):
   - `✅ verified (via arxiv|crossref|s2)`
   - `⚠️ UNVERIFIED (verification unavailable: helper unresolved or invocation failed)`
@@ -584,6 +605,20 @@ For **every** paper in `.aris/verify-papers/verified_papers.json`
 
   Show the status in the analyzed table — never silently drop a
   paper because its status is anything other than `verified`.
+
+#### Empirical comparison fields
+
+- **Background citation** identifies contextual, theoretical or related-work
+  references. Record the cited work and citation locator when relevant.
+- **Empirical comparison** records `source uses_baseline baseline` when the
+  source study actually compares against the baseline's method. The same
+  evidence supports the inverse `baseline is_baseline_of source`. Keep one
+  evidence record per comparison with both stable paper IDs, the method label,
+  the selected source version, and its experiment table or section locator.
+  Verify that `baseline year ≤ source year` using the dated versions involved
+  in the comparison, including a verified earlier preprint where appropriate.
+  Mark missing full text, unresolved method identity or inconsistent dates
+  as unverified and keep those candidates outside the confirmed neighborhood.
 
 ### Step 3: Synthesize
 - Base the main synthesis on core records; label supplements/preprints explicitly and explain their role. Pending rows remain an unresolved list, not evidence for conclusions. No core papers means that limitation must be reported.
@@ -595,7 +630,8 @@ For **every** paper in `.aris/verify-papers/verified_papers.json`
 
 When the requested task includes benchmark selection or experiment planning,
 retain the closest papers' actual datasets/tasks, protocols, metrics, baselines
-and experiment/table/code locators. Hand these and the shared publication records
+and experiment/table/code locators, along with the confirmed comparison edges
+and coverage gaps. Hand these and the shared publication records
 to [benchmark-research-skill](../benchmark-research-skill/SKILL.md) for a reusable
 benchmark comparison. This stays within the requested scope; an ordinary literature
 review does not automatically launch selection, construction or experiments.

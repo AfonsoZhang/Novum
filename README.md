@@ -121,6 +121,7 @@ Thank you to the researchers and maintainers whose tools, examples and methods t
 | [anthropics/knowledge-work-plugins](https://github.com/anthropics/knowledge-work-plugins) | ideas for problem selection (no text copied) |
 | [joshzyj/open-scholar-skill](https://github.com/joshzyj/open-scholar-skill) | the idea of an exemplar knowledge base (no text copied) |
 | [microsoft/ResearchStudio](https://github.com/microsoft/ResearchStudio) (ResearchStudio-Idea, arXiv:2607.04439) | ideas for empirical ideation patterns, contrastive failure modes, four-axis collision checks, evidence readiness and Idea Cards (no text copied) |
+| [LINEAGE](https://arxiv.org/abs/2611.25845) (Wu et al., arXiv:2611.25845) | ideas for multi-facet literature queries and full-text verification of empirical baseline lineage (no text copied) |
 
 The problem-selection notes also draw on Fischbach, *Cell* 2024 ([doi:10.1016/j.cell.2024.03.012](https://doi.org/10.1016/j.cell.2024.03.012)). Every component keeps its original notice; revisions and licenses are listed in [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md). If I have missed or misattributed anything, please tell me and I will fix it right away.
 

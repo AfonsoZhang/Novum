@@ -33,10 +33,8 @@ A request to modify one protocol or analyze one paper stays within that scope.
    selected published/accepted version when available; preserve labeled supplements
    and unresolved statuses. Respect explicit local-only or source restrictions.
 3. Read experiment sections, result tables, appendices and official evaluation
-   implementations. Follow the benchmarks and baselines those papers actually use.
-   Search method/system papers as well as papers titled benchmark or dataset.
-   Expand through shared tasks and comparisons only as far as needed to resolve
-   credible alternatives; avoid an unbounded citation crawl.
+   implementations. Follow the benchmarks those papers actually use. When
+   empirical baselines are needed, trace the comparison neighborhood below.
 4. Compare reusable candidates using the linked selection reference. Explain the
    recommended primary evaluation, any complementary diagnosis and remaining gaps.
    A known benchmark is useful only if its tasks and measurement fit the claim.
@@ -45,6 +43,35 @@ A request to modify one protocol or analyze one paper stays within that scope.
    exists, use `literature/benchmark-survey.md` in the current research topic.
    Link supporting extraction and the shared publication records; avoid a second
    bibliography or tracker. Pass the choice to experiment planning when in scope.
+
+### Trace the empirical comparison neighborhood
+
+Start from 2–3 core seed method papers aligned with the task and protocol, when
+available. Reuse verified comparisons and the
+[empirical comparison fields](../research-lit/SKILL.md#empirical-comparison-fields).
+Run the two steps on the seeds, then repeat once on verified neighbors if
+coverage still has a claim-relevant gap.
+
+1. **Backward, one hop (`uses_baseline`).** Read each seed's full-text experiment
+   sections and tables. Extract the earlier methods it actually compares
+   against and resolve each method label to its paper.
+2. **Forward, one hop (`is_baseline_of`).** Use citation chains to find later
+   method papers that may compare against the seed. Screen for relevant tasks
+   and protocols, then read each candidate's experiment tables and sections to
+   confirm that it actually evaluates the seed method as a comparator.
+
+Use **candidate-restricted grounding**. Recheck shortlisted paper–method pairs
+against the selected full text of the study performing the comparison. Confirm
+the method identity, comparison setting, table or section locator, and temporal
+order before recording each edge. Mark unresolved candidates as coverage gaps.
+Direct comparisons from Methodology papers establish lineage edges. Survey or
+Benchmark summary tables provide leads and protocol context. Trace imported
+scores to their original experiments and record any original evaluations in
+those papers separately as evaluation evidence.
+
+Link confirmed edges, task/protocol fit and gaps in the existing survey or plan.
+If few or no method papers apply, record that limitation and retain relevant
+evaluation and replication evidence and discipline-appropriate controls.
 
 ## Single-paper analysis
 
@@ -76,8 +103,9 @@ the optional arXiv fetcher does not determine publication status or selected ver
 
 [experiment-plan](../experiment-plan/SKILL.md) owns the final scientific design,
 resource recommendation and decisive pilot. Hand off benchmark choice, protocol,
-source evidence, known measurement limits and resource tradeoffs. Planning and
-surveying do not start experiments, subagent teams or another research phase.
+source evidence, verified comparison neighborhood, known measurement limits and
+resource tradeoffs. Planning and surveying do not start experiments, subagent
+teams or another research phase.
 Within an explicitly authorized full workflow, continue its requested stages.
 
 Adapted from [benchmark-research-skill](https://github.com/EternalWavee/benchmark-research-skill/tree/b620e27108a43f33c0a0554a55b9381a58344720)
