@@ -134,6 +134,13 @@ For each concern, emit a guidance block (not final prose):
 Do **not** fabricate experimental numbers. Mark anything unverified as
 `[TO VERIFY]`.
 
+When responding to *"limited statistical support"* or multiplicity-adjustment
+critiques, follow the **no-complaining rule**: never complain that the chosen
+correction is overly strict or the multiplier too large; instead present four
+objective facts side by side: (1) family size, (2) total tests passing within
+that family, (3) `raw → adjusted` p-values for borderline cells, and (4) any
+independent multiplicity-adjusted prospective CIs.
+
 ### Step 6: Integrity gate
 
 Before finalizing, run through [references/checklist.md](references/checklist.md).

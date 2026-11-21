@@ -19,11 +19,13 @@ Check each item before reporting completion.
 | 11 | **No-new-paper smuggling:** no unreviewed major methods/theorems introduced beyond clarifications and requested controls | ☐ |
 | 12 | **Venue character/word cap (when drafting):** verified under both LF (`\n`) and CRLF (`\r\n`) counts | ☐ |
 | 13 | **Multi-round discussion anticipation (interactive venues ONLY, e.g., ICLR / NeurIPS; skip for single-round venues):** 1–2 likely follow-up questions noted for open reviewers | ☐ |
+| 14 | **Universal-quantifier audit:** never claim "All ... are significant" for a test family containing inconclusive or zero-crossing cells; scope explicitly to the exact significant subset (e.g., "Key multiplicity-adjusted contrasts: [model/condition A] and [interaction B]") | ☐ |
 
 ## Tone issues to flag
 
 - "You misunderstood / You missed / This is trivial": accusatory; revise.
 - "Significantly / clearly / undoubtedly": unsupported without relevant evidence.
+- "All ... are significant" (when any cell in the family is inconclusive or includes zero): overclaiming; scope to the exact significant subset.
 - "We will fully address in future work": evasive when no current action supports it.
 - Excessive apologies such as "We sincerely apologize for...": weaken the argument.
 
