@@ -62,6 +62,15 @@ cannot certify which code ran.
   them. Descriptive observations do not acquire a causal claim by being useful.
 - Check scope and warranted strength in both directions. A claim of “first”,
   “best” or “solves” needs appropriate support; the word itself is not a defect.
+- Audit for defensive self-sabotage and regime conflation: (a) whenever Related
+  Work credits prior evaluation primitives (e.g., “we adopt/build on [X]”), check
+  that it is immediately followed by an explicit technical contrast stating what
+  the paper controls, isolates, or measures beyond `[X]` so reviewers do not
+  read scholarly credit as limited novelty; (b) whenever a paper includes both
+  controlled matched-rate grids (e.g., fixed nominal TPR/FPR) and uncalibrated
+  deployed-threshold tables, verify that headings, captions, and transitions
+  clearly separate the two regimes so readers do not conflate unmatched
+  deployment operating points with the controlled comparison.
 - If a running example, architecture figure or module mapping is used, check
   consistency and relevance. Absence alone is not a submission blocker.
 

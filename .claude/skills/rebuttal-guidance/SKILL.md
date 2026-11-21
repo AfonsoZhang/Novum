@@ -45,17 +45,30 @@ The core model is **conditional persuasion P(Z=1 | X, Y)**:
 
 ## Core procedure
 
-### Step 1: Inventory concerns
+### Step 1: Inventory concerns & portfolio triage
 
-Extract every numbered Weakness and Question from the pasted review. If the
+Extract every numbered Weakness and Question from the pasted review(s). If the
 user pasted only one reviewer's block, ask whether other reviewers exist.
 
-Output a short table:
+Output a short table, assigning each item a **priority tier** (`Score-Moving`
+gets ~60–70% of the response budget; `Fixable` misunderstanding gets ~20–30%;
+`Minor` gets a 1-line acknowledgment):
 
-| ID | Type | One-line summary |
-|----|------|-----------------|
-| R1.W1 | W | ... |
-| R1.Q1 | Q | ... |
+| ID | Type | Priority | One-line summary |
+|----|------|----------|-----------------|
+| R1.W1 | W | Score-Moving | ... |
+| R1.Q1 | Q | Fixable | ... |
+
+When multiple reviews are provided, add a compact **Portfolio Triage** before
+per-reviewer plans:
+- **Text-to-score offset:** flag reviewers whose prose is more positive than
+  their numerical score (highest ROI for score upgrades; prioritize offline
+  re-analysis or new experiments here).
+- **Audience mode (Reviewer vs. AC):** for low-openness negative reviewers
+  (historical up-rate < 15%), explicitly optimize for the **Area Chair (AC)**
+  assuming the AC reads only the reviews and rebuttal.
+- **Cross-reviewer overlap:** group shared weaknesses across reviewers so all
+  responses use consistent numbers, scope boundaries, and commitments.
 
 ### Step 2: Classify each concern
 
@@ -65,7 +78,7 @@ Tag each item as one of:
 `misunderstanding | evidence_gap | novelty | baseline_fairness | scope_claim |
 writing_clarity | theory | efficiency | other`
 
-### Step 3: Match reviewer mindset (X)
+### Step 3: Match reviewer mindset (X) & hidden acceptance gate
 
 See: [references/mindset-matching-heuristics.md](references/mindset-matching-heuristics.md)
 
@@ -73,8 +86,12 @@ Score the review on 5–7 behavior signals (openness, severity, constructiveness
 specificity, skepticism, harshness, actionability). Map scores to a cluster in
 [references/mindset-library.md](references/mindset-library.md).
 
-State: **matched cluster name**, confidence (high / medium / low), and the
-specific phrases that triggered the match.
+State:
+- **Matched cluster name**, **confidence** (`high / medium / low`), and the
+  specific triggering phrases.
+- **Hidden acceptance gate (ToM):** infer the underlying threshold that
+  actually decides whether this reviewer raises or holds their score (distinct
+  from the surface wording of individual comments).
 
 ### Step 4: Strategy priorities for this mindset (Y)
 
@@ -88,16 +105,26 @@ From the matched cluster in [references/mindset-library.md](references/mindset-l
 
 Cross-check dimensions in [references/strategy-dimensions.md](references/strategy-dimensions.md).
 
-### Step 5: Per-concern guidance
+### Step 5: Per-concern guidance (verify-then-write evidence ladder)
+
+Before recommending a new run or a concession, scan the **3-tier evidence
+ladder** in order: (1) existing manuscript/appendix grounding, (2) **zero-cost
+offline re-analysis** on saved logs/outputs (e.g., task-disjoint CV, subset
+splits, multiplicity counts), and (3) new experiments. Whenever a reviewer cites
+specific numbered references or external papers (e.g., `[10, 22]`), run a
+**citation audit** against `.aux`/`.bbl` or source text before drafting a
+novelty/comparison contrast.
 
 For each concern, emit a guidance block (not final prose):
 
 ```
 ### R?.W?: [short title]
-- **Concern type**: ...
+- **Concern type**: ... | **Priority**: Score-Moving / Fixable / Minor
 - **Mindset-aware strategy**: ...
 - **Recommended structure**: Acknowledge → Response → Evidence → Revision note
 - **Clarify from paper?**: yes/no: where to look (section, table, appendix)
+- **Zero-cost offline re-analysis?**: yes/no: what can be computed from saved logs/tables (no new model calls)
+- **Citation audit needed?**: yes/no: exact cited refs/papers to verify before contrasting
 - **New experiment needed?**: yes/no: what exactly (no fabricated numbers)
 - **Tone note**: ...
 - **Template**: A / B / C: see references/response-templates.md
@@ -112,19 +139,28 @@ Do **not** fabricate experimental numbers. Mark anything unverified as
 Before finalizing, run through [references/checklist.md](references/checklist.md).
 
 Key flags:
-- Every W/Q has a guidance block.
-- No fabricated numbers.
+- Every W/Q has a guidance block and priority tier.
+- No fabricated numbers; all reviewer-cited references verified against `.aux`/`.bbl`.
 - Defensive phrases (e.g., "you misunderstood") flagged.
-- Overpromise risk flagged for scope_claim and evidence_gap types.
+- Overpromise risk flagged for `scope_claim` and `evidence_gap` types.
+- Double-blind anonymity, no-new-paper smuggling, and (when drafting under a
+  venue cap) LF/CRLF character-count limits checked.
+- **Multi-round discussion anticipation (interactive venues ONLY, e.g., ICLR /
+  NeurIPS):** identify 1–2 likely follow-up questions for open reviewers; **skip
+  for single-round rebuttal venues**.
 
 ### Step 7: Output format
 
 Deliver a `## Rebuttal Guidance` section containing:
 
-1. **Reviewer mindset summary**: cluster name, confidence, identifying phrases.
-2. **Global strategy priorities**: 3–5 bullets from mindset data.
-3. **Per-concern guidance**: Step 5 blocks for each W/Q.
-4. **Checklist highlights**: pass/fail on key integrity items.
+1. **Portfolio triage** (when multiple reviewers exist): rating matrix,
+   text-to-score offset, AC-audience flags, and cross-reviewer overlap.
+2. **Reviewer mindset summary**: cluster name, confidence, identifying phrases,
+   and **hidden acceptance gate**.
+3. **Global strategy priorities**: 3–5 bullets from mindset data.
+4. **Per-concern guidance**: Step 5 blocks for each W/Q.
+5. **Checklist highlights**: pass/fail on key integrity and compliance items
+   (plus follow-up anticipation only for interactive discussion venues).
 
 ---
 

@@ -172,6 +172,15 @@ only a qualifier necessary to interpret the main result belongs in the abstract.
   it, invent a defense, or merely move it into this section while leaving the
   stronger claim unchanged. Flag needed body edits instead of rewriting unrelated
   sections without authorization.
+- **Body-text caveat pairing:** when auditing or revising material disclosures
+  that live in the main body (Methods, Results, or Discussion)—such as structural
+  evaluator obstructions, near-ceiling baselines, or counterintuitive mechanism
+  failures—do not leave them as isolated self-critical disclaimers that hostile
+  reviewers can quote verbatim as weaknesses. Pair each body-text caveat
+  immediately with either (a) a pointer to the control or external benchmark
+  that bounds the constraint, or (b) an explicit framing of why the observed
+  behavior is itself an empirical finding or methodological implication rather
+  than a study defect.
 
 ## Calibration examples (illustrative, not evidence for the current paper)
 
