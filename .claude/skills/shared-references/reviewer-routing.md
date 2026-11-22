@@ -1,73 +1,54 @@
-# Reviewer Routing
+# Reviewer routing on interactive research hosts
 
-## Local configuration (overrides the upstream defaults below)
+Use the identity of the application executing the skill. Claude Code uses
+`CLAUDE.md`, Codex uses `AGENTS.md`, and Antigravity uses `GEMINI.md`.
+The skill installation order and the names of available MCP tools do not select
+the host.
 
-The reviewer backend and model are configured, not built in. Read them from the
-environment (`REVIEWER_BACKEND`, `REVIEWER_MODEL`, `REVIEWER_EFFORT_DEEP`,
-`REVIEWER_EFFORT_REGULAR`) or `$RESEARCH_ROOT/.tools/reviewer.json`
-(`backend`, `model`, `effort_deep`, `effort_regular`). `$REVIEWER_MODEL` below
-means that configured model; the deep-audit and regular tiers map to the two
-configured effort values. The Codex MCP bridge works with whatever provider the
-user's Codex CLI is configured for (an official API, Azure, a local or other
-OpenAI-compatible endpoint). If nothing is configured, use the `manual` backend
-or report that external review is unavailable; never present self-review as an
-external review.
+Reviewer selection belongs to the calling session. A subagent or external
+Codex thread that receives the review assignment performs it directly and
+returns its findings. In the standalone API runtime, its configured review
+session already holds that assignment.
 
-**Making Codex use a named skill.** Codex does not load skills from `.claude/skills/`.
-Pass `cwd: $RESEARCH_ROOT`, give the absolute `SKILL.md` path in the prompt, and ask
-Codex to begin its reply with `SKILL LOADED: <name>`; without that line, treat the
-review as not run under the skill.
+## Select a reviewer
 
-## Backends
+1. For an authorized review, dispatch a fresh, read-only subagent on the current
+   host. Supply the review question and primary artifact paths or permitted
+   excerpts. Ask for the affected claim, exact file or passage, evidence,
+   severity and the smallest justified correction.
+2. Codex is the optional external reviewer. Select it when the user requests
+   Codex or explicitly enables it for this project via `REVIEWER_BACKEND=codex`
+   or `backend: codex` in `.tools/reviewer.json`. A per-task choice overrides
+   configuration. The default backend is `native`. On a Codex host, use a
+   fresh Codex subagent for either choice. Ignore legacy Claude/manual routes.
+3. If external Codex is unavailable or returns no usable review, record that
+   outcome and dispatch the local fresh subagent. Check the status of an
+   ambiguous in-flight call before retrying. If native delegation is also
+   unavailable, report the check as incomplete. Record who actually reviewed
+   the materials. A same-family review can supply independent-context findings.
+   A specifically requested cross-family check needs evidence of different
+   model families.
 
-| Backend | Selected by | Calls |
-|---|---|---|
-| `codex` (default) | configuration, or `— reviewer: codex` | `mcp__codex__codex` for a new thread, `mcp__codex__codex-reply` for follow-up rounds |
-| `manual` | configuration, or `— reviewer: manual` | The main agent writes the review brief to a file; the user runs it in a model of their choice and pastes the reply back |
+## Calling external Codex
 
-The reviewer should come from a different model family than the executor
-(OpenAI, Anthropic, Google, DeepSeek, Moonshot/Kimi, Qwen, …). If the families
-cannot be shown to differ, report the review as same-family or unverified rather
-than as independent cross-model review.
+Confirm authorization for any unpublished materials. Discover the exposed
+`codex` tool and start a fresh read-only thread with the project directory,
+review brief and artifact paths. For a named skill include its absolute path.
+Use the configured `REVIEWER_MODEL` and `REVIEWER_EFFORT_DEEP` or
+`REVIEWER_EFFORT_REGULAR` (project keys `model`, `effort_deep`,
+`effort_regular`) when provided. Use `codex-reply` with the returned
+`threadId` for a follow-up on that review. A new independent audit starts fresh.
 
-## Codex backend
+## Evidence and disagreements
 
-- Pin both `model: $REVIEWER_MODEL` and `config: {"model_reasoning_effort": <tier effort>}`
-  in the first call of every thread. Verdict-bearing audits (`research-review`,
-  `paper-claim-audit` and similar one-shot judgments) use the deep effort; other
-  reviewer calls, including every round of a multi-round thread, use the regular
-  effort. Do not rely on `~/.codex/config.toml` defaults.
-- `codex-reply` continues a thread with the model, effort, sandbox and cwd it was
-  created with; pass only the saved `threadId` and the message.
-- If the first call fails because the configured model or effort is explicitly
-  rejected as unsupported, report that and ask the user to correct the
-  configuration. Do not substitute a model on your own.
-- Never retry blindly on a timeout, rate limit, authentication, transport, server
-  or parse error: the review may already have run. Report `REVIEW_UNAVAILABLE`
-  (or `ERROR` for an audit artifact) instead of a verdict.
-- After upgrading Codex CLI, restart the Claude Code session so the `codex` MCP
-  server (`.agents/mcp-servers/codex-exec/server.py`) picks up the new binary.
-
-## Manual backend
-
-1. Write the same substantive brief Codex would receive to
-   `review-stage/<skill>-<YYYYMMDD>-<NN>.prompt.md` in the project, with the
-   primary artifacts attached or pasted inline (a remote web UI cannot read local
-   paths). Add one response-format line: the reply must begin with
-   `Reviewer-Model: <exact-model-id>`.
-2. Ask the user to run it in a model from a different family and paste the full
-   reply back, or save it beside the prompt as `.response.md`. Wait for it; do not
-   draft the reviewer's answer yourself.
-3. For a follow-up round, write the next prompt in the same way and ask the user to
-   continue in the same model conversation.
-4. A reply without a classifiable `Reviewer-Model` line, or from the executor's
-   family, cannot acquit an acceptance check; record it as `REVIEW_UNAVAILABLE`
-   for that purpose and keep its content as advisory feedback.
-
-## Invariants
-
-- Reviewer independence ([reviewer-independence.md](reviewer-independence.md))
-  applies to both backends: pass primary artifacts, not executor summaries.
-- Trace every reviewer call ([review-tracing.md](review-tracing.md)).
-- An unavailable or failed review is reported as unavailable, never replaced by
-  self-review or a silent backend switch.
+Use [reviewer independence](reviewer-independence.md) and [review tracing](review-tracing.md)
+for both routes. A full project review has [separate material and manuscript
+briefs](split-review.md). Reviewers form their first judgment from the source
+files without seeing the executor's interpretation or a peer verdict.
+Verify each major finding against its source. When reviewers disagree about
+a consequential claim, compare their cited passages before seeking a second
+opinion. If the optional debate-hub is enabled and such a dispute remains,
+use its passive evidence board with the host's fresh subagents and, when
+selected, Codex. Keep other configured debate participants out of this review.
+Limit rebuttals to the disputed claim. Only actual participants and returned
+findings count.

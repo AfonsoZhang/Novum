@@ -3,6 +3,7 @@
 This is the Claude Code project guide for Auto-Research System. Its routing,
 delegation and approval rules apply within `$RESEARCH_ROOT`.
 
+- **Host adaptation.** Apply the [shared host rules](.claude/skills/shared-references/host-routing.md) for reviewer selection and optional Antigravity writing.
 - **Default: standalone skills and scoped revisions.** Existing skills remain directly
   callable at the root and in child projects. Complete the current request and necessary
   verification without automatically starting a team or the next stage. For revisions,

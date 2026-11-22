@@ -7,9 +7,9 @@ HOST=claude
 if [ "${1:-}" = "--host" ] && [ "$#" = 2 ]; then
   HOST="$2"
 elif [ "$#" != 0 ]; then
-  echo "Usage: bash install.sh [--host claude|codex]" >&2; exit 2
+  echo "Usage: bash install.sh [--host claude|codex|antigravity]" >&2; exit 2
 fi
-case "$HOST" in claude|codex) ;; *) echo "Unknown host: $HOST" >&2; exit 2 ;; esac
+case "$HOST" in claude|codex|antigravity) ;; *) echo "Unknown host: $HOST" >&2; exit 2 ;; esac
 PY="${PYTHON:-python3}"
 
 # Create a venv and install requirements; prefer uv when present (no ensurepip needed).
@@ -36,18 +36,16 @@ mkdir -p "$ROOT/.aris"
 # Local config: copied once from the examples, then owned by the user.
 copy_once() { [ -e "$2" ] || { cp "$1" "$2"; echo "created $2 (edit it)"; }; }
 copy_once "$ROOT/config/image-provider.example.json" "$ROOT/.tools/image-provider.json"
-if [ "$HOST" = codex ]; then
-  copy_once "$ROOT/config/reviewer-codex.example.json" "$ROOT/.tools/reviewer-codex.json"
-  "$PY" "$ROOT/scripts/build_codex.py"
-else
-  copy_once "$ROOT/config/reviewer.example.json" "$ROOT/.tools/reviewer.json"
-fi
+copy_once "$ROOT/config/reviewer.example.json" "$ROOT/.tools/reviewer.json"
+"$PY" "$ROOT/scripts/build_skills.py"
 
 render() { [ -e "$2" ] || { sed "s#\${RESEARCH_ROOT}#$ROOT#g" "$1" > "$2"; echo "created $2"; }; }
 if [ "$HOST" = claude ]; then
   render "$ROOT/.mcp.json.example" "$ROOT/.mcp.json"
+  "$PY" "$ROOT/scripts/configure_codex.py" --host claude
+elif [ "$HOST" = antigravity ]; then
+  "$PY" "$ROOT/scripts/configure_antigravity.py"
 else
-  make_venv "$ROOT/.venvs/claude-reviewer" "$ROOT/.agents/mcp-servers/claude-reviewer/requirements.txt"
   "$PY" "$ROOT/scripts/configure_codex.py"
 fi
 
@@ -59,11 +57,11 @@ fi
 cat <<MSG
 
 Done. Next:
-  1. Edit .tools/image-provider.json and the host-specific .tools/reviewer*.json as needed.
+  1. Edit .tools/image-provider.json and .tools/reviewer.json as needed.
      Unavailable external steps are reported honestly. Ordinary authorized decisions
      in automatic mode are made directly by the main agent.
   2. Optional literature keys as environment variables: EXA_API_KEY,
      SEMANTIC_SCHOLAR_API_KEY, OPENALEX_EMAIL (see .claude/skills/research-lit/SKILL.md).
-  3. Start $HOST in $ROOT (Codex project MCP requires project trust). Add 'export RESEARCH_ROOT=$ROOT' to your shell profile
-     if you run the helper scripts by hand.
+  3. Start $HOST in $ROOT (use 'agy' for Antigravity; Codex project MCP requires project trust).
+     Add 'export RESEARCH_ROOT=$ROOT' to your shell profile if you run the helper scripts by hand.
 MSG

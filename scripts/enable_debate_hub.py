@@ -6,6 +6,7 @@ Usage:
   python3 scripts/enable_debate_hub.py --snippets
   python3 scripts/enable_debate_hub.py --register claude
   python3 scripts/enable_debate_hub.py --register codex
+  python3 scripts/enable_debate_hub.py --register antigravity
 """
 from __future__ import annotations
 
@@ -73,6 +74,30 @@ def register_codex(root: Path = ROOT) -> Path:
     return toml_path
 
 
+def register_antigravity(root: Path = ROOT) -> Path:
+    plugin_dir = root / ".agents" / "plugins" / "debate-hub"
+    plugin_dir.mkdir(parents=True, exist_ok=True)
+    manifest_path = plugin_dir / "plugin.json"
+    if not manifest_path.exists():
+        manifest_path.write_text(json.dumps({"name": "debate-hub", "version": "1.0.0"}, indent=2) + "\n", encoding="utf-8")
+    mcp_path = plugin_dir / "mcp_config.json"
+    if mcp_path.exists():
+        data = json.loads(mcp_path.read_text(encoding="utf-8"))
+    else:
+        data = {"mcpServers": {}}
+    servers = data.setdefault("mcpServers", {})
+    if "debate-hub" in servers:
+        print(f"Preserved existing MCP configuration: debate-hub in {mcp_path}")
+        return mcp_path
+    servers["debate-hub"] = {
+        "command": "python3",
+        "args": [str(root / ".agents" / "mcp-servers" / "debate-hub" / "server.py")],
+    }
+    mcp_path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(f"Registered debate-hub in {mcp_path}")
+    return mcp_path
+
+
 def print_snippets(root: Path = ROOT) -> None:
     script = str(root / ".agents" / "mcp-servers" / "debate-hub" / "server.py")
     print("# Claude Code / Cursor / generic MCP JSON (.mcp.json):")
@@ -103,7 +128,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Opt-in setup helper for debate-hub MCP plugin")
     parser.add_argument("--init", action="store_true", help="Copy config/debate-hub.example.json to .tools/debate-hub.json (never overwrites)")
     parser.add_argument("--snippets", action="store_true", help="Print MCP registration snippets for Claude, Codex, Gemini, Agy, Cursor")
-    parser.add_argument("--register", choices=["claude", "codex"], help="Register debate-hub in project .mcp.json or .codex/config.toml")
+    parser.add_argument("--register", choices=["claude", "codex", "antigravity"], help="Register debate-hub in project .mcp.json, .codex/config.toml, or .agents/plugins/debate-hub/mcp_config.json")
     args = parser.parse_args()
 
     if not (args.init or args.snippets or args.register):
@@ -117,6 +142,9 @@ def main() -> None:
     elif args.register == "codex":
         init_config()
         register_codex()
+    elif args.register == "antigravity":
+        init_config()
+        register_antigravity()
     if args.snippets:
         print_snippets()
 

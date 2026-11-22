@@ -4,9 +4,9 @@ When a full review of a research project with a paper
 is requested (pre-submission, before a revision, or "全面审查"), run two
 independent reviews in parallel with separate inputs, then merge.
 
-## A. Research-materials audit (Claude sub-agent)
+## A. Research-materials audit (native subagent)
 
-- One fresh `general-purpose` sub-agent, read-only: no edits, no runs, no external
+- One fresh subagent of the current host, read-only: no edits, no runs, no external
   LLM calls, no reading of secrets.
 - Inputs: code, configs, raw results, experiment plan, records, build scripts,
   existing audit files, and the paper source.
@@ -23,11 +23,10 @@ independent reviews in parallel with separate inputs, then merge.
 - Every issue needs a file locator, the affected paper claim and the smallest fix.
   New experiments only when no other fix resolves the issue, with the reason.
 
-## B. Reviewer-view paper review (Codex)
+## B. Reviewer-view paper review
 
-- `mcp__codex__codex`, new thread, `config: {"model_reasoning_effort": "max"}`,
-  `sandbox: read-only`, cwd = paper directory. Sending unpublished
-  material to an external reviewer needs the user's authorization.
+- Dispatch a separate fresh reviewer using [reviewer routing](reviewer-routing.md). The default is another native subagent. When external Codex is selected, send only the authorized manuscript and figures.
+
 - Input: the manuscript and its figures only. Tell it not to open code, results,
   plans, audits or author notes; do not send summaries or prior verdicts.
 - Role: senior reviewer at the realistic target venue, judging by contribution

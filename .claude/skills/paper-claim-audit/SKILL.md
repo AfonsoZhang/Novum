@@ -1,8 +1,8 @@
 ---
 name: paper-claim-audit
-description: Verify manuscript numbers, comparisons and scope against raw results, and pivotal empirical method claims against the code that produced them. Use for paper claim audits, method–code checks or submission review with a fresh cross-model reviewer.
+description: Verify manuscript numbers, comparisons and scope against raw results, and pivotal empirical method claims against the code that produced them. Use for paper claim audits, method–code checks or submission review with a fresh-context reviewer.
 argument-hint: "[paper-directory]"
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, mcp__codex__codex
+allowed-tools: Agent, Bash(*), Read, Write, Edit, Grep, Glob, mcp__codex__codex
 ---
 
 # Paper Claim Audit: Zero-Context Evidence Verification
@@ -115,15 +115,11 @@ Do not send its output to the reviewer (zero-context rule); list each finding in
 the report under "Deterministic pre-check" with its status after checking.
 Without scipy, only z-test p values are rechecked.
 
-### Step 2: Fresh Reviewer Audit (the configured reviewer model — NEW thread, no reply)
+### Step 2: Fresh reviewer audit
 
-**CRITICAL: Use `mcp__codex__codex` (new thread), NEVER `mcp__codex__codex-reply`.** Every run must be a fresh context.
+The calling host uses [reviewer routing](../shared-references/reviewer-routing.md) to dispatch a new native subagent or an optional external Codex thread. If you already received this audit assignment as the reviewer, perform the following checks directly on the supplied artifact paths.
 
-```
-mcp__codex__codex:
-  model: $REVIEWER_MODEL
-  config: {"model_reasoning_effort": "$REVIEWER_EFFORT_DEEP"}
-  prompt: |
+```text
     You are a paper-to-evidence auditor. You have ZERO prior context about
     this research. Verify quantitative claims against raw evidence. Check
     pivotal empirical method claims against the implementation used for the
@@ -319,14 +315,14 @@ fixes or extra narrowing on the side.
 - **Use primary evidence.** Supply raw results and run-linked implementation
   evidence. Exclude author summaries and prior reviews.
 - **Rounding rule.** Only standard rounding to displayed precision. 84.7% → 84.7% or 85% is OK. 84.7% → 85.3% is NOT OK.
-- **Cross-model.** Reviewer must be a different model family from executor.
+- **Identity.** Record the actual reviewer and family relation. A fresh native subagent can perform the audit. Claim cross-family review only when the identities support it.
 - **Fix the evidence, not the wording.** Resolve a finding by correcting the number,
   adding the missing run or narrowing the claim; never by rewording so a check no
   longer matches. Family map: [integrity patterns](../shared-references/integrity-patterns.md).
 
 ## Review Tracing
 
-After each `mcp__codex__codex` or `mcp__codex__codex-reply` reviewer call, save the trace following [review tracing](../shared-references/review-tracing.md); never silently skip. Use `save_trace.sh` or write files directly to `.aris/traces/<skill>/<date>_run<NN>/`. Respect the `--- trace:` parameter (default: `full`).
+After each native or external reviewer call, save the trace following [review tracing](../shared-references/review-tracing.md); never silently skip. Use `save_trace.sh` or write files directly to `.aris/traces/<skill>/<date>_run<NN>/`. Respect the `--- trace:` parameter (default: `full`).
 
 ## Submission Artifact Emission
 
@@ -349,7 +345,7 @@ Schema:
     "/abs/path/to/results/run_2026_04_19.json": "sha256:..."
   },
   "trace_path":       ".aris/traces/paper-claim-audit/<date>_run<NN>/",
-  "thread_id":        "<codex mcp thread id>",
+  "thread_id":        "<native subagent or Codex thread ID>",
   "reviewer_model":   "<resolved — the model that actually ran (target: $REVIEWER_MODEL)>",
   "reviewer_reasoning": "<resolved — the effort that actually ran (target: the configured deep effort)>",
   "generated_at":     "<UTC ISO-8601>",
@@ -387,8 +383,7 @@ such as an external `results/` directory.
 
 ### Thread independence
 
-Every invocation uses a fresh `mcp__codex__codex` thread. Never
-`codex-reply`. Do not accept prior audit outputs (PROOF_AUDIT, CITATION_AUDIT,
+Every audit starts a fresh native subagent or external Codex thread. Do not accept prior audit outputs (PROOF_AUDIT, CITATION_AUDIT,
 EXPERIMENT_LOG, AUTO_REVIEW summaries) as input to this audit — the fresh
 thread preserves reviewer independence per
 `shared-references/reviewer-independence.md`.

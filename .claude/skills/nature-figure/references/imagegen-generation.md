@@ -1,5 +1,7 @@
 # Built-in image generation through imagegen
 
+When running on Codex, follow the [native image procedure](../../../../config/codex/imagegen-generation.md) and complete its figure checks. The handoff below applies on other hosts.
+
 Use when `provider` is `imagegen`, the user requests the imagegen skill, or no
 external provider is selected. This replaces the earlier Poe default.
 

@@ -1,40 +1,41 @@
-# Auto-Research System
+# <img src="assets/logo.png" alt="" width="34" align="absmiddle"> Auto-Research System
 
 [简体中文](README_CN.md) · [Skill catalog](.claude/skills/) · [License](LICENSE)
 
-<p align="center"><img src="assets/banner.png" alt="Researchers dismantle a stone gate and carry their work toward an industrial campus." width="100%"></p>
+<p align="center"><img src="assets/banner.png" alt="Researchers break through a stone barrier as graduating students walk out carrying top-venue papers toward a modern research campus." width="100%"></p>
 
-A set of 38 research skills for Claude Code and Codex, built primarily for computer science. Bring a question, an experiment directory or a draft. You can ask for one literature search or figure revision, or take a project from topic selection through independent review and a reproducible handoff.
+A set of 38 research skills for Claude Code, Codex and Antigravity, built primarily for computer science. Bring a question, an experiment directory or a draft. You can ask for one literature search or figure revision, or take a project from topic selection through independent review and a reproducible handoff.
 
 **New in v1.5.** The `research-gate` skill can resume a project from saved files, show which inputs changed and tie approval to the exact proposal or protocol a researcher saw. The claim audit now also traces pivotal empirical method descriptions to the implementation used for the reported run. [Gate controller](.claude/skills/research-gate/SKILL.md) · [Claim audit](.claude/skills/paper-claim-audit/SKILL.md)
 
 ## Get started
 
-Use Python 3.10+ and a configured host CLI. Our usual setup is Claude Code for research and writing, with Codex as the independent reviewer. For the reverse setup, run the Codex installer and open this directory as a trusted project. Each installer writes its configuration locally. [Installer](install.sh) · [Reviewer setup](.agents/mcp-servers/codex-exec/README.md)
+You’ll need Python 3.10+ and a host CLI you’ve signed in to. From the repository root, run the setup command once for your host. After setup, use the start command for each session.
 
-```bash
-git clone https://github.com/AfonsoZhang/auto-research-system.git
-cd auto-research-system
-bash install.sh --host claude
-claude
-```
+| Host | First-time setup | Start |
+|---|---|---|
+| Claude Code | `bash install.sh --host claude` | `claude` |
+| Codex | `bash install.sh --host codex` | `codex` |
+| Antigravity | `bash install.sh --host antigravity` | `agy` |
 
-For Codex, run `bash install.sh --host codex` in the clone and start `codex`. The installer builds the Codex skills from the same sources and configures the Claude reviewer bridge. [Codex host contract](config/codex/host.md)
+The session identifies its host. Codex and Antigravity share the same generated skill files, so both can use one checkout. A requested review uses a fresh host subagent by default. Select Codex for optional external review. If it is unavailable, the host records the fallback and uses a fresh local subagent. The manuscript reviewer reads the paper and figures; the materials auditor checks the underlying code, data and run records. [Reviewer selection](.claude/skills/shared-references/reviewer-routing.md)
 
-A first task you can try in Claude Code is `/research-lit Find the closest published work to the question in my draft and show where our assumptions differ.` In Codex, use `$research-lit` with the same request.
+Each host drafts and polishes directly. Antigravity is the optional external writer for either task. Use an existing Antigravity MCP connection or set `ANTIGRAVITY_MCP_SERVER` to an installed Python adapter’s absolute path when configuring this repository for Claude Code or Codex. Existing server entries are preserved. Antigravity handles writing natively when it is the host. [Writing rules](.claude/skills/shared-references/writing-host.md)
+
+A first task you can try in Claude Code is `/research-lit Find the closest published work to the question in my draft and show where our assumptions differ.` In Codex, use `$research-lit`; in Antigravity, invoke `research-lit` (or `/research-lit` / `$research-lit`) with the same request.
 
 ## Choose how to work
 
-The routing, delegation and approval rules below apply to this project. Each host reads its own project guide. [Claude Code](CLAUDE.md) · [Codex](AGENTS.md)
+The routing, delegation and approval rules below apply to this project. Each host reads its own project guide. [Claude Code](CLAUDE.md) · [Codex](AGENTS.md) · [Antigravity](GEMINI.md)
 
-| If you want to… | Claude Code / Codex | What happens |
+| If you want to… | Claude Code / Codex / Antigravity | What happens |
 |---|---|---|
-| Work on the file in front of you | e.g. `/paper-polish` / `$paper-polish` | The skill edits the requested material and runs the relevant checks. This is the default scope. |
-| Coordinate a study through an agreed endpoint | `/research-auto` / `$research-auto` | The host selects skills, verifies each handoff and pauses for topic approval. Pilot stopping rules and resource limits still apply. |
-| Delegate research decisions after choosing a topic | `/research-autopilot` / `$research-autopilot` | After you approve the topic, the host records design decisions and asks for any additional access, compute or budget it needs. |
-| Resume from files and verify each stage | `/research-gate` / `$research-gate` | A Python controller records artifacts, approvals and evidence on disk. The host does the research and assesses its scientific merits. |
+| Work on the file in front of you | e.g. `/paper-polish` / `$paper-polish` / `paper-polish` | The skill edits the requested material and runs the relevant checks. This is the default scope. |
+| Coordinate a study through an agreed endpoint | `/research-auto` / `$research-auto` / `research-auto` | The host selects skills, verifies each handoff and pauses for topic approval. Pilot stopping rules and resource limits still apply. |
+| Delegate research decisions after choosing a topic | `/research-autopilot` / `$research-autopilot` / `research-autopilot` | After you approve the topic, the host records design decisions and asks for any additional access, compute or budget it needs. |
+| Resume from files and verify each stage | `/research-gate` / `$research-gate` / `research-gate` | A Python controller records artifacts, approvals and evidence on disk. The host does the research and assesses its scientific merits. |
 
-For a contested claim or a choice between topics, the optional `debate-hub` plugin collects independent assessments against the same source files and can prepare a decision card for human review. Register it separately for Claude Code or Codex. [Plugin setup and examples](.agents/mcp-servers/debate-hub/README.md)
+For a contested claim or a choice between topics, the optional `debate-hub` plugin collects independent assessments against the same source files and can prepare a decision card for human review. Register it separately for Claude Code, Codex or Antigravity. [Plugin setup and examples](.agents/mcp-servers/debate-hub/README.md)
 
 ## Research workflow
 

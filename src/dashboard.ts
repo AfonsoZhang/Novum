@@ -237,8 +237,8 @@ export async function startDashboard(options: { record?: string; port?: number; 
         else stream.attach(res);
         return;
       }
-      const asset = ({ '/': ['index.html', 'text/html'], '/app.js': ['app.js', 'text/javascript'], '/paper-reference.js': ['paper-reference.js', 'text/javascript'], '/workspace.js': ['workspace.js', 'text/javascript'], '/styles.css': ['styles.css', 'text/css'] } as Record<string, string[]>)[url.pathname];
-      if (asset) { res.writeHead(200, { 'Content-Type': asset[1] + '; charset=utf-8' }); res.end(req.method === 'HEAD' ? undefined : fs.readFileSync(path.join(assets, asset[0]))); return; }
+      const asset = ({ '/': ['index.html', 'text/html; charset=utf-8'], '/app.js': ['app.js', 'text/javascript; charset=utf-8'], '/paper-reference.js': ['paper-reference.js', 'text/javascript; charset=utf-8'], '/workspace.js': ['workspace.js', 'text/javascript; charset=utf-8'], '/styles.css': ['styles.css', 'text/css; charset=utf-8'], '/logo.png': ['logo.png', 'image/png'] } as Record<string, string[]>)[url.pathname];
+      if (asset) { res.writeHead(200, { 'Content-Type': asset[1] }); res.end(req.method === 'HEAD' ? undefined : fs.readFileSync(path.join(assets, asset[0]))); return; }
       if (workspace && url.pathname === '/api/state') { json(200, readSnapshot()); return; }
       if (!['/api/state', '/api/artifact', '/api/trace', '/api/trace/event'].includes(url.pathname)) { json(404, { error: 'Not found' }); return; }
       let state: State;

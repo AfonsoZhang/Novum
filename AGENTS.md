@@ -51,7 +51,8 @@ delegation and approval rules apply within `$RESEARCH_ROOT`.
   evidence compromises a claim the paper retains. Use existing evidence when it
   supports a correction to the manuscript.
 
-- **Host adaptation.** Before executing any research skill, read the [Codex host contract](config/codex/host.md). Codex executes and polishes; Claude performs external review.
+- **Host adaptation.** In Codex, use the [Codex host contract](config/codex/host.md). In Antigravity use [GEMINI.md](GEMINI.md). Select review and writing routes from the current session under the [shared host rules](.claude/skills/shared-references/host-routing.md).
+
 - **Skill setup.** If `.agents/skills/` is absent, run `python3 scripts/build_codex.py` from this root. Run `bash install.sh --host codex` to configure project-local MCP servers.
 
 - **Real project use (user preference, updated 2026-11-05).** Remove demo mode and

@@ -81,13 +81,20 @@ class InstallTests(unittest.TestCase):
             path = root / '.codex/config.toml'
             custom = 'model = "custom"\n[mcp_servers."claude_reviewer"]\ncommand = "custom-review"\n'
             path.write_text(custom)
-            configure(root)
+            adapter = root / 'writer.py'
+            adapter.touch()
+            configure(root, adapter)
             first = path.read_text()
-            configure(root)
+            configure(root, adapter)
             self.assertEqual(path.read_text(), first)
             self.assertTrue(first.startswith(custom))
             self.assertNotIn('research_clarification', first)
             self.assertEqual(first.count('command = "custom-review"'), 1)
+            self.assertEqual(first.count('[mcp_servers.antigravity]'), 1)
+            path.write_text(custom + '[mcp_servers."antigravity"]\ncommand = "existing-writer"\n')
+            previous = path.read_text()
+            configure(root, adapter)
+            self.assertEqual(path.read_text(), previous)
 
     def test_generated_view_preserves_sources_and_resource_paths(self):
         with tempfile.TemporaryDirectory() as temp:

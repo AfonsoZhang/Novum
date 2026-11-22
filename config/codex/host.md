@@ -4,9 +4,8 @@ This contract adapts host mechanics only and takes precedence over Claude-specif
 examples in shared skills. Keep all scientific policies, stages, artifact formats,
 claim preservation, scope boundaries and the explicit topic-approval checkpoint.
 
-- Codex is the executor, writer and default language polisher. An optional Gemini
-  pass runs only on explicit request. In split review, Codex audits materials and
-  Claude reviews the manuscript. Same-family role QA is not cross-family review.
+- Codex runs the task. Use a fresh Codex subagent for review. Write and polish directly unless the author selects Antigravity for the task.
+
 - Invoke skills as `$skill-name`; interpret a user's `/skill-name` as the same
   explicit request. `$research-auto` explicitly activates automatic mode for the
   current task only. Loading these files never activates it.
@@ -29,11 +28,10 @@ claim preservation, scope boundaries and the explicit topic-approval checkpoint.
 - Background shell processes do not imply model wakeup: retain process IDs and
   poll using the runtime's wait tool. Do not assume Claude Monitor, ScheduleWakeup,
   `/loop`, background flags or automatic continuation after a session ends.
-- Reviewer routing: always read `shared-references/reviewer-routing.md` in this
-  Codex skill tree before external review. Claude review uses a separate process;
-  do not send a review back to Codex merely because a source example names Codex.
+- Apply the [shared reviewer routing](../../.claude/skills/shared-references/reviewer-routing.md) and [writing rules](../../.claude/skills/shared-references/writing-host.md).
+
 - Native image generation stays on Codex: read the installed imagegen skill and
-  use the current session's image tool. Do not send images to the Claude reviewer.
+  use the current session's image tool.
   Preserve the original provider selection, figure QA and unavailable-tool rules.
 - Resolve RESEARCH_ROOT from the root AGENTS.md location, not a child project's
   cwd. Commands must substitute the absolute root if the variable is unset.

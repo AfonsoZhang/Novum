@@ -2,7 +2,7 @@
 name: novelty-check
 description: Verify research idea novelty against recent literature. Use when user says "novelty check", "has this been done before", "check novelty", or wants to verify a research idea is novel before implementing.
 argument-hint: "[method-or-idea-description]"
-allowed-tools: Bash(*), Write, WebSearch, WebFetch, Grep, Read, Glob, mcp__codex__codex
+allowed-tools: Agent, Bash(*), Write, WebSearch, WebFetch, Grep, Read, Glob, mcp__codex__codex
 ---
 
 # Novelty Check Skill
@@ -67,12 +67,11 @@ in either direction; conversely, a direct collision on one or more axes requires
 a concrete **Differentiation Strategy** (how the remaining axes establish a substantive
 delta) or narrowing/stopping the affected claim.
 
-## Phase C: Optional cross-model verification
+## Phase C: Optional independent verification
 
-Honor user restrictions on external models and tools. If the user requests review
-and a permitted bridge is available, call REVIEWER_MODEL through
-`mcp__codex__codex`. Otherwise complete the check with available evidence; a model
-call is not a novelty requirement and missing it is not a reason to reject.
+When review is requested, follow [reviewer routing](../shared-references/reviewer-routing.md).
+Use a fresh native subagent or the explicitly selected external Codex reviewer.
+When review is skipped, complete the novelty check from the available evidence.
 
 For a substantial request, write a project-local dossier using existing artifact
 paths, including the proposed claims, verified paper comparison, unresolved items
@@ -135,7 +134,7 @@ gap. This helper checks existence, not novelty, publication or claim validity.
 Never fabricate identifiers/titles. See the
 [citation discipline](../shared-references/citation-discipline.md).
 
-After any permitted `mcp__codex__codex` / `codex-reply` reviewer call, save the trace
+After any native or external reviewer call, save the trace
 under [review-tracing.md](../shared-references/review-tracing.md), using the existing
 helper resolution chain or `.aris/traces/<skill>/<date>_run<NN>/`. Preserve the
 `--- trace:` parameter (default `full`). Do not claim a model review was performed
