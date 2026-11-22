@@ -1,8 +1,8 @@
-# Auto-Research System
+# <img src="assets/logo.png" alt="" width="34" align="absmiddle"> Auto-Research System
 
 [简体中文](README_CN.md) · [Skill catalog](.claude/skills/) · [License](LICENSE)
 
-<p align="center"><img src="assets/banner.png" alt="Researchers dismantle a stone gate and carry their work toward an industrial campus." width="100%"></p>
+<p align="center"><img src="assets/banner.png" alt="Researchers break through a stone barrier as graduating students walk out carrying top-venue papers toward a modern research campus." width="100%"></p>
 
 A set of 38 research skills for Claude Code, Codex and Antigravity, built primarily for computer science. Bring a question, an experiment directory or a draft. You can ask for one literature search or figure revision, or take a project from topic selection through independent review and a reproducible handoff.
 

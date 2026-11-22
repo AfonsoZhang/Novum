@@ -1,8 +1,8 @@
-# Auto-Research System 自动科研系统
+# <img src="assets/logo.png" alt="" width="34" align="absmiddle"> Auto-Research System 自动科研系统
 
 [English](README.md) · [技能目录](.claude/skills/) · [许可证](LICENSE)
 
-<p align="center"><img src="assets/banner.png" alt="研究者一起拆开石门，带着论文走向产业园区。" width="100%"></p>
+<p align="center"><img src="assets/banner.png" alt="研究者击碎石墙，戴学位帽的毕业生手持顶刊顶会论文走向现代科研与产业世界。" width="100%"></p>
 
 **科研的门槛，吾辈来拆。** 这套工具包含 38 个面向 Claude Code、Codex 和 Antigravity 的研究技能，主要服务于计算机科学研究。你可以带来一个问题、一组实验结果或一篇草稿，只做一次文献检索、改一张图，也可以从选题一直做到独立审查和复现材料交付。
 
