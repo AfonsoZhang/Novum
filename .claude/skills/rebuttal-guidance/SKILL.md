@@ -141,6 +141,14 @@ objective facts side by side: (1) family size, (2) total tests passing within
 that family, (3) `raw → adjusted` p-values for borderline cells, and (4) any
 independent multiplicity-adjusted prospective CIs.
 
+For **novelty** critiques where the manuscript borrows evaluation primitives
+from prior work, avoid self-downgrading verbs like *"We extend [X]"* when the
+paper studies independent axes; explicitly separate **borrowed evaluation
+tools** (consistent with what Related Work already credits—never downplay
+cited work below the manuscript's own attribution) from **distinct
+contribution axes** (e.g., *"We do not claim novelty in [evaluation tool];
+unlike [X], our contribution lies in..."*).
+
 ### Step 6: Integrity gate
 
 Before finalizing, run through [references/checklist.md](references/checklist.md).

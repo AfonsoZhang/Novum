@@ -17,9 +17,10 @@ Check each item before reporting completion.
 | 9 | High-overpromise_risk entries identify the relevant risk | ☐ |
 | 10 | **Double-blind anonymity:** no identifying links, repository names, or author identities | ☐ |
 | 11 | **No-new-paper smuggling:** no unreviewed major methods/theorems introduced beyond clarifications and requested controls | ☐ |
-| 12 | **Venue character/word cap (when drafting):** verified under both LF (`\n`) and CRLF (`\r\n`) counts | ☐ |
+| 12 | **Venue character/word cap (when drafting):** verified under LF (`\n`), CRLF (`\r\n`), and **UTF-8 byte** counts (with safety margin for multi-byte Unicode symbols); when compressing, explicitly list any deleted content words/qualifiers instead of claiming "filler-only" trims | ☐ |
 | 13 | **Multi-round discussion anticipation (interactive venues ONLY, e.g., ICLR / NeurIPS; skip for single-round venues):** 1–2 likely follow-up questions noted for open reviewers | ☐ |
 | 14 | **Universal-quantifier audit:** never claim "All ... are significant" for a test family containing inconclusive or zero-crossing cells; scope explicitly to the exact significant subset (e.g., "Key multiplicity-adjusted contrasts: [model/condition A] and [interaction B]") | ☐ |
+| 15 | **Post-edit compound-clause audit:** after any rewrite or length compression, re-check that *every* clause of each compound weakness/question is still explicitly answered | ☐ |
 
 ## Tone issues to flag
 
