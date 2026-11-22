@@ -4,7 +4,7 @@
 
 <p align="center"><img src="assets/banner.png" alt="研究者击碎石墙，戴学位帽的毕业生手持顶刊顶会论文走向现代科研与产业世界。" width="100%"></p>
 
-**科研的门槛，吾辈来拆。** 这套工具包含 38 个面向 Claude Code、Codex 和 Antigravity 的研究技能，主要服务于计算机科学研究。你可以带来一个问题、一组实验结果或一篇草稿，只做一次文献检索、改一张图，也可以从选题一直做到独立审查和复现材料交付。
+**击碎科研壁垒，吾辈义不容辞。** 这套工具包含 38 个面向 Claude Code、Codex 和 Antigravity 的研究技能，主要服务于计算机科学研究。你可以带来一个问题、一组实验结果或一篇草稿，只做一次文献检索、改一张图，也可以从选题一直做到独立审查和复现材料交付。
 
 **v1.5 新增了什么？** `research-gate` 可以从项目文件恢复研究进度，指出哪些输入发生了变化，并把批准记录绑定到研究者实际看过的题目或方案版本。论文核查也从数字延伸到方法：影响实证结论的方法描述，可以追溯到产生该结果的运行和代码。[阶段控制器](.claude/skills/research-gate/SKILL.md) · [论文结论核查](.claude/skills/paper-claim-audit/SKILL.md)
 
@@ -90,40 +90,6 @@ python3 "$GATE" continue --root "$PROJECT"
 
 ## 致谢与许可
 
-感谢提供工具、范例和研究方法的所有作者与维护者。本项目采用 CC BY-NC-SA 4.0，各第三方组件保留各自的许可证。[项目许可证](LICENSE) · [第三方来源与许可](THIRD_PARTY_NOTICES.md)
+感谢开源科研社区及各位维护者为这一生态提供的工具与规范。本项目采用 CC BY-NC-SA 4.0，各第三方组件保留其原有许可证与署名声明，详见 [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md)。[项目许可证](LICENSE) · [第三方来源与许可](THIRD_PARTY_NOTICES.md)
 
-<details>
-<summary>查看参考来源与具体贡献</summary>
-
-| 来源 | 用于 |
-|---|---|
-| [wanshuiyin/Auto-claude-code-research-in-sleep](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) (ARIS) | research-review、paper-claim-audit、research-lit、novelty-check、experiment-plan、experiment-bridge、run-experiment、analyze-results、文献工具、codex-exec 评审桥 |
-| [HKUSTDial/Supervisor-Skills](https://github.com/HKUSTDial/Supervisor-Skills) | paper-writer、paper-polish、intro-drafter、deep-research、idea-evaluator、pre-submission-reviewer、figure-designer、rebuttal-guidance 等写作类技能 |
-| [Yuan1z0825/nature-skills](https://github.com/Yuan1z0825/nature-skills) | nature-figure、nature-reader、nature-ref-verifier、nature-response |
-| [刘晨（Chen Liu），figures4papers](https://github.com/ChenLiu-1996/figures4papers) | `nature-figure` 收录了绘图脚本和预览图，供制作论文图表时参考。见[本地案例索引](.claude/skills/nature-figure/references/demos.md)和[素材来源声明](.claude/skills/nature-figure/assets/figures4papers/THIRD_PARTY_NOTICES.md)。 |
-| [Google Cloud AI Research 的 ScientistTwo](https://scientist-two.github.io/#integrity) | 借鉴其方法与代码一致性核验，在审稿时把影响实证结论的方法描述追溯到产生该结果的运行和代码。 |
-| [圣心大学图书馆《Organizing Academic Research Papers》](https://library.sacredheart.edu/organizing-research-papers/intro) | 借鉴其选题和提纲指导，在选题报告中解释文献如何改变问题，在写作时核对各节论点的依据。该指南注明原始材料来自南加州大学图书馆的 Robert V. Labaree。 |
-| [andrehuang/research-companion](https://github.com/andrehuang/research-companion) | research-companion 及 brainstormer、idea-critic、research-strategist 三个代理 |
-| [Orchestra-Research/AI-Research-SKILLs](https://github.com/Orchestra-Research/AI-Research-SKILLs) | brainstorming-research-ideas、creative-thinking-for-research |
-| [Spark-To-Paper-Skills/spark-to-paper-skills](https://github.com/Spark-To-Paper-Skills/spark-to-paper-skills) | ts-paper-plan、ts-paper-cite 及论文模板 |
-| [wanshuiyin/Anti-Autoresearch](https://github.com/wanshuiyin/Anti-Autoresearch) | 诚信预检的 4 个脚本、诚信地图依据的缺陷分类；README 版式 |
-| [wanshuiyin/HERO-Anti-OverDefense](https://github.com/wanshuiyin/HERO-Anti-OverDefense) | README 版式 |
-| [ShaishavMaisuria/research-paper-lifecycle-skills](https://github.com/ShaishavMaisuria/research-paper-lifecycle-skills) | select-venue |
-| [Rimagination/good-story](https://github.com/Rimagination/good-story) | good-story |
-| [EternalWavee/benchmark-research-skill](https://github.com/EternalWavee/benchmark-research-skill) | benchmark-research-skill |
-| [UKGovernmentBEIS/inspect_evals](https://github.com/UKGovernmentBEIS/inspect_evals) | 基准有效性检查清单 |
-| [aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills) | limitation-and-risk-writer |
-| [Airjiannan05/research-paper-workflow-skill](https://github.com/Airjiannan05/research-paper-workflow-skill) | 实验记录规范 |
-| [panbibliotekar/gaidet-declaration](https://github.com/panbibliotekar/gaidet-declaration) | AI 使用声明术语（ai-use-drafter） |
-| [blader/humanizer](https://github.com/blader/humanizer) | paper-polish、paper-writer 的去 AI 腔检查 |
-| [AIScientists-Dev/academic-humanizer](https://github.com/AIScientists-Dev/academic-humanizer) | paper-polish、paper-writer 的去 AI 腔检查 |
-| [acl-org/acl-style-files](https://github.com/acl-org/acl-style-files) | ACL LaTeX 样式文件 |
-| [anthropics/knowledge-work-plugins](https://github.com/anthropics/knowledge-work-plugins) | 选题方法的思路（未复制原文） |
-| [joshzyj/open-scholar-skill](https://github.com/joshzyj/open-scholar-skill) | 范文知识库的思路（未复制原文） |
-| [microsoft/ResearchStudio](https://github.com/microsoft/ResearchStudio)（ResearchStudio-Idea，arXiv:2607.04439） | 实证创新策略模式、对比式失败模式、四轴撞车检查、证据就绪度与 Idea Card 的思路（未复制原文） |
-
-选题方法部分还参考了 Fischbach, *Cell* 2024（[doi:10.1016/j.cell.2024.03.012](https://doi.org/10.1016/j.cell.2024.03.012)）。各组件保留原有声明，版本与许可证见 [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md)。如有遗漏或标注不准，请告诉我，我会马上改正。
-
-</details>
-
-这是我第一次做这样的科研系统，欢迎批评指正。遇到技能误判、要求多做无必要的实验，或说明写得不清楚，都欢迎带着具体例子反馈。[提 Issue](https://github.com/AfonsoZhang/auto-research-system/issues) · [提交 PR](https://github.com/AfonsoZhang/auto-research-system/pulls)
+欢迎反馈与共建。如果遇到技能误判、要求多做无必要的实验，或说明写得不清楚，欢迎带着具体例子提交反馈。[提 Issue](https://github.com/AfonsoZhang/auto-research-system/issues) · [提交 PR](https://github.com/AfonsoZhang/auto-research-system/pulls)
