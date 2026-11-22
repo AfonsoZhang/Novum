@@ -25,30 +25,9 @@ the modifications made here are distributed under CC BY-NC-SA 4.0.
 | Airjiannan05/research-paper-workflow-skill (f47d131) | MIT | experiment-bridge/references/experiment-records.md | `experiment-bridge/references/LICENSE-rpw` |
 | panbibliotekar/gaidet-declaration (9fac8c0) | MIT | ai-use-drafter terms | `ai-use-drafter/references/LICENSE-gaidet` |
 | blader/humanizer (225a6f3), © 2025 Siqi Chen; AIScientists-Dev/academic-humanizer (v0.3.3), © 2026 AIScientists-Dev | MIT | prose checks in paper-polish and paper-writer | `references/LICENSE-humanizer`, `references/LICENSE-academic-humanizer` in both skills |
-
-Ideas without copied text: `shared-references/problem-selection-strategy.md`
-synthesizes methods discussed in anthropics/knowledge-work-plugins
-(scientific-problem-selection, Apache-2.0) and Fischbach, Cell 2024
-(doi:10.1016/j.cell.2024.03.012). `shared-references/target-exemplars.md` adapts
-the idea of an exemplar knowledge base from joshzyj/open-scholar-skill; no text
-from that project is included.
-
-Two methodological references informed locally written instructions:
-
-- Google Cloud AI Research's [ScientistTwo](https://scientist-two.github.io/#integrity) inspired the method–code check in `paper-claim-audit`.
-- Sacred Heart University Library's guidance on [choosing a topic](https://library.sacredheart.edu/organizing-research-papers/topic) and [making an outline](https://library.sacredheart.edu/c.php?g=29803&p=185912) informed the topic-approval report and section planning in `paper-writer`. The [guide](https://library.sacredheart.edu/organizing-research-papers/intro) credits Robert V. Labaree of USC Libraries for the original materials.
+| wanshuiyin/Anti-Autoresearch (45135aa), © 2026 Anti-Autoresearch contributors | MIT | `paper-claim-audit/scripts/integrity/` (check scripts) and `paper-claim-audit/tests/integrity_fixtures/` | `paper-claim-audit/scripts/integrity/LICENSE-anti-autoresearch` |
 
 Not bundled: Python/Node dependencies (installed from their registries under
 their own licenses, e.g. the MCP SDK), model weights, and
 journal or conference templates other than those listed above. Check the license
 of any image model you configure.
-
-wanshuiyin/Anti-Autoresearch (45135aa), © 2026 Anti-Autoresearch contributors, MIT:
-`paper-claim-audit/scripts/integrity/` (build_claim_ledger, check_numeric_consistency,
-check_stat_consistency, check_presentation; the number extractor was modified to
-match decimals without a leading zero) and the eval fixture and corruption list
-under `paper-claim-audit/tests/integrity_fixtures/`. License text:
-`paper-claim-audit/scripts/integrity/LICENSE-anti-autoresearch`. `precheck.py` and
-the test are original. The defect families in `shared-references/integrity-patterns.md`
-follow its taxonomy, in original wording. The README layout follows Anti-Autoresearch
-and wanshuiyin/HERO-Anti-OverDefense (MIT).

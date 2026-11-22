@@ -90,41 +90,6 @@ python3 "$GATE" continue --root "$PROJECT"
 
 ## Acknowledgements and license
 
-Thank you to the researchers and maintainers whose tools, examples and methods this project builds on. The project is distributed under CC BY-NC-SA 4.0. Bundled components retain their own licenses. [License](LICENSE) · [Third-party notices](THIRD_PARTY_NOTICES.md)
+Thank you to the open-source research community and maintainers whose tools and standards support this ecosystem. This project is distributed under CC BY-NC-SA 4.0; third-party components retain their original licenses and attribution in [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md). [License](LICENSE) · [Third-party notices](THIRD_PARTY_NOTICES.md)
 
-<details>
-<summary>Sources and contributions</summary>
-
-| Source | Used for |
-|---|---|
-| [wanshuiyin/Auto-claude-code-research-in-sleep](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) (ARIS) | research-review, paper-claim-audit, research-lit, novelty-check, experiment-plan, experiment-bridge, run-experiment, analyze-results, literature tools, codex-exec bridge |
-| [HKUSTDial/Supervisor-Skills](https://github.com/HKUSTDial/Supervisor-Skills) | paper-writer, paper-polish, intro-drafter, deep-research, idea-evaluator, pre-submission-reviewer, figure-designer, rebuttal-guidance and other writing skills |
-| [Yuan1z0825/nature-skills](https://github.com/Yuan1z0825/nature-skills) | nature-figure, nature-reader, nature-ref-verifier, nature-response |
-| [Chen Liu, figures4papers](https://github.com/ChenLiu-1996/figures4papers) | Plotting scripts and figure previews retained as references in `nature-figure`. See the [local index](.claude/skills/nature-figure/references/demos.md) and [asset notice](.claude/skills/nature-figure/assets/figures4papers/THIRD_PARTY_NOTICES.md). |
-| [ScientistTwo, Google Cloud AI Research](https://scientist-two.github.io/#integrity) | Its method–code alignment audit inspired the check that traces pivotal empirical method claims to the implementation used for the reported run. |
-| [Sacred Heart University Library, *Organizing Academic Research Papers*](https://library.sacredheart.edu/organizing-research-papers/intro) | Its topic and outline guidance informed how we explain changes to a research question and check the support for each planned section. The guide credits Robert V. Labaree of USC Libraries for the original materials. |
-| [andrehuang/research-companion](https://github.com/andrehuang/research-companion) | research-companion and the brainstormer, idea-critic, research-strategist agents |
-| [Orchestra-Research/AI-Research-SKILLs](https://github.com/Orchestra-Research/AI-Research-SKILLs) | brainstorming-research-ideas, creative-thinking-for-research |
-| [Spark-To-Paper-Skills/spark-to-paper-skills](https://github.com/Spark-To-Paper-Skills/spark-to-paper-skills) | ts-paper-plan, ts-paper-cite and paper templates |
-| [wanshuiyin/Anti-Autoresearch](https://github.com/wanshuiyin/Anti-Autoresearch) | the four integrity pre-check scripts and the defect taxonomy behind the integrity map; README layout |
-| [wanshuiyin/HERO-Anti-OverDefense](https://github.com/wanshuiyin/HERO-Anti-OverDefense) | README layout |
-| [ShaishavMaisuria/research-paper-lifecycle-skills](https://github.com/ShaishavMaisuria/research-paper-lifecycle-skills) | select-venue |
-| [Rimagination/good-story](https://github.com/Rimagination/good-story) | good-story |
-| [EternalWavee/benchmark-research-skill](https://github.com/EternalWavee/benchmark-research-skill) | benchmark-research-skill |
-| [UKGovernmentBEIS/inspect_evals](https://github.com/UKGovernmentBEIS/inspect_evals) | benchmark validity checklist |
-| [aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills) | limitation-and-risk-writer |
-| [Airjiannan05/research-paper-workflow-skill](https://github.com/Airjiannan05/research-paper-workflow-skill) | experiment-record conventions |
-| [panbibliotekar/gaidet-declaration](https://github.com/panbibliotekar/gaidet-declaration) | AI-use disclosure terms (ai-use-drafter) |
-| [blader/humanizer](https://github.com/blader/humanizer) | prose checks in paper-polish and paper-writer |
-| [AIScientists-Dev/academic-humanizer](https://github.com/AIScientists-Dev/academic-humanizer) | prose checks in paper-polish and paper-writer |
-| [acl-org/acl-style-files](https://github.com/acl-org/acl-style-files) | ACL LaTeX style files |
-| [anthropics/knowledge-work-plugins](https://github.com/anthropics/knowledge-work-plugins) | ideas for problem selection (no text copied) |
-| [joshzyj/open-scholar-skill](https://github.com/joshzyj/open-scholar-skill) | the idea of an exemplar knowledge base (no text copied) |
-| [microsoft/ResearchStudio](https://github.com/microsoft/ResearchStudio) (ResearchStudio-Idea, arXiv:2607.04439) | ideas for empirical ideation patterns, contrastive failure modes, four-axis collision checks, evidence readiness and Idea Cards (no text copied) |
-| [LINEAGE](https://arxiv.org/abs/2611.25845) (Wu et al., arXiv:2611.25845) | ideas for multi-facet literature queries and full-text verification of empirical baseline lineage (no text copied) |
-
-The problem-selection notes also draw on Fischbach, *Cell* 2024 ([doi:10.1016/j.cell.2024.03.012](https://doi.org/10.1016/j.cell.2024.03.012)). Every component keeps its original notice; revisions and licenses are listed in [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md). If I have missed or misattributed anything, please tell me and I will fix it right away.
-
-</details>
-
-This is my first research system. Corrections are welcome, especially examples where a skill draws the wrong conclusion or asks for unnecessary work. [Issues](https://github.com/AfonsoZhang/auto-research-system/issues) · [Pull requests](https://github.com/AfonsoZhang/auto-research-system/pulls)
+Feedback and contributions are welcome, especially concrete examples where a skill draws a wrong conclusion or asks for unnecessary work. [Issues](https://github.com/AfonsoZhang/auto-research-system/issues) · [Pull requests](https://github.com/AfonsoZhang/auto-research-system/pulls)
