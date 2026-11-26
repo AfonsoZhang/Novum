@@ -43,9 +43,9 @@ test('all paper types build coherent pipelines with required artifacts and appro
         assert.ok(executionGate(root, state.tasks[stage]).includes('Missing artifact: ' + file), 'Required type-specific artifacts cannot be omitted');
       }
     }
-    if (!profile.empirical) for (const task of Object.values(state.tasks)) assert.ok(!task.skills.includes('run-experiment') && !task.skills.includes('experiment-bridge') && !task.skills.includes('experiment-plan'));
-    if (type === 'benchmark') assert.ok(state.tasks.writing.skills.includes('benchmark-paper-template'));
-    if (type === 'method' || type === 'system') assert.ok(state.tasks.writing.skills.includes('tech-paper-template'));
+    if (!profile.empirical) for (const task of Object.values(state.tasks)) assert.ok(!task.skills.includes('experiment-bridge') && !task.skills.includes('experiment-plan'));
+    if (type === 'benchmark') assert.ok(state.tasks.writing.skills.includes('paper-outline'));
+    if (type === 'method' || type === 'system') assert.ok(state.tasks.writing.skills.includes('paper-outline'));
     assert.ok(blockers(state, 'literature').includes('AWAITING_TOPIC_APPROVAL'));
   }
 });
@@ -152,7 +152,7 @@ test('new projects leave paper type unselected and prevent unresolved downstream
   assert.equal(state.mode, 'automatic'); assert.deepEqual(blockers(state, 'topic'), []);
   for (const task of Object.values(state.tasks)) {
     assert.equal(task.paperType, null); assert.match(task.prompt, /Paper contribution type: undecided/);
-    assert.ok(!task.skills.includes('run-experiment')); assert.ok(!task.outputs.includes('research/planned-runs.json'));
+    assert.ok(!task.skills.includes('experiment-bridge')); assert.ok(!task.outputs.includes('research/planned-runs.json'));
   }
   assert.ok(blockers(state, 'literature').includes('PAPER_TYPE_UNRESOLVED'));
   await assert.rejects(runAgent(store, 'literature', root, new AbortController().signal), /Paper type is unresolved/);

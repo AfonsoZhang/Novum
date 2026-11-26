@@ -17,7 +17,7 @@ The idea of a per-paper exemplar knowledge base follows open-scholar-skill's
   under [publication-policy.md](publication-policy.md); reference it by that record
   key, not a second bibliography. Track/year are confirmed as in step 2.
 - Read the selected full text (local library, Zotero, open-access version or
-  `nature-reader`). An abstract-only entry is labeled `abstract-only` and is not
+  `research-lit` (paper-reader module)). An abstract-only entry is labeled `abstract-only` and is not
   used for structure or evidence measurements.
 
 ## Record each paper

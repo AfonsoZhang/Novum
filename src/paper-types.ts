@@ -6,15 +6,15 @@ export interface PaperProfile {
   planSkills: string[]; executionSkills: string[]; analysisSkills: string[]; writingSkills: string[];
   artifacts: { plan: string[]; experiment: string[]; analysis: string[] };
 }
-const empiricalSkills = { planSkills: ['experiment-plan'], executionSkills: ['experiment-bridge', 'run-experiment'], analysisSkills: ['analyze-results'], writingSkills: ['paper-writer', 'nature-figure'] };
+const empiricalSkills = { planSkills: ['experiment-plan'], executionSkills: ['experiment-bridge'], analysisSkills: ['analyze-results'], writingSkills: ['paper-writer', 'paper-figure'] };
 export const paperProfiles: (PaperProfile & { type: PaperType })[] = [
-  { type: 'method', label: '方法 / 算法论文', description: '提出方法或算法，验证机制、效果与适用边界。', empirical: true, ...empiricalSkills, writingSkills: ['tech-paper-template', ...empiricalSkills.writingSkills],
+  { type: 'method', label: '方法 / 算法论文', description: '提出方法或算法，验证机制、效果与适用边界。', empirical: true, ...empiricalSkills, writingSkills: ['paper-outline', ...empiricalSkills.writingSkills],
     focus: 'Define the mechanism and claimed property; compare relevant baselines. Do not require SOTA or an arbitrary number of components.',
     plan: 'Specify method hypotheses, comparisons and attribution controls when needed.', execution: 'Implement and evaluate the proposed method against the frozen comparisons.', analysis: 'Assess effect, uncertainty, limitations and the scope of any mechanism attribution.', artifacts: { plan: [], experiment: [], analysis: [] } },
-  { type: 'system', label: '系统 / 工程论文', description: '构建系统，评估工作负载下的性能、可靠性、成本与取舍。', empirical: true, ...empiricalSkills, writingSkills: ['tech-paper-template', ...empiricalSkills.writingSkills],
+  { type: 'system', label: '系统 / 工程论文', description: '构建系统，评估工作负载下的性能、可靠性、成本与取舍。', empirical: true, ...empiricalSkills, writingSkills: ['paper-outline', ...empiricalSkills.writingSkills],
     focus: 'Explain design constraints and trade-offs. Match evaluation to claimed system outcomes; novelty of every component and production deployment are not required.',
     plan: 'Document architecture, constraints, workloads and resource accounting in research/system-design.md.', execution: 'Run comparable system workloads, including failures and resource measurements.', analysis: 'Document supported and unresolved design trade-offs in research/system-tradeoffs.md.', artifacts: { plan: ['research/system-design.md'], experiment: [], analysis: ['research/system-tradeoffs.md'] } },
-  { type: 'benchmark', label: '基准 / 评测 / 资源论文', description: '定义测量目标，检查覆盖范围、指标可靠性与资源复用价值。', empirical: true, ...empiricalSkills, planSkills: ['benchmark-research-skill', 'experiment-plan'], writingSkills: ['benchmark-paper-template', ...empiricalSkills.writingSkills],
+  { type: 'benchmark', label: '基准 / 评测 / 资源论文', description: '定义测量目标，检查覆盖范围、指标可靠性与资源复用价值。', empirical: true, ...empiricalSkills, planSkills: ['research-lit', 'experiment-plan'], writingSkills: ['paper-outline', ...empiricalSkills.writingSkills],
     focus: 'Establish measurement value, construct validity, coverage and metric reliability. Check provenance, annotation, leakage and access where applicable. A new method or dataset is not required for every evaluation paper.',
     plan: 'Freeze measurement target, coverage, protocol, metrics and applicable data-quality checks in research/benchmark-protocol.md.', execution: 'Execute the benchmark or evaluation protocol and retain all attempted runs.', analysis: 'Assess construct validity, coverage, metric reliability and applicable leakage risks in research/benchmark-validity.md.', artifacts: { plan: ['research/benchmark-protocol.md'], experiment: [], analysis: ['research/benchmark-validity.md'] } },
   { type: 'empirical', label: '实证分析 / 负结果论文', description: '研究经验规律或失败边界，保留负结果并区分无效与不确定。', empirical: true, ...empiricalSkills,
@@ -32,7 +32,7 @@ export const paperProfiles: (PaperProfile & { type: PaperType })[] = [
     focus: 'State coverage and source/version quality. Build useful synthesis or taxonomy. Systematic or exhaustive claims require a transparent matching search protocol, not a new experiment.',
     plan: 'Record scope, queries, search dates and inclusion/exclusion criteria in research/search-protocol.md.', execution: 'Save research/source-selection.json as a nonempty array of {sourceId, decision:"include"|"exclude", reason}; use registered source IDs, retain exclusions, and include at least one source. Preserve the actual search record.', analysis: 'Synthesize included sources, compare findings and expose coverage gaps; distinguish selective from systematic coverage.', artifacts: { plan: ['research/search-protocol.md'], experiment: ['research/source-selection.json'], analysis: [] } },
   { type: 'position', label: '观点 / 概念论文', description: '提出清晰论点，以文献、论证和反方观点检验其成立范围。', empirical: false,
-    planSkills: [], executionSkills: ['research-lit'], analysisSkills: [], writingSkills: ['good-story', 'paper-writer'],
+    planSkills: [], executionSkills: ['research-lit'], analysisSkills: [], writingSkills: ['paper-outline', 'paper-writer'],
     focus: 'State the thesis, supporting reasoning, alternatives and implications. Separate normative proposals from factual assertions; new experiments or a system are not required.',
     plan: 'Record the thesis, argument structure and serious alternatives in research/argument-plan.md.', execution: 'Ground factual premises in sources and assess objections in research/argument-evidence.md.', analysis: 'Examine logical consistency, counterarguments, inference limits and practical implications.', artifacts: { plan: ['research/argument-plan.md'], experiment: ['research/argument-evidence.md'], analysis: [] } },
 ];

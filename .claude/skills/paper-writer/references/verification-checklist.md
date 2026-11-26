@@ -81,11 +81,11 @@ or comparisons).
       section-by-section recap?
 - [ ] Abstract and Conclusion are not word-swapped duplicates?
 - [ ] Every added/substantively revised limitation passes the
-      [admission gate](../../limitation-and-risk-writer/SKILL.md#admission-gate-all-four-conditions-required)
+      [admission gate](../modules/limitation-and-risk/GUIDE.md#admission-gate-all-four-conditions-required)
       against the current body, with no rejected point reintroduced as a paraphrase
       or generic future-work sentence? Empty-result and explicit venue rules followed?
 - [ ] Final Limitations word count measured and distinct points checked against the
-      [length budget](../../limitation-and-risk-writer/SKILL.md#length-budget-hard-acceptance-limits)?
+      [length budget](../modules/limitation-and-risk/GUIDE.md#length-budget-hard-acceptance-limits)?
       No padding, relocated overflow or hidden material disclosure; any override
       has an explicit user/verified venue basis?
 - [ ] No finding appears in more than three sections?

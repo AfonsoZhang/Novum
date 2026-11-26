@@ -44,7 +44,7 @@ academic responsibility. Those responsibilities do not require the user to
 originate every hypothesis, write every passage or personally inspect every line
 of code. Preserve how ideas, decisions and results were produced. Use those
 records for an accurate AI-use disclosure when requested; disclosure remains an
-independent draft under [ai-use-drafter](../ai-use-drafter/SKILL.md).
+independent draft under [ai-use-drafter](../paper-writer/modules/ai-use-drafter/GUIDE.md).
 
 ## Scientific acceptance is separate from execution completion
 

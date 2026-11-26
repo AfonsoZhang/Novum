@@ -53,7 +53,7 @@ class AntigravityBuildTests(unittest.TestCase):
         (ref / 'reviewer-routing.md').write_text('Claude default routing\n', encoding='utf-8')
         (ref / 'split-review.md').write_text('Claude sub-agent audits; paper review (Codex)\n', encoding='utf-8')
 
-        nf = root / '.claude/skills/nature-figure/references'
+        nf = root / '.claude/skills/paper-figure/references'
         nf.mkdir(parents=True)
         (nf / 'antigravity-generation.md').write_text('External MCP handoff\n', encoding='utf-8')
         (nf / 'imagegen-generation.md').write_text('Codex imagegen handoff\n', encoding='utf-8')
@@ -86,7 +86,7 @@ class AntigravityBuildTests(unittest.TestCase):
             for reference in (
                 'shared-references/reviewer-routing.md',
                 'shared-references/split-review.md',
-                'nature-figure/references/antigravity-generation.md',
+                'paper-figure/references/antigravity-generation.md',
             ):
                 self.assertEqual((root / '.agents/skills' / reference).read_bytes(),
                                  (root / '.claude/skills' / reference).read_bytes())

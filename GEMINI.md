@@ -43,7 +43,7 @@ This guide applies when Antigravity runs the project. Its routing and approval r
 - Preserve more specific child-project revision, freeze and data constraints.
 - **Standing authorization: citation verification sub-agent.** When
   `paper-writer` requires an independent citation check (full paper, Final mode, or three
-  or more citations; also via `intro-drafter`), dispatch one fresh-context `research`
+  or more citations; including its `intro-drafter` module), dispatch one fresh-context `research`
   subagent via `invoke_subagent` for that check without asking again. This covers only
   that verification step, not other subagent use.
 - **Independent checks.** Report an independent check as complete only after the

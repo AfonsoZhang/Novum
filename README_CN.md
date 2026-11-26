@@ -4,7 +4,7 @@
 
 <p align="center"><img src="assets/banner.png" alt="研究者击碎石墙，戴学位帽的毕业生手持顶刊顶会论文走向现代科研与产业世界。" width="100%"></p>
 
-**击碎科研壁垒，吾辈义不容辞。** 这套工具包含 38 个面向 Claude Code、Codex 和 Antigravity 的研究技能，主要服务于计算机科学研究。你可以带来一个问题、一组实验结果或一篇草稿，只做一次文献检索、改一张图，也可以从选题一直做到独立审查和复现材料交付。
+**击碎科研壁垒，吾辈义不容辞。** 这套工具包含 17 个面向 Claude Code、Codex 和 Antigravity 的核心研究技能，主要服务于计算机科学研究。你可以带来一个问题、一组实验结果或一篇草稿，只做一次文献检索、改一张图，也可以从选题一直做到独立审查和复现材料交付。
 
 **v1.5 新增了什么？** `research-gate` 可以从项目文件恢复研究进度，指出哪些输入发生了变化，并把批准记录绑定到研究者实际看过的题目或方案版本。论文核查也从数字延伸到方法：影响实证结论的方法描述，可以追溯到产生该结果的运行和代码。[阶段控制器](.claude/skills/research-gate/SKILL.md) · [论文结论核查](.claude/skills/paper-claim-audit/SKILL.md)
 
@@ -43,18 +43,18 @@
 
 ```mermaid
 flowchart TD
-    T["比较候选题目<br/>idea-evaluator · novelty-check"] --> H{"研究者批准选题？"}
+    T["比较候选题目<br/>research-companion · idea-evaluator · novelty-check"] --> H{"研究者批准选题？"}
     H -->|调整| T
     H -->|批准| L["检索文献与反证<br/>research-lit"]
     L --> P["设计研究并冻结方案<br/>实证研究可用 experiment-plan"]
     P -->|实证| G{"预实验结果"}
     G -->|修改方案| P
     G -->|停止| S["记录结果与停止依据"]
-    G -->|继续| E["执行计划内实验<br/>run-experiment"]
+    G -->|继续| E["执行计划内实验<br/>experiment-bridge"]
     P -->|综述、理论或观点| Q["筛选文献、构建证明或组织论据"]
     E --> A["分析证据"]
     Q --> A
-    A --> W["写作与制图<br/>paper-writer · nature-figure"]
+    A --> W["写作与制图<br/>paper-outline · paper-writer · paper-figure"]
     W --> R["独立评审与结论核查<br/>research-review · paper-claim-audit"]
     R -.->|确认稿件问题| W
     R --> D["交付论文、证据、复现说明与未决事项"]
@@ -83,10 +83,10 @@ python3 "$GATE" continue --root "$PROJECT"
 
 | 任务 | 技能入口 |
 |---|---|
-| 比较方向，找最接近的工作 | [选题评估](.claude/skills/idea-evaluator/SKILL.md) · [新颖性核查](.claude/skills/novelty-check/SKILL.md) · [文献检索](.claude/skills/research-lit/SKILL.md) |
-| 设计研究、跑预实验、解读结果 | [基准选择](.claude/skills/benchmark-research-skill/SKILL.md) · [实验设计](.claude/skills/experiment-plan/SKILL.md) · [运行实验](.claude/skills/run-experiment/SKILL.md) · [结果分析](.claude/skills/analyze-results/SKILL.md) |
-| 写论文、改图、核对引用 | [论文写作](.claude/skills/paper-writer/SKILL.md) · [论文图表](.claude/skills/nature-figure/SKILL.md) · [参考文献核验](.claude/skills/nature-ref-verifier/SKILL.md) |
-| 核实论文结论或回复审稿意见 | [结论核查](.claude/skills/paper-claim-audit/SKILL.md) · [独立评审](.claude/skills/research-review/SKILL.md) · [审稿回复](.claude/skills/nature-response/SKILL.md) |
+| 比较方向，找最接近的工作 | [选题发散](.claude/skills/research-companion/SKILL.md) · [选题评估](.claude/skills/idea-evaluator/SKILL.md) · [新颖性核查](.claude/skills/novelty-check/SKILL.md) · [文献精读与基准调研](.claude/skills/research-lit/SKILL.md) |
+| 设计研究、跑实验、解读结果 | [实验设计](.claude/skills/experiment-plan/SKILL.md) · [实现与运行实验](.claude/skills/experiment-bridge/SKILL.md) · [结果分析](.claude/skills/analyze-results/SKILL.md) |
+| 构思大纲、写论文、制图、核对引用 | [故事与大纲](.claude/skills/paper-outline/SKILL.md) · [论文写作](.claude/skills/paper-writer/SKILL.md) · [学术润色](.claude/skills/paper-polish/SKILL.md) · [论文图表](.claude/skills/paper-figure/SKILL.md) · [引用核验与选刊](.claude/skills/citation-and-venue/SKILL.md) |
+| 核实论文结论或回复审稿意见 | [结论核查](.claude/skills/paper-claim-audit/SKILL.md) · [独立评审与投前检查](.claude/skills/research-review/SKILL.md) · [审稿策略与回复](.claude/skills/rebuttal-response/SKILL.md) |
 
 ## 致谢与许可
 

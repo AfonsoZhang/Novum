@@ -8,10 +8,10 @@ const stageSpecs: { stage: Stage; skills: string[]; output: string; prompt: stri
   { stage: 'topic', skills: ['research-companion', 'idea-evaluator'], output: 'research/topic.md', prompt: 'Compare candidate questions. In the topic-approval report cite the closest paper or versioned open-source system, explain what it establishes, what remains open, and what evidence would overturn the proposed distinction. If unresolved, give the smallest check that could settle it. Use the selected report language and wait for explicit human approval.' },
   { stage: 'literature', skills: ['research-lit', 'novelty-check'], output: 'research/literature.md', prompt: 'Retrieve primary evidence, closest comparators and counterevidence. Establish the gap with traceable claims.' },
   { stage: 'plan', skills: ['experiment-plan'], output: 'research/protocol.md', prompt: 'Freeze a task-appropriate protocol, success and stopping criteria, comparisons and resource estimates before observing results. For nonempirical research, state the corresponding proof or source protocol.' },
-  { stage: 'experiment', skills: ['experiment-bridge', 'run-experiment'], output: 'research/execution.md', prompt: 'Execute the frozen protocol within resources, preserve raw outputs and all failed or missing attempts. For nonempirical work execute the planned proof/source investigation.' },
+  { stage: 'experiment', skills: ['experiment-bridge'], output: 'research/execution.md', prompt: 'Execute the frozen protocol within resources, preserve raw outputs and all failed or missing attempts. For nonempirical work execute the planned proof/source investigation.' },
   { stage: 'analysis', skills: ['analyze-results'], output: 'research/analysis.md', prompt: 'Check protocol deviations and raw results; classify supporting, opposing, invalid and inconclusive evidence with uncertainty.' },
-  { stage: 'writing', skills: ['paper-writer', 'nature-figure'], output: 'research/manuscript.md', prompt: 'Write the complete manuscript, tracing claims, citations and figures to the accepted evidence. Preserve scope and inference strength.' },
-  { stage: 'review', skills: ['pre-submission-reviewer', 'paper-claim-audit'], output: 'PAPER_CLAIM_AUDIT.json', prompt: 'Review the manuscript and audit numeric claims against raw evidence. Save the audit with a valid verdict and complete audited_input_hashes; distinguish NOT_APPLICABLE, BLOCKED and ERROR.' },
+  { stage: 'writing', skills: ['paper-writer', 'paper-figure'], output: 'research/manuscript.md', prompt: 'Write the complete manuscript, tracing claims, citations and figures to the accepted evidence. Preserve scope and inference strength.' },
+  { stage: 'review', skills: ['research-review', 'paper-claim-audit'], output: 'PAPER_CLAIM_AUDIT.json', prompt: 'Review the manuscript and audit numeric claims against raw evidence. Save the audit with a valid verdict and complete audited_input_hashes; distinguish NOT_APPLICABLE, BLOCKED and ERROR.' },
   { stage: 'delivery', skills: [], output: 'research/delivery.md', prompt: 'Deliver manuscript, reproduction instructions, verification records, limitations and open issues. Do not submit, publish or push. Recheck the audit input hashes.' },
 ];
 
@@ -73,7 +73,7 @@ const routes: Record<PaperType, { nodes: ExtraNode[]; experimentAfter: string[];
   },
   benchmark: {
     nodes: [
-      { id: 'construction', stage: 'experiment', label: '评测资源与协议构建', after: ['plan'], output: 'research/benchmark-construction.md', instruction: 'Construct or select the evaluation resources and measurement pipeline; preserve provenance, splits and annotation procedures where applicable.', skills: ['benchmark-research-skill'] },
+      { id: 'construction', stage: 'experiment', label: '评测资源与协议构建', after: ['plan'], output: 'research/benchmark-construction.md', instruction: 'Construct or select the evaluation resources and measurement pipeline; preserve provenance, splits and annotation procedures where applicable.', skills: ['research-lit'] },
       { id: 'quality_gate', stage: 'plan', label: '质量与泄漏检查', after: ['construction'], output: 'research/benchmark-quality.md', instruction: 'Validate coverage, measurement targets, provenance, splits, annotation quality and applicable leakage checks before evaluation.', back: ['plan', 'construction'] },
     ], experimentAfter: ['quality_gate'], analysisAfter: ['experiment'], analysisBack: ['plan', 'construction', 'experiment'],
   },

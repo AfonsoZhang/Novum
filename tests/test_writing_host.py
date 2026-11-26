@@ -36,7 +36,7 @@ class WritingHostTests(unittest.TestCase):
                         contract = f'../../../config/{host}/host.md'
                         self.assertIn(f'({contract})', rules)
                         self.assertTrue(((view / route).parent / contract).is_file())
-                    for name in ('paper-writer', 'paper-polish', 'intro-drafter'):
+                    for name in ('paper-writer', 'paper-polish'):
                         entry = Path(name) / 'SKILL.md'
                         installed = (view / entry).read_text()
                         self.assertIn(f'(../{route})', installed)

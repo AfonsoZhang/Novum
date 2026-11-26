@@ -40,7 +40,7 @@ delegation and approval rules apply within `$RESEARCH_ROOT`.
 - Preserve more specific child-project revision, freeze and data constraints.
 - **Standing authorization: citation verification sub-agent.** When
   `paper-writer` requires an independent citation check (full paper, Final mode, or three
-  or more citations; also via `intro-drafter`), dispatch one fresh-context sub-agent for
+  or more citations; including its `intro-drafter` module), dispatch one fresh-context sub-agent for
   that check without asking again. This covers only that verification step, not other
   sub-agent use.
 - **Independent checks.** Report an independent check as complete only after the

@@ -2,16 +2,26 @@
 name: paper-writer
 description: >-
   Drafts publishable paper prose from the author's own materials, from a
-  single paragraph to a full manuscript, across STEM and non-STEM fields.
-  Every factual claim traces to user input, verified retrieval, or field
-  common knowledge; citations pass an independent verification ladder;
-  delivery is clean prose with zero placeholder tags. Use when the user asks
-  to write a section, turn an idea or results into paper text, or draft a
-  full paper.
+  single paragraph or section (Introduction, Limitations, AI-use disclosure) to
+  a full manuscript, across STEM and non-STEM fields. Every factual claim traces
+  to user input, verified retrieval, or field common knowledge; citations pass
+  an independent verification ladder; delivery is clean prose with zero
+  placeholder tags. Use when the user asks to write a section, draft an
+  Introduction or Limitations, prepare an AI-use disclosure, or draft a full paper.
 license: CC-BY-NC-SA-4.0
 ---
 
 # Paper Writer
+
+## Integrated section modules
+
+Load on demand for specialized section drafting:
+
+| Section / Deliverable | Module guide |
+|---|---|
+| Introduction drafting, outlining, or restructuring matched to contribution type | [modules/intro-drafter/GUIDE.md](modules/intro-drafter/GUIDE.md) |
+| Limitations & risks section (grounded, non-obvious, deduplicated against body) | [modules/limitation-and-risk/GUIDE.md](modules/limitation-and-risk/GUIDE.md) |
+| Standalone editable AI-use disclosure draft (general EN/ZH templates + live official venue AI-policy retrieval) | [modules/ai-use-drafter/GUIDE.md](modules/ai-use-drafter/GUIDE.md) |
 
 Follow the [writing rules for the active host](../shared-references/writing-host.md).
 
@@ -38,7 +48,7 @@ For abstracts, core findings and limitations, apply the shared
 [abstract and findings guidance](../shared-references/abstract-and-findings.md).
 
 When turning logs or scattered results into a paper, use
-[good-story](../good-story/SKILL.md) as needed to establish the claim-evidence order.
+[good-story](../paper-outline/modules/good-story/GUIDE.md) as needed to establish the claim-evidence order.
 Follow an already agreed outline. Organize sections around the reader's questions,
 not the order of experiments, code changes, or agent conversations. Retain actual
 temporal dependencies and distinguish exploratory from pre-specified analyses;

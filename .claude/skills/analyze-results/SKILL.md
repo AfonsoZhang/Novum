@@ -34,7 +34,7 @@ metric, evaluation budget and sampling unit. Retain original per-run values.
 Identify suspect outputs, leakage, failed baseline reproduction or incorrect
 metrics before interpreting a difference as a scientific finding.
 
-Apply [benchmark comparability and validity](../benchmark-research-skill/references/selection-and-validity.md)
+Apply [benchmark comparability and validity](../research-lit/modules/benchmark-research/references/selection-and-validity.md)
 to the recorded conditions. Keep official-protocol, adapted, pilot-subset and
 author-created diagnostic results identifiable. A subset score is not a full-suite
 score; published baseline numbers are directly comparable only under compatible
@@ -96,7 +96,7 @@ Return the essential comparison, coverage/exclusions, supported interpretations,
 uncertainty and useful next action. Link findings to result artifacts. Use the
 project's experiment report/tracker rather than automatically editing paper prose.
 When the task continues into paper planning or writing, hand analyzed findings to
-[good-story](../good-story/SKILL.md) using the shared
+[good-story](../paper-outline/modules/good-story/GUIDE.md) using the shared
 [results-to-writing handoff](../experiment-bridge/references/experiment-records.md#results-to-writing-handoff).
 Reuse the current report or Evidence Map. Pass supported, opposing, and unresolved
 findings with their scope and source links. `good-story` proposes argument and
@@ -108,8 +108,8 @@ and comparison to [experiment-plan](../experiment-plan/SKILL.md). Do not start a
 repeat-until-positive experiment or writing loop.
 
 For a requested Limitations draft use
-[limitation-and-risk-writer](../limitation-and-risk-writer/SKILL.md); for plots use
-[nature-figure](../nature-figure/SKILL.md). Retain their respective output boundaries.
+[limitation-and-risk-writer](../paper-writer/modules/limitation-and-risk/GUIDE.md); for plots use
+[nature-figure](../paper-figure/SKILL.md). Retain their respective output boundaries.
 
 Adapted from ARIS `skills/analyze-results/SKILL.md` at the revision above;
 see [LICENSE](LICENSE). Local interpretation categories are an explicit adaptation.

@@ -21,7 +21,7 @@ export async function runChecks(store: Store, taskId: string, skillRoot: string,
   }
   const latex = [...new Set([...task.inputs, ...task.outputs].filter(n => n.endsWith('.tex')))];
   if (latex.length && ['writing', 'review', 'delivery'].includes(task.stage)) checks.push({ name: 'integrity-precheck', script: 'paper-claim-audit/scripts/integrity/precheck.py', inputs: latex, args: ['--latex', ...latex.map(n => local(store.root, n)), '--out-dir', path.join(store.runtime, 'checks', taskId, 'integrity')] });
-  for (const name of [...task.inputs, ...task.outputs].filter(n => /(?:fig|plot).*\.(py|r)$/i.test(n))) checks.push({ name: `figure-${contentHash(name).slice(0, 8)}`, script: 'nature-figure/scripts/validate_figure.py', inputs: [name], args: [local(store.root, name), '--json'] });
+  for (const name of [...task.inputs, ...task.outputs].filter(n => /(?:fig|plot).*\.(py|r)$/i.test(n))) checks.push({ name: `figure-${contentHash(name).slice(0, 8)}`, script: 'paper-figure/scripts/validate_figure.py', inputs: [name], args: [local(store.root, name), '--json'] });
   for (const check of checks) {
     if (check.inputs.some(n => !fs.existsSync(local(store.root, n)))) { errors.push(`Missing required ${check.name} inputs: ${check.inputs.join(', ')}`); continue; }
     const script = local(skillRoot, check.script); if (!fs.existsSync(script)) { errors.push(`Missing validator: ${check.script}`); continue; }
