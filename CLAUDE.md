@@ -1,6 +1,6 @@
 # Research project routing (Claude Code)
 
-This is the Claude Code project guide for Auto-Research System. Its routing,
+This is the Claude Code project guide for Novum. Its routing,
 delegation and approval rules apply within `$RESEARCH_ROOT`.
 
 - **Host adaptation.** Apply the [shared host rules](.claude/skills/shared-references/host-routing.md) for reviewer selection and optional Antigravity writing.

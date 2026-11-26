@@ -1,4 +1,4 @@
-# <img src="assets/logo.png" alt="" width="34" align="absmiddle"> Auto-Research System
+# <img src="assets/logo.png" alt="" width="34" align="absmiddle"> Novum
 
 [简体中文](README_CN.md) · [Skill catalog](.claude/skills/) · [Changelog](CHANGELOG.md) · [License](LICENSE)
 
@@ -92,4 +92,4 @@ python3 "$GATE" continue --root "$PROJECT"
 
 Thank you to the open-source research community and maintainers whose tools and standards support this ecosystem. This project is distributed under CC BY-NC-SA 4.0; third-party components retain their original licenses and attribution in [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md). [License](LICENSE) · [Third-party notices](THIRD_PARTY_NOTICES.md)
 
-Feedback and contributions are welcome, especially concrete examples where a skill draws a wrong conclusion or asks for unnecessary work. [Issues](https://github.com/AfonsoZhang/auto-research-system/issues) · [Pull requests](https://github.com/AfonsoZhang/auto-research-system/pulls)
+Feedback and contributions are welcome, especially concrete examples where a skill draws a wrong conclusion or asks for unnecessary work. [Issues](https://github.com/AfonsoZhang/Novum/issues) · [Pull requests](https://github.com/AfonsoZhang/Novum/pulls)

@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to **Auto-Research System** are documented in this file.
+All notable changes to **Novum** (formerly Auto-Research System) are documented in this file.
 Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [v1.5.0] — Unreleased (`release/v1.5.0`)

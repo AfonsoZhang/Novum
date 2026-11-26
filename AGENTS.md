@@ -1,6 +1,6 @@
 # Research project routing (Codex)
 
-This is the Codex project guide for Auto-Research System. Its routing,
+This is the Codex project guide for Novum. Its routing,
 delegation and approval rules apply within `$RESEARCH_ROOT`.
 
 - **Default: standalone skills and scoped revisions.** Existing skills remain directly
