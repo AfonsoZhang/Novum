@@ -1,4 +1,4 @@
-# <img src="assets/logo.png" alt="" width="34" align="absmiddle"> Auto-Research System 自动科研系统
+# <img src="assets/logo.png" alt="" width="34" align="absmiddle"> Novum · 自动科研系统
 
 [English](README.md) · [技能目录](.claude/skills/) · [许可证](LICENSE)
 
@@ -92,4 +92,4 @@ python3 "$GATE" continue --root "$PROJECT"
 
 感谢开源科研社区及各位维护者为这一生态提供的工具与规范。本项目采用 CC BY-NC-SA 4.0，各第三方组件保留其原有许可证与署名声明，详见 [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md)。[项目许可证](LICENSE) · [第三方来源与许可](THIRD_PARTY_NOTICES.md)
 
-欢迎反馈与共建。如果遇到技能误判、要求多做无必要的实验，或说明写得不清楚，欢迎带着具体例子提交反馈。[提 Issue](https://github.com/AfonsoZhang/auto-research-system/issues) · [提交 PR](https://github.com/AfonsoZhang/auto-research-system/pulls)
+欢迎反馈与共建。如果遇到技能误判、要求多做无必要的实验，或说明写得不清楚，欢迎带着具体例子提交反馈。[提 Issue](https://github.com/AfonsoZhang/Novum/issues) · [提交 PR](https://github.com/AfonsoZhang/Novum/pulls)
