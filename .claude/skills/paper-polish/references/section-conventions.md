@@ -79,10 +79,10 @@ follows, and what does not?
 Recommended order: restate the main finding, give plausible interpretations,
 compare with prior work, state implications, and include limitations/future work
 only when they add eligible content. For added or substantively revised limits,
-apply the [Limitations admission gate](../../limitation-and-risk-writer/SKILL.md#admission-gate-all-four-conditions-required).
+apply the [Limitations admission gate](../../paper-writer/modules/limitation-and-risk/GUIDE.md#admission-gate-all-four-conditions-required).
 Delete repeated body content and generic caveats; do not replace them with longer
 paraphrases or automatically add a balanced-sounding closing paragraph.
-Keep revised prose within the [Limitations length budget](../../limitation-and-risk-writer/SKILL.md#length-budget-hard-acceptance-limits).
+Keep revised prose within the [Limitations length budget](../../paper-writer/modules/limitation-and-risk/GUIDE.md#length-budget-hard-acceptance-limits).
 Measure again after polishing; smoother wording does not excuse excess words or points.
 
 This is where hedging belongs.

@@ -87,14 +87,14 @@ published conclusions before finalizing.
 
 **Write only non-obvious limitations.**
 
-Apply the mandatory [Limitations admission gate](../limitation-and-risk-writer/SKILL.md#admission-gate-all-four-conditions-required)
+Apply the mandatory [Limitations admission gate](../paper-writer/modules/limitation-and-risk/GUIDE.md#admission-gate-all-four-conditions-required)
 before adding or substantively revising limitations. Read the current body first.
 Each point must be grounded, consequential for a specific claim/use, non-obvious,
 and additional to what the body already explains.
 Any failed condition excludes it from new section prose; hedging or paraphrasing
 does not repair a failed candidate.
 
-Enforce the writer's [length budget](../limitation-and-risk-writer/SKILL.md#length-budget-hard-acceptance-limits)
+Enforce the writer's [length budget](../paper-writer/modules/limitation-and-risk/GUIDE.md#length-budget-hard-acceptance-limits)
 after admission: measure final prose, apply the word/point caps, and never pad to a
 minimum. Its scope and explicit override rules also apply to planning and review.
 

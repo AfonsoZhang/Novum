@@ -15,10 +15,10 @@ Do not turn a single-paper question or translation into a full literature review
 2. `verify_papers.py` checks **existence only**. Preserve its output and statuses.
    `verified` and a resolvable DOI do not certify publication, review or claim quality.
 3. Before substantive extraction, resolve publication/version evidence as below.
-4. `nature-reader` reads the selected version; `research-lit` synthesizes its evidence.
+4. `research-lit` (paper-reader module) reads the selected version; `research-lit` synthesizes its evidence.
 5. `novelty-check` compares concrete contributions using the same records, including
    separately labeled recent preprints. Topic overlap is not a rejection criterion.
-6. `ts-paper-cite` builds citations from these records; `nature-ref-verifier` checks
+6. `citation-and-venue` builds citations from these records; `citation-and-venue` checks
    bibliographic identity, publication evidence and version consistency again.
 
 ## Resolve publication and versions

@@ -12,6 +12,13 @@ disable-model-invocation: true
 
 # Unified Research Controller
 
+For the opt-in standalone TypeScript execution path, use the
+[runtime guide](../../../docs/agent-runtime.md) via the research root (the guide is
+`$RESEARCH_ROOT/docs/agent-runtime.md`). The runtime enforces topic approval,
+artifact/evidence gates, fresh-context review and accepted dependency handoffs.
+It does not call host CLIs. Reading this skill does not initialize or run a runtime
+project, activate automatic mode or change ordinary child-project sessions.
+
 One main agent coordinates research questions, stage selection, evidence requirements,
 execution, delegation and acceptance within the user's goal and budget. Keep the existing `research-agent-team`
 entrypoint for both research coordination and team management; use one project

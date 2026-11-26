@@ -11,7 +11,7 @@ This is an intentionally longer reference. It is not meant to replace the main w
 - or you need to clean and standardize a bibliography in a more disciplined way.
 
 > **Quick map**: pre-search filter → `Pre-Search Verification Protocol` (this
-> file); bibliography metadata check → [`nature-ref-verifier`](../nature-ref-verifier/SKILL.md);
+> file); bibliography metadata check → [`citation-and-venue`](../citation-and-venue/modules/ref-verifier/GUIDE.md);
 > numerical-claim audit → [`/paper-claim-audit`](../paper-claim-audit/SKILL.md).
 
 ## Contents
@@ -166,7 +166,7 @@ to reduce CrossRef rate-limit risk. Default is a placeholder
 prefers a real contact for higher polite-pool throughput.
 
 **When NOT to use this protocol.** This is search-time filtering, not
-submission-time auditing. It does not replace `nature-ref-verifier` (which checks
+submission-time auditing. It does not replace `citation-and-venue` (which checks
 already-written reference entries against multiple metadata sources)
 or `/paper-claim-audit` (which verifies numerical claims against raw result
 files). Run pre-search verification on candidate lists; run the audit skills

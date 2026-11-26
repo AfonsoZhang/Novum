@@ -103,10 +103,10 @@ The Discussion is where the paper earns its venue tier. Three layers:
 3. **Limits and future work**: select consequential boundaries, explaining what
    each changes about a particular inference or use. An untested setting alone
    is not an informative limitation. Apply the
-   [Limitations admission gate](../../limitation-and-risk-writer/SKILL.md#admission-gate-all-four-conditions-required)
+   [Limitations admission gate](../modules/limitation-and-risk/GUIDE.md#admission-gate-all-four-conditions-required)
    before drafting. Do not repeat a constraint and consequence already treated
    elsewhere; zero new limitations is allowed. Apply the writer's
-   [length budget](../../limitation-and-risk-writer/SKILL.md#length-budget-hard-acceptance-limits),
+   [length budget](../modules/limitation-and-risk/GUIDE.md#length-budget-hard-acceptance-limits),
    including a measured final word count and the distinct-point cap. No minimum
    count or obligatory future-work list.
 

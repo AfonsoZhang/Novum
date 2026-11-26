@@ -1,12 +1,14 @@
 ---
 name: research-companion
 description: >-
-  Strategic research companion — brainstorm, evaluate, and decide on research directions. TRIGGER when the user wants to brainstorm research, evaluate research ideas, do project triage, or explore a problem space. Orchestrates brainstormer, idea-critic, and research-strategist agents through a 6-phase pipeline: Seed → Diverge → Evaluate → Deepen → Frame → Decide. Includes Carlini's conclusion-first test.
+  Strategic research companion — brainstorm, evaluate, and decide on research directions. TRIGGER when the user wants to brainstorm research, apply structured ideation or cognitive creativity frameworks, evaluate research ideas, do project triage, or explore a problem space. Orchestrates brainstormer, idea-critic, and research-strategist agents through a 6-phase pipeline: Seed → Diverge → Evaluate → Deepen → Frame → Decide. Includes Carlini's conclusion-first test.
 allowed-tools: Agent, Read, Glob, Grep, WebSearch, WebFetch, Bash(*), Write
 argument-hint: [topic or problem space description]
 ---
 
 # Research Companion — Structured Ideation Session
+
+> **Ideation lenses:** For structured brainstorming frameworks (problem/solution-first, abstraction ladder, tension hunting) and cognitive creativity engines (bisociation, problem reformulation, structure-mapping, constraint manipulation), read [principles/ideation-lenses.md](principles/ideation-lenses.md) alongside [principles/ideation-patterns.md](principles/ideation-patterns.md).
 
 Apply the shared [working-language policy](../shared-references/research-autonomy.md#working-language) to internal work and user reports.
 

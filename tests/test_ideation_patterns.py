@@ -20,7 +20,7 @@ class IdeationPatternsAndSuiteTests(unittest.TestCase):
 
     def test_cross_skill_links_resolve_in_claude_and_codex_views(self):
         checks = [
-            ('brainstorming-research-ideas/SKILL.md', '../research-companion/principles/ideation-patterns.md'),
+            ('research-companion/principles/ideation-lenses.md', 'ideation-patterns.md'),
             ('idea-evaluator/SKILL.md', '../research-companion/principles/ideation-patterns.md'),
             ('research-companion/SKILL.md', 'principles/ideation-patterns.md'),
         ]

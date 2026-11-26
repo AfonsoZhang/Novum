@@ -32,7 +32,7 @@ def run_preflight(root: Path, state: dict, skill_root: Path) -> dict:
 
     run_records_script = skill_root / "experiment-bridge/scripts/check_run_records.py"
     integrity_script = skill_root / "paper-claim-audit/scripts/integrity/precheck.py"
-    figure_script = skill_root / "nature-figure/scripts/validate_figure.py"
+    figure_script = skill_root / "paper-figure/scripts/validate_figure.py"
 
     validators = {
         "runRecords": run_records_script.is_file(),
@@ -267,7 +267,7 @@ def evaluate_stage_gate(
                         warnings.append(out.strip())
 
             if plot_scripts and use_script("figures"):
-                fig_val = skill_root / "nature-figure/scripts/validate_figure.py"
+                fig_val = skill_root / "paper-figure/scripts/validate_figure.py"
                 if not fig_val.is_file():
                     errors.append(f"Missing figure validator: {fig_val}")
                 else:

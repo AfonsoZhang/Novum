@@ -1,11 +1,21 @@
 ---
 name: research-lit
-description: Search and analyze research papers, find related work, summarize key ideas. Use when user says "find papers", "related work", "literature review", "what does this paper say", or needs to understand academic papers.
+description: Search and analyze research papers, run survey-grade deep literature investigations, create bilingual close-reading paper readers, and survey/select existing benchmarks. Use when user says "find papers", "related work", "literature review", "deep research", "survey", "translate/read this paper", "select benchmarks", or needs to understand academic papers.
 argument-hint: "[paper-topic-or-url]"
 allowed-tools: Bash(*), Read, Glob, Grep, WebSearch, WebFetch, Write, Agent, mcp__zotero__*, mcp__obsidian-vault__*
 ---
 
 # Research Literature Review
+
+## Integrated literature modules
+
+Use the default workflow below for rapid related-work search and multi-source paper lookup. Load a specialist module on demand when the task requires it:
+
+| Need | Module guide |
+|---|---|
+| Survey-grade deep literature investigation (frozen RQs, adversarial multi-perspective search, verified citations, MECE taxonomy) | [modules/deep-research/GUIDE.md](modules/deep-research/GUIDE.md) |
+| Source-grounded Chinese-English bilingual paper reader / close reading with aligned figures, tables, and equations | [modules/paper-reader/GUIDE.md](modules/paper-reader/GUIDE.md) |
+| Survey and select existing benchmarks, datasets, metrics, protocols, and baselines with source evidence | [modules/benchmark-research/GUIDE.md](modules/benchmark-research/GUIDE.md) |
 
 Apply the shared [working-language policy](../shared-references/research-autonomy.md#working-language) to internal work and user reports.
 
@@ -632,7 +642,7 @@ When the requested task includes benchmark selection or experiment planning,
 retain the closest papers' actual datasets/tasks, protocols, metrics, baselines
 and experiment/table/code locators, along with the confirmed comparison edges
 and coverage gaps. Hand these and the shared publication records
-to [benchmark-research-skill](../benchmark-research-skill/SKILL.md) for a reusable
+to [benchmark-research-skill](modules/benchmark-research/GUIDE.md) for a reusable
 benchmark comparison. This stays within the requested scope; an ordinary literature
 review does not automatically launch selection, construction or experiments.
 

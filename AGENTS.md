@@ -1,5 +1,8 @@
 # Research project routing (Codex)
 
+This is the Codex project guide for Auto-Research System. Its routing,
+delegation and approval rules apply within `$RESEARCH_ROOT`.
+
 - **Default: standalone skills and scoped revisions.** Existing skills remain directly
   callable at the root and in child projects. Complete the current request and necessary
   verification without automatically starting a team or the next stage. For revisions,
@@ -35,13 +38,33 @@
 - `$RESEARCH_ROOT` denotes this file's directory. Substitute that path before running
   commands if the environment variable is unset.
 - Preserve more specific child-project revision, freeze and data constraints.
-  This routing applies only to `$RESEARCH_ROOT`.
 - **Standing authorization: citation verification sub-agent.** When
   `paper-writer` requires an independent citation check (full paper, Final mode, or three
-  or more citations; also via `intro-drafter`), dispatch one fresh-context sub-agent for
+  or more citations; including its `intro-drafter` module), dispatch one fresh-context sub-agent for
   that check without asking again. This covers only that verification step, not other
   sub-agent use.
+- **Independent checks.** Report an independent check as complete only after the
+  verifier returns findings that cover the current materials. Reuse a result that
+  still covers them, or resume a pending request before dispatching another.
+- **Research rework.** Check script findings and reviewer suggestions against the
+  original evidence. Reopen the affected stage when a confirmed error or missing
+  evidence compromises a claim the paper retains. Use existing evidence when it
+  supports a correction to the manuscript.
 
 - **Host adaptation.** In Codex, use the [Codex host contract](config/codex/host.md). In Antigravity use [GEMINI.md](GEMINI.md). Select review and writing routes from the current session under the [shared host rules](.claude/skills/shared-references/host-routing.md).
 
 - **Skill setup.** If `.agents/skills/` is absent, run `python3 scripts/build_codex.py` from this root. Run `bash install.sh --host codex` to configure project-local MCP servers.
+
+- **Real project use (user preference, updated 2026-11-05).** Remove demo mode and
+  fictional demonstration content from the runtime, dashboard and input templates.
+  New projects start empty and use actual persisted project records. Synthetic
+  test fixtures stay isolated under tests and must not be served as project data.
+
+- **Dashboard viewport (user preference, updated 2026-11-05).** Keep the user's live research
+  dashboard on the natural browser viewport. Do not use `browser_resize`,
+  `setViewportSize()` or fixed device metrics on that tab for visual verification;
+  use an isolated test browser for responsive checks. Preserve the user's zoom and
+  window placement. If automation leaves a fixed viewport, clear the device-metrics
+  override and verify the page matches the browser content area before reporting
+  completion; maximizing or zooming the window is not a substitute. Follow the
+  `windows-playwright` skill's viewport inspection and recovery procedure.

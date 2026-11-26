@@ -1,10 +1,10 @@
 # <img src="assets/logo.png" alt="" width="34" align="absmiddle"> Auto-Research System
 
-[简体中文](README_CN.md) · [Skill catalog](.claude/skills/) · [License](LICENSE)
+[简体中文](README_CN.md) · [Skill catalog](.claude/skills/) · [Changelog](CHANGELOG.md) · [License](LICENSE)
 
 <p align="center"><img src="assets/banner.png" alt="Researchers break through a stone barrier as graduating students walk out carrying top-venue papers toward a modern research campus." width="100%"></p>
 
-A set of 38 research skills for Claude Code, Codex and Antigravity, built primarily for computer science. Bring a question, an experiment directory or a draft. You can ask for one literature search or figure revision, or take a project from topic selection through independent review and a reproducible handoff.
+A set of 17 core research skills for Claude Code, Codex and Antigravity, built primarily for computer science. Bring a question, an experiment directory or a draft. You can ask for one literature search or figure revision, or take a project from topic selection through independent review and a reproducible handoff.
 
 **New in v1.5.** The `research-gate` skill can resume a project from saved files, show which inputs changed and tie approval to the exact proposal or protocol a researcher saw. The claim audit now also traces pivotal empirical method descriptions to the implementation used for the reported run. [Gate controller](.claude/skills/research-gate/SKILL.md) · [Claim audit](.claude/skills/paper-claim-audit/SKILL.md)
 
@@ -43,18 +43,18 @@ The diagram follows a project from a new topic. For an existing study, start wit
 
 ```mermaid
 flowchart TD
-    T["Compare topics<br/>idea-evaluator · novelty-check"] --> H{"Researcher approves topic?"}
+    T["Compare topics<br/>research-companion · idea-evaluator · novelty-check"] --> H{"Researcher approves topic?"}
     H -->|Revise| T
     H -->|Approve| L["Literature and counterevidence<br/>research-lit"]
     L --> P["Design the study and freeze the protocol<br/>experiment-plan for empirical studies"]
     P -->|Empirical| G{"Pilot outcome"}
     G -->|Redesign| P
     G -->|Stop| S["Record the result and stopping reason"]
-    G -->|Proceed| E["Run planned experiments<br/>run-experiment"]
+    G -->|Proceed| E["Run planned experiments<br/>experiment-bridge"]
     P -->|Survey, theory or position| Q["Screen sources, develop a proof<br/>or assemble an argument"]
     E --> A["Analyze the evidence"]
     Q --> A
-    A --> W["Write the paper and figures<br/>paper-writer · nature-figure"]
+    A --> W["Write the paper and figures<br/>paper-outline · paper-writer · paper-figure"]
     W --> R["Independent review and claim checks<br/>research-review · paper-claim-audit"]
     R -.->|Verified drafting issue| W
     R --> D["Deliver the manuscript, evidence,<br/>reproduction notes and open issues"]
@@ -83,10 +83,10 @@ python3 "$GATE" continue --root "$PROJECT"
 
 | Task | Start here |
 |---|---|
-| Compare research directions and find the closest work | [Topic evaluation](.claude/skills/idea-evaluator/SKILL.md) · [Novelty check](.claude/skills/novelty-check/SKILL.md) · [Literature search](.claude/skills/research-lit/SKILL.md) |
-| Design a study, run a pilot and interpret results | [Benchmarks](.claude/skills/benchmark-research-skill/SKILL.md) · [Experiment plan](.claude/skills/experiment-plan/SKILL.md) · [Execution](.claude/skills/run-experiment/SKILL.md) · [Analysis](.claude/skills/analyze-results/SKILL.md) |
-| Draft a paper, revise figures or check citations | [Writing](.claude/skills/paper-writer/SKILL.md) · [Figures](.claude/skills/nature-figure/SKILL.md) · [Reference verification](.claude/skills/nature-ref-verifier/SKILL.md) |
-| Check claims against results or prepare a response | [Claim audit](.claude/skills/paper-claim-audit/SKILL.md) · [Independent review](.claude/skills/research-review/SKILL.md) · [Reviewer response](.claude/skills/nature-response/SKILL.md) |
+| Compare research directions and find the closest work | [Ideation](.claude/skills/research-companion/SKILL.md) · [Topic evaluation](.claude/skills/idea-evaluator/SKILL.md) · [Novelty check](.claude/skills/novelty-check/SKILL.md) · [Literature & benchmarks](.claude/skills/research-lit/SKILL.md) |
+| Design a study, run experiments and interpret results | [Experiment plan](.claude/skills/experiment-plan/SKILL.md) · [Implementation & execution](.claude/skills/experiment-bridge/SKILL.md) · [Analysis](.claude/skills/analyze-results/SKILL.md) |
+| Outline, draft, polish, draw figures or check citations | [Outline & story](.claude/skills/paper-outline/SKILL.md) · [Writing](.claude/skills/paper-writer/SKILL.md) · [Polish](.claude/skills/paper-polish/SKILL.md) · [Figures](.claude/skills/paper-figure/SKILL.md) · [Citations & venues](.claude/skills/citation-and-venue/SKILL.md) |
+| Check claims against results or prepare a response | [Claim audit](.claude/skills/paper-claim-audit/SKILL.md) · [Independent review](.claude/skills/research-review/SKILL.md) · [Rebuttal & response](.claude/skills/rebuttal-response/SKILL.md) |
 
 ## Acknowledgements and license
 

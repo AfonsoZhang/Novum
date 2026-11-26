@@ -1,11 +1,13 @@
 ---
 name: research-review
-description: Get a deep critical review of research from a fresh host subagent or optional external Codex. Use when user says "review my research", "help me review", "get external review", or wants critical feedback on research ideas, papers, or experimental results.
+description: Get a deep critical review or pre-submission audit of research ideas, manuscripts, or experimental results from a fresh host subagent or optional external Codex. Use when user says "review my research", "pre-submission review", "help me review", "get external review", or wants submission-readiness and critical feedback.
 argument-hint: "[topic-or-scope]"
 allowed-tools: Agent, Bash(*), Read, Grep, Glob, Write, Edit, mcp__codex__codex, mcp__codex__codex-reply
 ---
 
-# Research Review
+# Research Review & Pre-Submission Audit
+
+> **Manuscript pre-submission checklist:** For structured pre-submission manuscript review (contribution, evidence, logic, prose, formatting, figures adapted to paper type and venue), load [modules/pre-submission-reviewer/GUIDE.md](modules/pre-submission-reviewer/GUIDE.md).
 
 Apply the shared [working-language policy](../shared-references/research-autonomy.md#working-language) to internal work and user reports.
 

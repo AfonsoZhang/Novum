@@ -45,7 +45,7 @@ question, and record which ones. ToolRet's collapse of completeness with the
 number of targets, for example, fixed completeness@k grouped by required-tool
 count before any run.
 
-If [good-story](../good-story/SKILL.md) supplied a proposed main claim or evidence
+If [good-story](../paper-outline/modules/good-story/GUIDE.md) supplied a proposed main claim or evidence
 order, treat it as a candidate argument to test. Reuse its claim/question labels;
 state which comparisons could support, contradict, or leave each claim unresolved.
 The proposed paper order does not determine run order or authorize experiments.
@@ -88,8 +88,8 @@ models or evaluation scope need the user's choice unless already authorized.
 ## Select existing benchmarks before proposing construction
 
 For empirical evaluation, reuse an adequate existing benchmark decision or apply
-[benchmark selection and validity](../benchmark-research-skill/references/selection-and-validity.md).
-Use [benchmark-research-skill](../benchmark-research-skill/SKILL.md) for missing
+[benchmark selection and validity](../research-lit/modules/benchmark-research/references/selection-and-validity.md).
+Use [benchmark-research-skill](../research-lit/modules/benchmark-research/GUIDE.md) for missing
 comparison evidence within the planning task. Start from closely related papers'
 actual evaluations and reuse the literature module's publication/version records.
 Choose the primary comparison by measurement fit, independent use and reproducible
@@ -98,7 +98,7 @@ protocol. Identify any complementary diagnosis and preserve concrete resource ch
 For baseline selection, first reuse the verified `uses_baseline` /
 `is_baseline_of` neighborhood and its experiment locators from
 [research-lit](../research-lit/SKILL.md#empirical-comparison-fields) or
-[benchmark-research-skill](../benchmark-research-skill/SKILL.md#trace-the-empirical-comparison-neighborhood).
+[benchmark-research-skill](../research-lit/modules/benchmark-research/GUIDE.md#trace-the-empirical-comparison-neighborhood).
 Use it to identify comparators that the claim and protocol require. Fill
 material gaps with targeted full-text comparison checks around the closest
 papers. A single topical search serves candidate discovery. Record why each

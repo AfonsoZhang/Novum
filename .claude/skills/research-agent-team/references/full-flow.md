@@ -24,13 +24,13 @@ continue the remaining authorized stages without asking at each transition.
 
 | Stage | Existing skills to use as needed | Acceptance criteria and handoff |
 |---|---|---|
-| Problem discovery and topic selection | brainstorming-research-ideas, research-companion, idea-evaluator, novelty-check | Candidate comparison, central question, contribution type, selected scope and verifiable distinction; literature verification may revise candidate judgments |
+| Problem discovery and topic selection | research-companion, idea-evaluator, novelty-check | Candidate comparison, central question, contribution type, selected scope and verifiable distinction; literature verification may revise candidate judgments |
 | Topic approval | Main agent reports to the user | Apply the mandatory human checkpoint below; record explicit approval before dependent work |
 | Literature review and evidence verification | research-lit, deep-research when a full review is requested, nature-reader, nature-ref-verifier | Traceable literature records, publication status, closest work and evidence gaps under publication-policy |
 | Venue, benchmark selection and research design | select-venue, benchmark-research-skill, experiment-plan | Official requirements; reuse decision with source evidence and measurement fit; documented gap for any new benchmark; claim-linked design, suitable resources, decisive pilot and budget/stop conditions |
-| Implementation and minimum pilot | experiment-bridge, run-experiment, analyze-results | Runnable implementation, measurement checks, actual raw results and grounds for continuation, follow-up or stopping |
-| Main research and analysis | run-experiment, analyze-results | Authorized necessary comparisons and controls completed; failures and missing runs recorded; conclusions traceable to results |
-| Argument and writing | good-story, ts-paper-plan, paper-writer, nature-figure, ts-paper-cite | Complete evidence-based draft, figures and authentic citations; argument structure rather than an experiment timeline; no unjustified iterative narrowing |
+| Implementation and minimum pilot | experiment-bridge, analyze-results | Runnable implementation, measurement checks, actual raw results and grounds for continuation, follow-up or stopping |
+| Main research and analysis | experiment-bridge, analyze-results | Authorized necessary comparisons and controls completed; failures and missing runs recorded; conclusions traceable to results |
+| Argument and writing | paper-outline, paper-writer, paper-figure, citation-and-venue | Complete evidence-based draft, figures and authentic citations; argument structure rather than an experiment timeline; no unjustified iterative narrowing |
 | Limitations and disclosure drafts | limitation-and-risk-writer, ai-use-drafter | Actual limitations from the author's perspective; AI-use remains an independent draft for user revision, never automatically inserted into the manuscript or submission form |
 | Revision and verification | paper-polish, pre-submission-reviewer, nature-ref-verifier; paper-claim-audit when needed | Actual issues repaired; citations, claims, figures, numbers and applicable format checked; unresolved issues reported |
 | Final delivery | Main agent; research-editor/qa as needed in automatic mode | Inspectable artifacts meeting the endpoint; for a full paper, a readable manuscript, applicable compiled output and reproduction materials, result sources, verification findings and remaining issues |

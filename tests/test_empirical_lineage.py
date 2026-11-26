@@ -10,7 +10,7 @@ CLAUDE_SKILLS = ROOT / ".claude/skills"
 CODEX_SKILLS = ROOT / ".agents/skills"
 EVIDENCE = "research-companion/principles/ideation-evidence.md"
 LITERATURE = "research-lit/SKILL.md"
-BENCHMARK = "benchmark-research-skill/SKILL.md"
+BENCHMARK = "research-lit/modules/benchmark-research/GUIDE.md"
 PLAN = "experiment-plan/SKILL.md"
 NOVELTY = "novelty-check/SKILL.md"
 
@@ -42,13 +42,9 @@ class EmpiricalLineageTests(unittest.TestCase):
                        "`uses_baseline`", "`is_baseline_of`", "full-text experiment tables"):
             self.assertIn(marker, rule)
 
-        for filename, attribution in (("README.md", "no text copied"),
-                                      ("README_CN.md", "未复制原文")):
+        for filename in ("README.md", "README_CN.md"):
             with self.subTest(filename=filename):
-                row = next(line for line in read(ROOT / filename).splitlines()
-                           if line.startswith("| [LINEAGE]"))
-                self.assertIn("https://arxiv.org/abs/2611.25845", row)
-                self.assertIn(attribution, row)
+                self.assertIn("THIRD_PARTY_NOTICES.md", read(ROOT / filename))
 
     def test_literature_search_checks_seeds_and_extracts_supported_edges(self):
         queries = section(LITERATURE, "#### Multi-facet queries",
@@ -92,7 +88,7 @@ class EmpiricalLineageTests(unittest.TestCase):
 
     def test_cross_skill_links_resolve_in_both_trees(self):
         checks = {
-            BENCHMARK: (f"../{LITERATURE}#empirical-comparison-fields",),
+            BENCHMARK: ("../../SKILL.md#empirical-comparison-fields",),
             PLAN: (f"../{LITERATURE}#empirical-comparison-fields",
                    f"../{BENCHMARK}#trace-the-empirical-comparison-neighborhood"),
             NOVELTY: (f"../{LITERATURE}#multi-facet-queries", f"../{EVIDENCE}"),
@@ -114,12 +110,16 @@ class EmpiricalLineageTests(unittest.TestCase):
     def test_generated_codex_instructions_match_claude_sources(self):
         self.assertEqual(read(CLAUDE_SKILLS / EVIDENCE), read(CODEX_SKILLS / EVIDENCE))
         host_notice = "\nFollow the [active host rules](../shared-references/host-routing.md).\n"
-        for path in (LITERATURE, BENCHMARK, PLAN, NOVELTY):
+        for path in (LITERATURE, PLAN, NOVELTY):
             with self.subTest(path=path):
                 claude_body = read(CLAUDE_SKILLS / path).split("\n---\n", 1)[1]
                 codex_body = read(CODEX_SKILLS / path).split("\n---\n", 1)[1]
                 expected = claude_body.replace(".claude/skills/", ".agents/skills/")
                 self.assertEqual(expected, codex_body.removeprefix(host_notice))
+        self.assertEqual(
+            read(CLAUDE_SKILLS / BENCHMARK).replace(".claude/skills/", ".agents/skills/"),
+            read(CODEX_SKILLS / BENCHMARK),
+        )
 
 
 if __name__ == "__main__":

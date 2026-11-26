@@ -51,16 +51,16 @@ PRIMARY_ARTIFACT_BY_STAGE: dict[str, str] = {
 PAPER_PROFILES: dict[str, dict] = {
     "method": {
         "plan_skills": ["experiment-plan"],
-        "execution_skills": ["experiment-bridge", "run-experiment"],
+        "execution_skills": ["experiment-bridge"],
         "analysis_skills": ["analyze-results"],
-        "writing_skills": ["tech-paper-template", "paper-writer", "nature-figure"],
+        "writing_skills": ["paper-outline", "paper-writer", "paper-figure"],
         "artifacts": {"plan": ["research/planned-runs.json"], "experiment": ["research/observed-runs.json"], "analysis": []},
     },
     "system": {
         "plan_skills": ["experiment-plan"],
-        "execution_skills": ["experiment-bridge", "run-experiment"],
+        "execution_skills": ["experiment-bridge"],
         "analysis_skills": ["analyze-results"],
-        "writing_skills": ["tech-paper-template", "paper-writer", "nature-figure"],
+        "writing_skills": ["paper-outline", "paper-writer", "paper-figure"],
         "artifacts": {
             "plan": ["research/system-design.md", "research/planned-runs.json"],
             "experiment": ["research/observed-runs.json"],
@@ -68,10 +68,10 @@ PAPER_PROFILES: dict[str, dict] = {
         },
     },
     "benchmark": {
-        "plan_skills": ["benchmark-research-skill", "experiment-plan"],
-        "execution_skills": ["experiment-bridge", "run-experiment"],
+        "plan_skills": ["research-lit", "experiment-plan"],
+        "execution_skills": ["experiment-bridge"],
         "analysis_skills": ["analyze-results"],
-        "writing_skills": ["benchmark-paper-template", "paper-writer", "nature-figure"],
+        "writing_skills": ["paper-outline", "paper-writer", "paper-figure"],
         "artifacts": {
             "plan": ["research/benchmark-protocol.md", "research/planned-runs.json"],
             "experiment": ["research/observed-runs.json"],
@@ -80,9 +80,9 @@ PAPER_PROFILES: dict[str, dict] = {
     },
     "empirical": {
         "plan_skills": ["experiment-plan"],
-        "execution_skills": ["experiment-bridge", "run-experiment"],
+        "execution_skills": ["experiment-bridge"],
         "analysis_skills": ["analyze-results"],
-        "writing_skills": ["paper-writer", "nature-figure"],
+        "writing_skills": ["paper-writer", "paper-figure"],
         "artifacts": {
             "plan": ["research/analysis-design.md", "research/planned-runs.json"],
             "experiment": ["research/observed-runs.json"],
@@ -91,9 +91,9 @@ PAPER_PROFILES: dict[str, dict] = {
     },
     "replication": {
         "plan_skills": ["experiment-plan"],
-        "execution_skills": ["experiment-bridge", "run-experiment"],
+        "execution_skills": ["experiment-bridge"],
         "analysis_skills": ["analyze-results"],
-        "writing_skills": ["paper-writer", "nature-figure"],
+        "writing_skills": ["paper-writer", "paper-figure"],
         "artifacts": {
             "plan": ["research/replication-protocol.md", "research/planned-runs.json"],
             "experiment": ["research/replication-deviations.md", "research/observed-runs.json"],
@@ -126,7 +126,7 @@ PAPER_PROFILES: dict[str, dict] = {
         "plan_skills": [],
         "execution_skills": ["research-lit"],
         "analysis_skills": [],
-        "writing_skills": ["good-story", "paper-writer"],
+        "writing_skills": ["paper-outline", "paper-writer"],
         "artifacts": {
             "plan": ["research/argument-plan.md"],
             "experiment": ["research/argument-evidence.md"],
@@ -163,17 +163,17 @@ def retrieval_intents_for(stage: str, target_venue: str | None) -> dict[str, lis
 def recommended_skills_for(stage: str, paper_type: str | None, *, planned_runs: bool | None = None) -> list[str]:
     profile = get_paper_profile(paper_type)
     mapping = {
-        "topic": ["brainstorming-research-ideas", "research-companion", "idea-evaluator", "novelty-check"],
-        "literature": ["research-lit", "deep-research", "nature-reader", "nature-ref-verifier"],
-        "plan": ["select-venue", *profile["plan_skills"]],
+        "topic": ["research-companion", "idea-evaluator", "novelty-check"],
+        "literature": ["research-lit", "citation-and-venue"],
+        "plan": ["citation-and-venue", *profile["plan_skills"]],
         "experiment": list(profile["execution_skills"]),
         "analysis": list(profile["analysis_skills"]),
-        "writing": list(dict.fromkeys([*profile["writing_skills"], "good-story", "ts-paper-plan", "ts-paper-cite"])),
-        "review": ["research-review", "pre-submission-reviewer", "paper-claim-audit", "paper-polish", "nature-ref-verifier"],
-        "delivery": ["limitation-and-risk-writer", "ai-use-drafter"],
+        "writing": list(dict.fromkeys([*profile["writing_skills"], "paper-outline", "citation-and-venue"])),
+        "review": ["research-review", "paper-claim-audit", "paper-polish", "citation-and-venue"],
+        "delivery": ["paper-writer"],
     }
     skills = mapping[stage]
-    run_skills = {"experiment": ["experiment-bridge", "run-experiment"], "analysis": ["analyze-results"]}
+    run_skills = {"experiment": ["experiment-bridge"], "analysis": ["analyze-results"]}
     if planned_runs is None or stage not in run_skills:
         return skills
     if planned_runs:

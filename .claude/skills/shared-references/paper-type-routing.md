@@ -49,7 +49,7 @@ venue/track (not while shortlisting); reuse an existing calibration for that cyc
    same venue and track (normally the last one or two cycles) closest to this
    paper's topic and contribution type. Note framing, contribution scale, evidence
    depth (baselines, data, ablations, analysis), structure and figure/table use.
-   Confirm venue, year and track against the DBLP TOC (`select-venue` lookup helper)
+   Confirm venue, year and track against the DBLP TOC (`citation-and-venue` lookup helper)
    or official proceedings; S2/OpenAlex venue fields can mix main, Findings,
    workshop and short papers.
 3. **Model on papers one or two tiers above the target.** Choose a few same-topic,
@@ -66,7 +66,7 @@ Keep the target's format, page budget and scope. Exemplars set a quality bar; th
 do not authorize unplanned experiments or claims beyond the evidence. Route an
 evidence gap they expose to [experiment-plan](../experiment-plan/SKILL.md) and a
 claim change to [claim-preservation.md](claim-preservation.md). Use `research-lit`
-/ `nature-reader` records under [publication-policy.md](publication-policy.md);
+/ `research-lit` (paper-reader module) records under [publication-policy.md](publication-policy.md);
 do not copy exemplar text or full abstracts into the project.
 
 ## Contribution profiles
@@ -95,20 +95,20 @@ new label nor a disappointed prediction determines the decision by itself.
 
 ## Use existing skills within the requested task
 
-- `tech-paper-template` supplies a method/system or new-problem-with-solution
-  scaffold. `benchmark-paper-template` supplies evaluation/resource structure;
+- `paper-outline` supplies a method/system or new-problem-with-solution
+  scaffold. `paper-outline` supplies evaluation/resource structure;
   adapt it for metrics or audits without inventing a construction pipeline.
-- `good-story` organizes the actual argument for any type. `ts-paper-plan`
+- `paper-outline` organizes the actual argument for any type. `paper-outline`
   represents it in the selected template when that template fits; adapt optional
   scientific recipes or use an ordinary outline when it does not. Do not reshape
   a contribution merely to satisfy a blueprint linter.
-- `intro-drafter` and `paper-writer` draft the chosen argument; `paper-polish`
+- `paper-writer` (intro-drafter module) and `paper-writer` draft the chosen argument; `paper-polish`
   preserves its meaning. The six-paragraph method introduction is an optional
-  scaffold. `limitation-and-risk-writer` addresses actual claim/design boundaries.
+  scaffold. `paper-writer` (limitation-and-risk module) addresses actual claim/design boundaries.
 - `experiment-plan` and `analyze-results` handle experimental evidence when
   needed. Theory and survey work need their relevant evidence procedures, not an
   automatic experiment phase. Empirical claims within either still need support.
-- `pre-submission-reviewer` and requested `research-review` use the same route.
+- `research-review` and requested `research-review` use the same route.
   A zero-context `paper-claim-audit` infers applicable evidence obligations from
   the paper itself; do not supply author history or prior verdicts to it.
 

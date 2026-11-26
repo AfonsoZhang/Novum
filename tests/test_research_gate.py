@@ -150,7 +150,7 @@ class ResearchGateSkillsControllerTests(unittest.TestCase):
         self.cli("approve", "plan", "--version", revised, "--by", "test", "--response", "Approved proof")
         execution = self.cli("continue")
         self.assertEqual(execution["requiredArtifacts"], ["research/execution.md", "research/proof.txt"])
-        self.assertNotIn("run-experiment", execution["recommendedSkills"])
+        self.assertNotIn("experiment-bridge", execution["recommendedSkills"])
         (research / "execution.md").write_text("The proof is recorded in the protocol's evidence file.")
         missing = run_cli(CODEX_SCRIPT, "gate", "experiment", "--root", str(self.ws), check=False)
         self.assertIn("Missing or empty required artifact for 'experiment': research/proof.txt", missing.stdout)
@@ -195,7 +195,7 @@ class ResearchGateSkillsControllerTests(unittest.TestCase):
                                         "| plan | research/planned-runs.json |\n| experiment | research/source-selection.json |"))
         version = self.cli("gate", "plan")["result"]["approvalVersion"]
         self.cli("approve", "plan", "--version", version, "--by", "test", "--response", "Approved")
-        self.assertIn("run-experiment", self.cli("continue")["recommendedSkills"])
+        self.assertIn("experiment-bridge", self.cli("continue")["recommendedSkills"])
         selection = self.ws / "research/source-selection.json"
         selection.write_text("[]")
         observed = self.ws / "research/observed-runs.json"

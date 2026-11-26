@@ -2,8 +2,10 @@
 name: experiment-bridge
 description: >-
   Implement a research experiment plan as runnable code, configs, metrics and
-  result logging, then perform the requested smoke or pilot runs. Use for
-  experiment implementation, translating a plan into code or completing a plan-to-results workflow.
+  result logging, execute authorized pilots or experiment batches, and build
+  local human-annotation pages when manual labeling is needed. Use for
+  experiment implementation, running experiments, pilot/batch execution,
+  plan-to-results workflows, or human annotation pages.
 license: MIT
 metadata:
   upstream-repo: wanshuiyin/Auto-claude-code-research-in-sleep
@@ -11,7 +13,10 @@ metadata:
   local-adaptation: author-led-experiment-workflow
 ---
 
-# Implement the experiment plan
+# Implement and Run Experiments
+
+> **Execution, memory guard & run tracking:** For authorized pilot/batch execution, Linux local memory caps (`systemd-run`), idempotent result logging, and failure preservation, read [references/run-execution.md](references/run-execution.md).
+> **Human annotation UI:** When manual labeling or verification is needed, load [modules/human-annotation-page/GUIDE.md](modules/human-annotation-page/GUIDE.md).
 
 Apply the shared [working-language policy](../shared-references/research-autonomy.md#working-language) to internal work and user reports.
 
@@ -42,7 +47,7 @@ choice is pending. Fixtures and smoke runs remain implementation checks, not a
 substitute for the selected experiment.
 
 Preserve the chosen benchmark's task/version, split, scorer and baseline protocol
-under [benchmark selection and validity](../benchmark-research-skill/references/selection-and-validity.md).
+under [benchmark selection and validity](../research-lit/modules/benchmark-research/references/selection-and-validity.md).
 Prefer adapting the method to the official evaluation interface. Instrumentation
 and adapters must preserve task and score semantics; label any scientific change
 as a modified condition. Check outcome-to-score behavior where relevant, and keep
@@ -89,7 +94,7 @@ evidence, unevaluated claims after technical failure, and budget pauses; preserv
 the applicable repair/follow-up allowance. Successful smoke execution alone does
 not establish that the pilot passed.
 
-Use [run-experiment](../run-experiment/SKILL.md) for authorized runs. Collect actual
+Use [references/run-execution.md](references/run-execution.md) for authorized runs. Collect actual
 exit status and expected outputs before updating the tracker. Preserve failed and
 missing runs; do not mark a milestone complete because its process launched.
 
